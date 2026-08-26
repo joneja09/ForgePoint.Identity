@@ -11,6 +11,7 @@ It remains licensed under [Apache 2.0](https://opensource.org/licenses/Apache-2.
 - **Pushed Authorization Requests** (RFC 9126) at `/connect/par`
 - **Health checks** via `AddHealthChecks().AddIdentityServer()`
 - **`IClock` / `TimeProvider`** instead of the removed ASP.NET `ISystemClock`
+- **Handwritten EF entity/model mappings** instead of AutoMapper (no AutoMapper license required)
 - Package and test dependencies updated for current .NET
 
 Duende IdentityServer is the commercial successor of the original project. This repository keeps the IdentityServer4 APIs and Apache-2.0 license so existing apps can move to current .NET without a product change.

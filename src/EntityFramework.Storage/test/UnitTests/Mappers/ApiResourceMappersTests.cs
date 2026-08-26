@@ -13,12 +13,6 @@ namespace IdentityServer4.EntityFramework.UnitTests.Mappers
     public class ApiResourceMappersTests
     {
         [Fact]
-        public void AutomapperConfigurationIsValid()
-        {
-            ApiResourceMappers.Mapper.ConfigurationProvider.AssertConfigurationIsValid();
-        }
-
-        [Fact]
         public void Can_Map()
         {
             var model = new ApiResource();

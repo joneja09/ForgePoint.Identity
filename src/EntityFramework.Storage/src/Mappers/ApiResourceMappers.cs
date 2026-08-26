@@ -2,7 +2,6 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using AutoMapper;
 using IdentityServer4.EntityFramework.Entities;
 
 namespace IdentityServer4.EntityFramework.Mappers
@@ -12,14 +11,6 @@ namespace IdentityServer4.EntityFramework.Mappers
     /// </summary>
     public static class ApiResourceMappers
     {
-        static ApiResourceMappers()
-        {
-            Mapper = new MapperConfiguration(cfg => cfg.AddProfile<ApiResourceMapperProfile>())
-                .CreateMapper();
-        }
-
-        internal static IMapper Mapper { get; }
-
         /// <summary>
         /// Maps an entity to a model.
         /// </summary>
@@ -27,7 +18,24 @@ namespace IdentityServer4.EntityFramework.Mappers
         /// <returns></returns>
         public static Models.ApiResource ToModel(this ApiResource entity)
         {
-            return entity == null ? null : Mapper.Map<Models.ApiResource>(entity);
+            if (entity == null)
+            {
+                return null;
+            }
+
+            return new Models.ApiResource
+            {
+                Enabled = entity.Enabled,
+                Name = entity.Name,
+                DisplayName = entity.DisplayName,
+                Description = entity.Description,
+                ShowInDiscoveryDocument = entity.ShowInDiscoveryDocument,
+                AllowedAccessTokenSigningAlgorithms = AllowedSigningAlgorithmsConverter.Convert(entity.AllowedAccessTokenSigningAlgorithms),
+                ApiSecrets = MappingHelpers.MapList(entity.Secrets, MappingHelpers.ToSecret),
+                Scopes = MappingHelpers.MapStrings(entity.Scopes, x => x.Scope),
+                UserClaims = MappingHelpers.MapStrings(entity.UserClaims, x => x.Type),
+                Properties = MappingHelpers.MapProperties(entity.Properties)
+            };
         }
 
         /// <summary>
@@ -37,7 +45,24 @@ namespace IdentityServer4.EntityFramework.Mappers
         /// <returns></returns>
         public static ApiResource ToEntity(this Models.ApiResource model)
         {
-            return model == null ? null : Mapper.Map<ApiResource>(model);
+            if (model == null)
+            {
+                return null;
+            }
+
+            return new ApiResource
+            {
+                Enabled = model.Enabled,
+                Name = model.Name,
+                DisplayName = model.DisplayName,
+                Description = model.Description,
+                ShowInDiscoveryDocument = model.ShowInDiscoveryDocument,
+                AllowedAccessTokenSigningAlgorithms = AllowedSigningAlgorithmsConverter.Convert(model.AllowedAccessTokenSigningAlgorithms),
+                Secrets = MappingHelpers.MapList(model.ApiSecrets, MappingHelpers.ToEntitySecret<ApiResourceSecret>),
+                Scopes = MappingHelpers.MapList(model.Scopes, x => new ApiResourceScope { Scope = x }),
+                UserClaims = MappingHelpers.MapList(model.UserClaims, x => new ApiResourceClaim { Type = x }),
+                Properties = MappingHelpers.MapProperties<ApiResourceProperty>(model.Properties)
+            };
         }
     }
 }
