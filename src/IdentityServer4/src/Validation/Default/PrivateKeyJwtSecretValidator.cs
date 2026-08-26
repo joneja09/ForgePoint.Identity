@@ -107,7 +107,10 @@ namespace IdentityServer4.Validation
             };
             try
             {
-                var handler = new JwtSecurityTokenHandler();
+                var handler = new JwtSecurityTokenHandler
+                {
+                    MapInboundClaims = false
+                };
                 handler.ValidateToken(jwtTokenString, tokenValidationParameters, out var token);
 
                 var jwtToken = (JwtSecurityToken)token;
@@ -116,9 +119,8 @@ namespace IdentityServer4.Validation
                     _logger.LogError("Both 'sub' and 'iss' in the client assertion token must have a value of client_id.");
                     return fail;
                 }
-                
-                var exp = jwtToken.Payload.Exp;
-                if (!exp.HasValue)
+
+                if (jwtToken.ValidTo == DateTime.MinValue)
                 {
                     _logger.LogError("exp is missing.");
                     return fail;
@@ -138,7 +140,13 @@ namespace IdentityServer4.Validation
                 }
                 else
                 {
-                    await _replayCache.AddAsync(Purpose, jti, DateTimeOffset.FromUnixTimeSeconds(exp.Value).AddMinutes(5));
+                    var expires = jwtToken.ValidTo;
+                    if (expires.Kind == DateTimeKind.Unspecified)
+                    {
+                        expires = DateTime.SpecifyKind(expires, DateTimeKind.Utc);
+                    }
+
+                    await _replayCache.AddAsync(Purpose, jti, new DateTimeOffset(expires).AddMinutes(5));
                 }
 
                 return success;

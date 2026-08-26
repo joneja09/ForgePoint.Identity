@@ -14,6 +14,7 @@ using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
 using static IdentityServer4.IdentityServerConstants;
+using IdentityServer4;
 
 namespace IdentityServer4.Services
 {
@@ -35,7 +36,7 @@ namespace IdentityServer4.Services
         /// <summary>
         ///  The clock
         /// </summary>
-        protected readonly ISystemClock Clock;
+        protected readonly IClock Clock;
 
         /// <summary>
         /// The options
@@ -50,7 +51,7 @@ namespace IdentityServer4.Services
         /// <param name="options">The options.</param>
         /// <param name="logger">The logger.</param>
         public DefaultTokenCreationService(
-            ISystemClock clock,
+            IClock clock,
             IKeyMaterialService keys,
             IdentityServerOptions options,
             ILogger<DefaultTokenCreationService> logger)

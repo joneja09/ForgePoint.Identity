@@ -151,6 +151,15 @@ namespace IdentityServer4.ResponseHandling
                     entries.Add(OidcConstants.Discovery.DeviceAuthorizationEndpoint, baseUrl + Constants.ProtocolRoutePaths.DeviceAuthorization);
                 }
 
+                if (Options.Endpoints.EnablePushedAuthorizationEndpoint)
+                {
+                    entries.Add("pushed_authorization_request_endpoint", baseUrl + Constants.ProtocolRoutePaths.PushedAuthorization);
+                    if (Options.PushedAuthorization.Required)
+                    {
+                        entries.Add("require_pushed_authorization_requests", true);
+                    }
+                }
+
                 if (Options.MutualTls.Enabled)
                 {
                     var mtlsEndpoints = new Dictionary<string, string>();

@@ -400,6 +400,9 @@ namespace SqlServer.Migrations.ConfigurationDb
                     b.Property<bool>("RequireRequestObject")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("RequirePushedAuthorization")
+                        .HasColumnType("bit");
+
                     b.Property<int>("SlidingRefreshTokenLifetime")
                         .HasColumnType("int");
 

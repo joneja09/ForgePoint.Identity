@@ -18,6 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using IdentityServer4.Logging.Models;
 using Microsoft.AspNetCore.Authentication;
+using IdentityServer4;
 
 namespace IdentityServer4.Validation
 {
@@ -35,7 +36,7 @@ namespace IdentityServer4.Validation
         private readonly IResourceOwnerPasswordValidator _resourceOwnerValidator;
         private readonly IProfileService _profile;
         private readonly IDeviceCodeValidator _deviceCodeValidator;
-        private readonly ISystemClock _clock;
+        private readonly IClock _clock;
         private readonly ILogger _logger;
 
         private ValidatedTokenRequest _validatedRequest;
@@ -69,7 +70,7 @@ namespace IdentityServer4.Validation
             ITokenValidator tokenValidator, 
             IRefreshTokenService refreshTokenService,
             IEventService events, 
-            ISystemClock clock, 
+            IClock clock, 
             ILogger<TokenRequestValidator> logger)
         {
             _logger = logger;

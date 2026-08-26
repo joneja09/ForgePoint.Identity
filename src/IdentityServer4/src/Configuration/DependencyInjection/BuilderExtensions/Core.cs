@@ -46,6 +46,8 @@ namespace Microsoft.Extensions.DependencyInjection
             builder.Services.AddSingleton(
                 resolver => resolver.GetRequiredService<IOptions<IdentityServerOptions>>().Value);
             builder.Services.AddHttpClient();
+            builder.Services.TryAddSingleton(TimeProvider.System);
+            builder.Services.TryAddSingleton<IClock, DefaultClock>();
 
             return builder;
         }
@@ -90,6 +92,7 @@ namespace Microsoft.Extensions.DependencyInjection
             builder.AddEndpoint<TokenRevocationEndpoint>(EndpointNames.Revocation, ProtocolRoutePaths.Revocation.EnsureLeadingSlash());
             builder.AddEndpoint<TokenEndpoint>(EndpointNames.Token, ProtocolRoutePaths.Token.EnsureLeadingSlash());
             builder.AddEndpoint<UserInfoEndpoint>(EndpointNames.UserInfo, ProtocolRoutePaths.UserInfo.EnsureLeadingSlash());
+            builder.AddEndpoint<PushedAuthorizationEndpoint>(EndpointNames.PushedAuthorization, ProtocolRoutePaths.PushedAuthorization.EnsureLeadingSlash());
 
             return builder;
         }
@@ -174,6 +177,7 @@ namespace Microsoft.Extensions.DependencyInjection
             builder.Services.TryAddTransient<IBackChannelLogoutService, DefaultBackChannelLogoutService>();
             builder.Services.TryAddTransient<IResourceValidator, DefaultResourceValidator>();
             builder.Services.TryAddTransient<IScopeParser, DefaultScopeParser>();
+            builder.Services.TryAddTransient<IPushedAuthorizationStore, DefaultPushedAuthorizationStore>();
 
             builder.AddJwtRequestUriHttpClient();
             builder.AddBackChannelLogoutHttpClient();

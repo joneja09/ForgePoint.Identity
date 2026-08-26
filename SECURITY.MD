@@ -1,7 +1,7 @@
 # Reporting Security Issues
 
-If you discover a security issue in IdentityServer, please report it by sending an email to contact@identityserver.io
+If you discover a security issue in this IdentityServer4 continuation, please open a private GitHub security advisory on the repository.
 
-This will allow us to assess the risk, and make a fix available before we add a bug report to the GitHub repository.
+This 10.x line includes a fix for CVE-2024-39694 (open redirect via crafted local URLs). IdentityServer4 4.1.2 and earlier remain affected.
 
-Thanks!
+Do not file public issues for unreleased vulnerabilities until a fix is available.

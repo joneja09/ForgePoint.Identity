@@ -16,6 +16,7 @@ using IdentityServer4.Stores.Serialization;
 using IdentityServer4.Validation;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
+using IdentityServer4;
 
 namespace IdentityServer.UnitTests.Validation.Setup
 {
@@ -229,8 +230,8 @@ namespace IdentityServer.UnitTests.Validation.Setup
                 jwtRequestUriHttpClient = new DefaultJwtRequestUriHttpClient(new HttpClient(new NetworkHandler(new Exception("no jwt request uri response configured"))), options, new LoggerFactory());
             }
 
-
             var userSession = new MockUserSession();
+            var pushedAuthorizationStore = new InMemoryPushedAuthorizationStore();
 
             return new AuthorizeRequestValidator(
                 options,
@@ -241,6 +242,7 @@ namespace IdentityServer.UnitTests.Validation.Setup
                 userSession,
                 jwtRequestValidator,
                 jwtRequestUriHttpClient,
+                pushedAuthorizationStore,
                 TestLogger.Create<AuthorizeRequestValidator>());
         }
 
@@ -248,7 +250,7 @@ namespace IdentityServer.UnitTests.Validation.Setup
             IReferenceTokenStore store = null, 
             IRefreshTokenStore refreshTokenStore = null,
             IProfileService profile = null, 
-            IdentityServerOptions options = null, ISystemClock clock = null)
+            IdentityServerOptions options = null, IClock clock = null)
         {
             if (options == null)
             {
@@ -301,7 +303,7 @@ namespace IdentityServer.UnitTests.Validation.Setup
             IDeviceFlowCodeService service,
             IProfileService profile = null,
             IDeviceFlowThrottlingService throttlingService = null,
-            ISystemClock clock = null)
+            IClock clock = null)
         {
             profile = profile ?? new TestProfileService();
             throttlingService = throttlingService ?? new TestDeviceFlowThrottlingService();

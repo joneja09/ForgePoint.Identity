@@ -332,8 +332,33 @@ namespace IdentityServer.IntegrationTests.Common
                 responseMode: responseMode,
                 codeChallenge: codeChallenge,
                 codeChallengeMethod: codeChallengeMethod,
-                extra: extra);
+                extra: ToParameters(extra));
             return url;
+        }
+
+        private static Parameters ToParameters(object extra)
+        {
+            if (extra == null)
+            {
+                return null;
+            }
+
+            if (extra is Parameters parameters)
+            {
+                return parameters;
+            }
+
+            var result = new Parameters();
+            foreach (var prop in extra.GetType().GetProperties())
+            {
+                var value = prop.GetValue(extra);
+                if (value != null)
+                {
+                    result.Add(prop.Name, value.ToString());
+                }
+            }
+
+            return result;
         }
 
         public AuthorizeResponse ParseAuthorizationResponseUrl(string url)

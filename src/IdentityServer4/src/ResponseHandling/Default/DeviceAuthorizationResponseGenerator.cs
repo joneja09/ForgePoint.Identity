@@ -11,6 +11,7 @@ using IdentityServer4.Services;
 using IdentityServer4.Validation;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
+using IdentityServer4;
 
 namespace IdentityServer4.ResponseHandling
 {
@@ -38,7 +39,7 @@ namespace IdentityServer4.ResponseHandling
         /// <summary>
         /// The clock
         /// </summary>
-        protected readonly ISystemClock Clock;
+        protected readonly IClock Clock;
 
         /// <summary>
         /// The logger
@@ -53,7 +54,7 @@ namespace IdentityServer4.ResponseHandling
         /// <param name="deviceFlowCodeService">The device flow code service.</param>
         /// <param name="clock">The clock.</param>
         /// <param name="logger">The logger.</param>
-        public DeviceAuthorizationResponseGenerator(IdentityServerOptions options, IUserCodeService userCodeService, IDeviceFlowCodeService deviceFlowCodeService, ISystemClock clock, ILogger<DeviceAuthorizationResponseGenerator> logger)
+        public DeviceAuthorizationResponseGenerator(IdentityServerOptions options, IUserCodeService userCodeService, IDeviceFlowCodeService deviceFlowCodeService, IClock clock, ILogger<DeviceAuthorizationResponseGenerator> logger)
         {
             Options = options;
             UserCodeService = userCodeService;

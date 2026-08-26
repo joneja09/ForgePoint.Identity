@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using IdentityServer4;
 using IdentityServer4.Configuration;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
@@ -28,6 +29,7 @@ namespace IdentityServer.UnitTests.Common
 
             var services = new ServiceCollection();
             services.AddSingleton(options);
+            services.AddSingleton<IClock, DefaultClock>();
 
             services.AddSingleton<IAuthenticationSchemeProvider>(Schemes);
             services.AddSingleton<IAuthenticationService>(AuthenticationService);

@@ -12,6 +12,7 @@ using FluentAssertions;
 using IdentityModel;
 using IdentityModel.Client;
 using IdentityServer.IntegrationTests.Clients.Setup;
+using IdentityServer.IntegrationTests.Common;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;
@@ -62,10 +63,7 @@ namespace IdentityServer.IntegrationTests.Clients
             fields.TryGetValue("token_type", out temp).Should().BeTrue();
             fields.TryGetValue("expires_in", out temp).Should().BeTrue();
 
-            var responseObject = fields["dto"] as JObject;
-            responseObject.Should().NotBeNull();
-
-            var responseDto = GetDto(responseObject);
+            var responseDto = TokenJson.Deserialize<CustomResponseDto>(fields["dto"]);
             var dto = CustomResponseDto.Create;
 
             responseDto.string_value.Should().Be(dto.string_value);
@@ -92,10 +90,10 @@ namespace IdentityServer.IntegrationTests.Clients
 
             payload["aud"].Should().Be("api");
 
-            var scopes = payload["scope"] as JArray;
+            var scopes = TokenJson.AsList(payload["scope"]);
             scopes.First().ToString().Should().Be("api1");
 
-            var amr = payload["amr"] as JArray;
+            var amr = TokenJson.AsList(payload["amr"]);
             amr.Count().Should().Be(1);
             amr.First().ToString().Should().Be("password");
         }
@@ -127,10 +125,7 @@ namespace IdentityServer.IntegrationTests.Clients
             fields.TryGetValue("token_type", out temp).Should().BeFalse();
             fields.TryGetValue("expires_in", out temp).Should().BeFalse();
 
-            var responseObject = fields["dto"] as JObject;
-            responseObject.Should().NotBeNull();
-
-            var responseDto = GetDto(responseObject);
+            var responseDto = TokenJson.Deserialize<CustomResponseDto>(fields["dto"]);
             var dto = CustomResponseDto.Create;
 
             responseDto.string_value.Should().Be(dto.string_value);
@@ -181,10 +176,7 @@ namespace IdentityServer.IntegrationTests.Clients
             fields.TryGetValue("token_type", out temp).Should().BeTrue();
             fields.TryGetValue("expires_in", out temp).Should().BeTrue();
 
-            var responseObject = fields["dto"] as JObject;
-            responseObject.Should().NotBeNull();
-
-            var responseDto = GetDto(responseObject);
+            var responseDto = TokenJson.Deserialize<CustomResponseDto>(fields["dto"]);
             var dto = CustomResponseDto.Create;
 
             responseDto.string_value.Should().Be(dto.string_value);
@@ -211,10 +203,10 @@ namespace IdentityServer.IntegrationTests.Clients
 
             payload["aud"].Should().Be("api");
 
-            var scopes = payload["scope"] as JArray;
+            var scopes = TokenJson.AsList(payload["scope"]);
             scopes.First().ToString().Should().Be("api1");
 
-            var amr = payload["amr"] as JArray;
+            var amr = TokenJson.AsList(payload["amr"]);
             amr.Count().Should().Be(1);
             amr.First().ToString().Should().Be("custom");
 
@@ -252,10 +244,7 @@ namespace IdentityServer.IntegrationTests.Clients
             fields.TryGetValue("token_type", out temp).Should().BeFalse();
             fields.TryGetValue("expires_in", out temp).Should().BeFalse();
 
-            var responseObject = fields["dto"] as JObject;
-            responseObject.Should().NotBeNull();
-
-            var responseDto = GetDto(responseObject);
+            var responseDto = TokenJson.Deserialize<CustomResponseDto>(fields["dto"]);
             var dto = CustomResponseDto.Create;
 
             responseDto.string_value.Should().Be(dto.string_value);
@@ -272,11 +261,6 @@ namespace IdentityServer.IntegrationTests.Clients
             response.TokenType.Should().BeNull();
             response.IdentityToken.Should().BeNull();
             response.RefreshToken.Should().BeNull();
-        }
-
-        private CustomResponseDto GetDto(JObject responseObject)
-        {
-            return responseObject.ToObject<CustomResponseDto>();
         }
 
         private Dictionary<string, object> GetFields(TokenResponse response)

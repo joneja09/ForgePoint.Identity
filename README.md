@@ -1,69 +1,81 @@
-# Security Vulnerability Found
-IdentityServer4 contains a known Open Redirect vulnerability (CVE-2024-39694) that we do not intend to address in IdentityServer4. Please see [the security advisory](https://github.com/IdentityServer/IdentityServer4/security/advisories/GHSA-55p7-v223-x366) for more details and consider upgrading to [Duende.IdentityServer](www.duendesoftware.com) to receive updates.
+# IdentityServer4 for .NET 8 and .NET 10
 
-# Important update
-This project is not maintained anymore. This repo will be archived when .NET Core 3.1 end of support is reached (13th Dec 2022). All new development is happening in the new [Duende Software](https://github.com/duendesoftware) organization. 
+IdentityServer4 is a free, open source [OpenID Connect](https://openid.net/connect/) and [OAuth 2.0](https://datatracker.ietf.org/doc/html/rfc6749) framework for ASP.NET Core. This branch is a continuation of the last Apache-2.0 IdentityServer4 release, upgraded for current .NET and expanded with protocol and hosting features that modern apps expect.
 
-See [here](https://duendesoftware.com/products/identityserver) for more details.
+It remains licensed under [Apache 2.0](https://opensource.org/licenses/Apache-2.0).
 
-## About IdentityServer4
-[<img align="right" width="100px" src="https://dotnetfoundation.org/img/logo_big.svg" />](https://dotnetfoundation.org/projects?searchquery=IdentityServer&type=project)
+## What's new in 10.x
 
-IdentityServer is a free, open source [OpenID Connect](http://openid.net/connect/) and [OAuth 2.0](https://tools.ietf.org/html/rfc6749) framework for ASP.NET Core.
-Founded and maintained by [Dominick Baier](https://twitter.com/leastprivilege) and [Brock Allen](https://twitter.com/brocklallen), IdentityServer4 incorporates all the protocol implementations and extensibility points needed to integrate token-based authentication, single-sign-on and API access control in your applications.
-IdentityServer4 is officially [certified](https://openid.net/certification/) by the [OpenID Foundation](https://openid.net) and thus spec-compliant and interoperable.
-It is part of the [.NET Foundation](https://www.dotnetfoundation.org/), and operates under their [code of conduct](https://www.dotnetfoundation.org/code-of-conduct). It is licensed under [Apache 2](https://opensource.org/licenses/Apache-2.0) (an OSI approved license).
+- **.NET 8 and .NET 10** target frameworks for all libraries
+- **CVE-2024-39694** open-redirect fix in local URL validation
+- **Pushed Authorization Requests** (RFC 9126) at `/connect/par`
+- **Health checks** via `AddHealthChecks().AddIdentityServer()`
+- **`IClock` / `TimeProvider`** instead of the removed ASP.NET `ISystemClock`
+- Package and test dependencies updated for current .NET
 
-For project documentation, please visit [readthedocs](https://identityserver4.readthedocs.io).
+Duende IdentityServer is the commercial successor of the original project. This repository keeps the IdentityServer4 APIs and Apache-2.0 license so existing apps can move to current .NET without a product change.
 
-## Branch structure
-Active development happens on the main branch. This always contains the latest version. Each (pre-) release is tagged with the corresponding version. The [aspnetcore1](https://github.com/IdentityServer/IdentityServer4/tree/aspnetcore1) and [aspnetcore2](https://github.com/IdentityServer/IdentityServer4/tree/aspnetcore2) branches contain the latest versions of the older ASP.NET Core based versions.
+## Packages
+
+| Package | Role |
+| --- | --- |
+| `IdentityServer4` | Protocol implementation and ASP.NET Core host integration |
+| `IdentityServer4.Storage` | Store contracts and models |
+| `IdentityServer4.EntityFramework` | EF Core configuration and operational stores |
+| `IdentityServer4.EntityFramework.Storage` | EF Core entities and stores |
+| `IdentityServer4.AspNetIdentity` | ASP.NET Core Identity integration |
 
 ## How to build
 
-* [Install](https://www.microsoft.com/net/download/core#/current) the latest .NET Core 3.1 SDK
+* Install the [.NET 10 SDK](https://dotnet.microsoft.com/download) (the SDK also builds the `net8.0` TFM)
 * Install Git
 * Clone this repo
-* Run `build.ps1` or `build.sh` in the root of the cloned repo
+* Run `build.sh` or `build.ps1` from the repository root
+
+The build packs each project into `./nuget` in dependency order: Storage → IdentityServer4 → EntityFramework.Storage → EntityFramework → AspNetIdentity.
+
+## Quick start
+
+```csharp
+builder.Services.AddIdentityServer(options =>
+    {
+        options.Events.RaiseSuccessEvents = true;
+        options.Events.RaiseFailureEvents = true;
+        options.Events.RaiseErrorEvents = true;
+        options.PushedAuthorization.Required = false; // set true to require PAR globally
+    })
+    .AddInMemoryClients(Clients.Get())
+    .AddInMemoryIdentityResources(Resources.IdentityResources)
+    .AddInMemoryApiScopes(Resources.ApiScopes)
+    .AddDeveloperSigningCredential();
+
+builder.Services.AddHealthChecks()
+    .AddIdentityServer();
+
+app.UseIdentityServer();
+app.MapHealthChecks("/health");
+```
+
+Enable PAR per client with `Client.RequirePushedAuthorization = true`, or for every client with `options.PushedAuthorization.Required = true`.
+
+Existing IdentityServer4 4.x configuration databases need one additive column:
+
+```sql
+ALTER TABLE [Clients] ADD [RequirePushedAuthorization] bit NOT NULL DEFAULT 0;
+```
+
+A script is included at `docs/migrations/add-require-pushed-authorization.sql`.
 
 ## Documentation
-For project documentation, please visit [readthedocs](https://identityserver4.readthedocs.io).
 
-See [here](http://docs.identityserver.io/en/aspnetcore1/) for the 1.x docs, and [here](http://docs.identityserver.io/en/aspnetcore2/) for the 2.x docs.
+Historical IdentityServer4 docs: [https://identityserver4.readthedocs.io](https://identityserver4.readthedocs.io).
 
-## Bug reports and feature requests
-Please use the [issue tracker](https://github.com/IdentityServer/IdentityServer4/issues) for that. We only support the latest version for free. For older versions, you can get a commercial support agreement with us.
+PAR is described in [RFC 9126](https://www.rfc-editor.org/rfc/rfc9126). The discovery document advertises `pushed_authorization_request_endpoint` when the endpoint is enabled.
 
-## Commercial and Community Support
-If you need help with implementing IdentityServer4 or your security architecture in general, there are both free and commercial support options.
-See [here](https://identityserver4.readthedocs.io/en/latest/intro/support.html) for more details.
+## Security
 
-## Sponsorship
-If you are a fan of the project or a company that relies on IdentityServer, you might want to consider sponsoring.
-This will help us devote more time to answering questions and doing feature development. If you are interested please head to our [Patreon](https://www.patreon.com/identityserver) page which has further details.
-
-### Platinum Sponsors
-[<img src="https://user-images.githubusercontent.com/1454075/62819413-39550c00-bb55-11e9-8f2f-a268c3552c71.png" width="200">](https://udelt.no)
-
-[<img src="https://user-images.githubusercontent.com/1454075/66454740-fb973580-ea68-11e9-9993-6c1014881528.png" width="200">](https://github.com/dotnet-at-microsoft)
-
-### Corporate Sponsors
-[Ritter Insurance Marketing](https://www.ritterim.com)  
-[ExtraNetUserManager](https://www.extranetusermanager.com/)  
-[Knab](https://www.knab.nl/)
-
-You can see a list of our current sponsors [here](https://github.com/IdentityServer/IdentityServer4/blob/main/SPONSORS.md) - and for companies we have some nice advertisement options as well.
+See [SECURITY.MD](SECURITY.MD). IdentityServer4 4.1.2 and earlier are affected by [CVE-2024-39694](https://github.com/IdentityServer/IdentityServer4/security/advisories/GHSA-55p7-v223-x366). This 10.x line includes the local-URL validation fix.
 
 ## Acknowledgements
-IdentityServer4 is built using the following great open source projects and free services:
 
-* [ASP.NET Core](https://github.com/dotnet/aspnetcore)
-* [Bullseye](https://github.com/adamralph/bullseye)
-* [SimpleExec](https://github.com/adamralph/simple-exec)
-* [MinVer](https://github.com/adamralph/minver)
-* [Json.Net](http://www.newtonsoft.com/json)
-* [XUnit](https://xunit.github.io/)
-* [Fluent Assertions](http://www.fluentassertions.com/)
-* [GitReleaseManager](https://github.com/GitTools/GitReleaseManager)
-
-..and last but not least a big thanks to all our [contributors](https://github.com/IdentityServer/IdentityServer4/graphs/contributors)!
+IdentityServer4 is built using ASP.NET Core, IdentityModel, Newtonsoft.Json, xUnit, Fluent Assertions, MinVer, Bullseye, and SimpleExec — and the work of [every contributor](https://github.com/IdentityServer/IdentityServer4/graphs/contributors) to the original project.

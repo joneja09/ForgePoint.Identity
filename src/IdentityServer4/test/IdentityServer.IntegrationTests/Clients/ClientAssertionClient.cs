@@ -210,7 +210,7 @@ namespace IdentityServer.IntegrationTests.Clients
             payload.Should().Contain("client_id", ClientId);
             payload.Keys.Should().Contain("iat");
             
-            var scopes = payload["scope"] as JArray;
+            var scopes = TokenJson.AsList(payload["scope"]);
             scopes.First().ToString().Should().Be("api1");
 
             payload["aud"].Should().Be("api");

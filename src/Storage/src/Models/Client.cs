@@ -106,6 +106,11 @@ namespace IdentityServer4.Models
         /// Specifies whether the client must use a request object on authorize requests (defaults to <c>false</c>.)
         /// </summary>
         public bool RequireRequestObject { get; set; } = false;
+
+        /// <summary>
+        /// Specifies whether the client must use pushed authorization requests (RFC 9126). Defaults to <c>false</c>.
+        /// </summary>
+        public bool RequirePushedAuthorization { get; set; } = false;
         
         /// <summary>
         /// Controls whether access tokens are transmitted via the browser for this client (defaults to <c>false</c>).

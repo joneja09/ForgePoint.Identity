@@ -15,6 +15,7 @@ namespace IdentityServer4
         public const string IdentityServerAuthenticationType = IdentityServerName;
         public const string ExternalAuthenticationMethod     = "external";
         public const string DefaultHashAlgorithm             = "SHA256";
+        public const string PushedAuthorizationRequestUriPrefix = "urn:ietf:params:oauth:request_uri:";
 
         public static readonly TimeSpan DefaultCookieTimeSpan = TimeSpan.FromHours(10);
         public static readonly TimeSpan DefaultCacheDuration  = TimeSpan.FromMinutes(60);
@@ -205,6 +206,7 @@ namespace IdentityServer4
             public const string EndSession = "Endsession";
             public const string CheckSession = "Checksession";
             public const string UserInfo = "Userinfo";
+            public const string PushedAuthorization = "PushedAuthorization";
         }
 
         public static class ProtocolRoutePaths
@@ -223,6 +225,7 @@ namespace IdentityServer4
             public const string EndSessionCallback      = EndSession + "/callback";
             public const string CheckSession            = ConnectPathPrefix + "/checksession";
             public const string DeviceAuthorization     = ConnectPathPrefix + "/deviceauthorization";
+            public const string PushedAuthorization     = ConnectPathPrefix + "/par";
 
             public const string MtlsPathPrefix          = ConnectPathPrefix + "/mtls";
             public const string MtlsToken               = MtlsPathPrefix + "/token";
@@ -236,7 +239,8 @@ namespace IdentityServer4
                 DiscoveryWebKeys,
                 Token,
                 UserInfo,
-                Revocation
+                Revocation,
+                PushedAuthorization
             };
         }
 

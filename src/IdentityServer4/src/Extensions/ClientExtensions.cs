@@ -3,6 +3,7 @@
 
 
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,22 +43,60 @@ namespace IdentityServer4.Models
                                 .ToList();
             keys.AddRange(certificates);
 
-            var jwks = secretList
-                        .Where(s => s.Type == IdentityServerConstants.SecretTypes.JsonWebKey)
-                        .Select(s => new Microsoft.IdentityModel.Tokens.JsonWebKey(s.Value))
-                        .ToList();
-            keys.AddRange(jwks);
+            foreach (var secret in secretList.Where(s => s.Type == IdentityServerConstants.SecretTypes.JsonWebKey))
+            {
+                try
+                {
+                    keys.Add(ParseJsonWebKey(secret.Value));
+                }
+                catch
+                {
+                    // Skip malformed JWKs so one invalid secret does not disable the others.
+                }
+            }
 
             return Task.FromResult(keys);
+        }
+
+        /// <summary>
+        /// IdentityModel 8 parses JWKs with System.Text.Json, which rejects tabs, trailing commas,
+        /// and Newtonsoft PascalCase property names. Fall back to Newtonsoft so existing stored secrets still load.
+        /// </summary>
+        private static JsonWebKey ParseJsonWebKey(string json)
+        {
+            try
+            {
+                return new JsonWebKey(json);
+            }
+            catch
+            {
+                var key = JsonConvert.DeserializeObject<JsonWebKey>(json);
+                if (key == null || string.IsNullOrEmpty(key.Kty))
+                {
+                    throw;
+                }
+
+                return key;
+            }
         }
 
         private static List<X509Certificate2> GetCertificates(IEnumerable<Secret> secrets)
         {
             return secrets
                 .Where(s => s.Type == IdentityServerConstants.SecretTypes.X509CertificateBase64)
-                .Select(s => new X509Certificate2(Convert.FromBase64String(s.Value)))
+                .Select(LoadCertificate)
                 .Where(c => c != null)
                 .ToList();
+        }
+
+        private static X509Certificate2 LoadCertificate(Secret secret)
+        {
+            var raw = Convert.FromBase64String(secret.Value);
+#if NET9_0_OR_GREATER
+            return X509CertificateLoader.LoadCertificate(raw);
+#else
+            return new X509Certificate2(raw);
+#endif
         }
     }
 }

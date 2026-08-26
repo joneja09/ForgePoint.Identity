@@ -8,7 +8,6 @@ using IdentityServer.UnitTests.Common;
 using IdentityServer4.Configuration;
 using IdentityServer4.Extensions;
 using IdentityServer4.Models;
-using Microsoft.AspNetCore.Authentication;
 using Xunit;
 
 namespace IdentityServer.UnitTests.Extensions
@@ -40,7 +39,7 @@ namespace IdentityServer.UnitTests.Extensions
         public void Should_create_scopes_as_array_by_default()
         {
             var options = new IdentityServerOptions();
-            var payload = _token.CreateJwtPayload(new SystemClock(), options, TestLogger.Create<JwtPayloadCreationTests>());
+            var payload = _token.CreateJwtPayload(new StubClock(), options, TestLogger.Create<JwtPayloadCreationTests>());
 
             payload.Should().NotBeNull();
             var scopes = payload.Claims.Where(c => c.Type == JwtClaimTypes.Scope).ToArray();
@@ -58,12 +57,24 @@ namespace IdentityServer.UnitTests.Extensions
                 EmitScopesAsSpaceDelimitedStringInJwt = true
             };
             
-            var payload = _token.CreateJwtPayload(new SystemClock(), options, TestLogger.Create<JwtPayloadCreationTests>());
+            var payload = _token.CreateJwtPayload(new StubClock(), options, TestLogger.Create<JwtPayloadCreationTests>());
 
             payload.Should().NotBeNull();
             var scopes = payload.Claims.Where(c => c.Type == JwtClaimTypes.Scope).ToList();
             scopes.Count().Should().Be(1);
             scopes.First().Value.Should().Be("scope1 scope2 scope3");
+        }
+
+        [Fact]
+        public void Should_serialize_json_confirmation_claim()
+        {
+            _token.Confirmation = "{\"x5t#S256\":\"foo\"}";
+
+            var payload = _token.CreateJwtPayload(new StubClock(), new IdentityServerOptions(), TestLogger.Create<JwtPayloadCreationTests>());
+
+            payload.Should().NotBeNull();
+            payload.ContainsKey(JwtClaimTypes.Confirmation).Should().BeTrue();
+            payload[JwtClaimTypes.Confirmation].ToString().Should().Contain("x5t#S256");
         }
     }
 }

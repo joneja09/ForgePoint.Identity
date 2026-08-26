@@ -125,6 +125,11 @@ namespace IdentityServer4.Configuration
         /// Gets or sets the device flow options.
         /// </summary>
         public DeviceFlowOptions DeviceFlow { get; set; } = new DeviceFlowOptions();
+
+        /// <summary>
+        /// Gets or sets the pushed authorization request options (RFC 9126).
+        /// </summary>
+        public PushedAuthorizationOptions PushedAuthorization { get; set; } = new PushedAuthorizationOptions();
         
         /// <summary>
         /// Gets or sets the logging options

@@ -11,6 +11,7 @@ using IdentityModel;
 using IdentityServer4.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
+using IdentityServer4;
 
 namespace IdentityServer4.Services
 {
@@ -27,7 +28,7 @@ namespace IdentityServer4.Services
         /// <summary>
         /// The system clock;
         /// </summary>
-        protected ISystemClock Clock { get; }
+        protected IClock Clock { get; }
         
         /// <summary>
         /// The IdentityServerTools used to create and the JWT.
@@ -58,7 +59,7 @@ namespace IdentityServer4.Services
         /// <param name="backChannelLogoutHttpClient"></param>
         /// <param name="logger"></param>
         public DefaultBackChannelLogoutService(
-            ISystemClock clock,
+            IClock clock,
             IdentityServerTools tools,
             ILogoutNotificationService logoutNotificationService,
             IBackChannelLogoutHttpClient backChannelLogoutHttpClient,

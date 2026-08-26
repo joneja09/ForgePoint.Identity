@@ -12,6 +12,7 @@ using FluentAssertions;
 using IdentityModel;
 using IdentityModel.Client;
 using IdentityServer.IntegrationTests.Clients.Setup;
+using IdentityServer.IntegrationTests.Common;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;
@@ -147,7 +148,8 @@ namespace IdentityServer.IntegrationTests.Clients
             var scopes = payload["scope"] as JArray;
             scopes.First().ToString().Should().Be("api1");
 
-            var cnf = payload["cnf"] as JObject;
+            var cnf = TokenJson.Deserialize<Dictionary<string, object>>(payload["cnf"]);
+            cnf.Should().NotBeNull();
             cnf["x5t#S256"].ToString().Should().Be("foo");
         }
 

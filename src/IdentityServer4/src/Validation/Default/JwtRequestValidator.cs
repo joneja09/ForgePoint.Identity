@@ -4,8 +4,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using IdentityModel;
 using IdentityServer4.Configuration;
@@ -14,7 +16,6 @@ using IdentityServer4.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace IdentityServer4.Validation
@@ -175,7 +176,7 @@ namespace IdentityServer4.Validation
                 RequireExpirationTime = true
             };
 
-            if (Options.StrictJarValidation)
+            if (Options?.StrictJarValidation == true)
             {
                 tokenValidationParameters.ValidTypes = new[] { JwtClaimTypes.JwtTypes.AuthorizationRequest };
             }
@@ -198,24 +199,38 @@ namespace IdentityServer4.Validation
             {
                 if (!Constants.Filters.JwtRequestClaimTypesFilter.Contains(key))
                 {
-                    var value = token.Payload[key];
-
-                    switch (value)
+                    var converted = ConvertPayloadValue(token.Payload[key]);
+                    if (converted != null)
                     {
-                        case string s:
-                            payload.Add(key, s);
-                            break;
-                        case JObject jobj:
-                            payload.Add(key, jobj.ToString(Formatting.None));
-                            break;
-                        case JArray jarr:
-                            payload.Add(key, jarr.ToString(Formatting.None));
-                            break;
+                        payload.Add(key, converted);
                     }
                 }
             }
 
             return Task.FromResult(payload);
+        }
+
+        private static string ConvertPayloadValue(object value)
+        {
+            switch (value)
+            {
+                case null:
+                    return null;
+                case string s:
+                    return s;
+                case JValue jv:
+                    return jv.Type == JTokenType.String ? jv.ToString() : jv.ToString(Newtonsoft.Json.Formatting.None);
+                case JToken jt:
+                    return jt.ToString(Newtonsoft.Json.Formatting.None);
+                case JsonElement je:
+                    return je.ValueKind == JsonValueKind.String ? je.GetString() : je.GetRawText();
+                case bool b:
+                    return b ? "true" : "false";
+                case byte or sbyte or short or ushort or int or uint or long or ulong or float or double or decimal:
+                    return Convert.ToString(value, CultureInfo.InvariantCulture);
+                default:
+                    return JsonSerializer.Serialize(value);
+            }
         }
     }
 }

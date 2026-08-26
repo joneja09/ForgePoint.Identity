@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using IdentityServer4;
 
 namespace IdentityServer4.Services
 {
@@ -51,7 +52,7 @@ namespace IdentityServer4.Services
         /// <summary>
         /// The clock
         /// </summary>
-        protected readonly ISystemClock Clock;
+        protected readonly IClock Clock;
 
         /// <summary>
         /// The key material service
@@ -79,7 +80,7 @@ namespace IdentityServer4.Services
             IReferenceTokenStore referenceTokenStore,
             ITokenCreationService creationService,
             IHttpContextAccessor contextAccessor,
-            ISystemClock clock,
+            IClock clock,
             IKeyMaterialService keyMaterialService,
             IdentityServerOptions options,
             ILogger<DefaultTokenService> logger)
