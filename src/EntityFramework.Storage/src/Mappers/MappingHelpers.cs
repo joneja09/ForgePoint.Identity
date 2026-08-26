@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using IdentityServer4.EntityFramework.Entities;
-using IdentityServer4.Models;
 
 namespace IdentityServer4.EntityFramework.Mappers
 {
@@ -54,14 +53,14 @@ namespace IdentityServer4.EntityFramework.Mappers
             return source.Select(x => new TProperty { Key = x.Key, Value = x.Value }).ToList();
         }
 
-        public static Secret ToSecret(Entities.Secret entity)
+        public static Models.Secret ToSecret(Entities.Secret entity)
         {
             if (entity == null)
             {
                 return null;
             }
 
-            var secret = new Secret
+            var secret = new Models.Secret
             {
                 Description = entity.Description,
                 Value = entity.Value,
@@ -77,7 +76,7 @@ namespace IdentityServer4.EntityFramework.Mappers
             return secret;
         }
 
-        public static TSecret ToEntitySecret<TSecret>(Secret model)
+        public static TSecret ToEntitySecret<TSecret>(Models.Secret model)
             where TSecret : Entities.Secret, new()
         {
             if (model == null)
