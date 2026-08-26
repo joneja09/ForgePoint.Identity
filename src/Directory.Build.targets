@@ -7,8 +7,9 @@
     <Company>ForgePoint Labs</Company>
     <Product>ForgePoint.Identity</Product>
     <Authors>ForgePoint Labs</Authors>
-    <PackageProjectUrl>https://github.com/joneja09/IdentityServer4</PackageProjectUrl>
-    <PackageReleaseNotes>https://github.com/joneja09/IdentityServer4/releases</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/joneja09/ForgePoint.Identity</PackageProjectUrl>
+    <PackageReleaseNotes>https://github.com/joneja09/ForgePoint.Identity/releases</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/joneja09/ForgePoint.Identity.git</RepositoryUrl>
 
     <ForgePointIdentityVersion>10.0.0-*</ForgePointIdentityVersion>
 

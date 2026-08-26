@@ -30,6 +30,10 @@ Duende IdentityServer is the commercial successor of the original IdentityServer
 | `ForgePoint.Identity.EntityFramework.Storage` | EF Core entities and stores |
 | `ForgePoint.Identity.AspNetIdentity` | ASP.NET Core Identity integration |
 
+```bash
+dotnet add package ForgePoint.Identity
+```
+
 ## How to build
 
 * Install the [.NET 10 SDK](https://dotnet.microsoft.com/download) (the SDK also builds the `net8.0` TFM)
@@ -38,6 +42,22 @@ Duende IdentityServer is the commercial successor of the original IdentityServer
 * Run `build.sh` or `build.ps1` from the repository root
 
 The build packs each project into `./nuget` in dependency order: Storage → Identity → EntityFramework.Storage → EntityFramework → AspNetIdentity.
+
+## Releasing
+
+Version numbers come from [MinVer](https://github.com/adamralph/minver) git tags (`10.0.0`, not `v10.0.0`).
+
+1. Optionally add a `NUGET_API_KEY` Actions secret (a nuget.org API key for the ForgePoint.Identity package prefix). Without it, a GitHub Release is still created and the `.nupkg` files are attached.
+2. Tag main and push:
+
+```bash
+git checkout main
+git pull
+git tag 10.0.0
+git push origin 10.0.0
+```
+
+The Release workflow packs the libraries, creates the GitHub Release, and publishes to nuget.org when `NUGET_API_KEY` is set.
 
 ## Quick start
 

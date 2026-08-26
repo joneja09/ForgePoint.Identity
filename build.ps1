@@ -1,4 +1,4 @@
-$ErrorActionPreference = "Stop";
+$ErrorActionPreference = "Stop"
 
 if (Test-Path ./nuget) {
     Remove-Item ./nuget -Recurse -Force
@@ -11,23 +11,26 @@ Get-ChildItem -Path $nugetPackages -Directory -ErrorAction SilentlyContinue |
     Remove-Item -Recurse -Force
 
 dotnet tool restore
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-pushd ./src/Storage
-Invoke-Expression "./build.ps1 $args"
-popd
+$buildArgs = $args
+$projects = @(
+    "./src/Storage",
+    "./src/IdentityServer4",
+    "./src/EntityFramework.Storage",
+    "./src/EntityFramework",
+    "./src/AspNetIdentity"
+)
 
-pushd ./src/IdentityServer4
-Invoke-Expression "./build.ps1 $args"
-popd
-
-pushd ./src/EntityFramework.Storage
-Invoke-Expression "./build.ps1 $args"
-popd
-
-pushd ./src/EntityFramework
-Invoke-Expression "./build.ps1 $args"
-popd
-
-pushd ./src/AspNetIdentity
-Invoke-Expression "./build.ps1 $args"
-popd
+foreach ($project in $projects) {
+    Push-Location $project
+    try {
+        & ./build.ps1 @buildArgs
+        if ($LASTEXITCODE -ne 0) {
+            throw "Build failed in $project (exit $LASTEXITCODE)."
+        }
+    }
+    finally {
+        Pop-Location
+    }
+}
