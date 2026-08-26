@@ -2,9 +2,9 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
-using IdentityServer4.Stores;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Stores;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Threading.Tasks;
@@ -12,12 +12,13 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 using Microsoft.AspNetCore.Authentication;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Services
+namespace ForgePoint.Identity.Services
 {
     internal class DefaultIdentityServerInteractionService : IIdentityServerInteractionService
     {
-        private readonly ISystemClock _clock;
+        private readonly IClock _clock;
         private readonly IHttpContextAccessor _context;
         private readonly IMessageStore<LogoutMessage> _logoutMessageStore;
         private readonly IMessageStore<ErrorMessage> _errorMessageStore;
@@ -28,7 +29,7 @@ namespace IdentityServer4.Services
         private readonly ReturnUrlParser _returnUrlParser;
 
         public DefaultIdentityServerInteractionService(
-            ISystemClock clock,
+            IClock clock,
             IHttpContextAccessor context,
             IMessageStore<LogoutMessage> logoutMessageStore,
             IMessageStore<ErrorMessage> errorMessageStore,

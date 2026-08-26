@@ -4,7 +4,7 @@
 
 using System.Security.Claims;
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     /// <summary>
     /// Validation result for userinfo requests

@@ -3,23 +3,24 @@
 
 
 using IdentityModel;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
-using IdentityServer4.Stores;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
+using ForgePoint.Identity.Stores;
+using ForgePoint.Identity.Validation;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.ResponseHandling
+namespace ForgePoint.Identity.ResponseHandling
 {
     /// <summary>
     /// The default token response generator
     /// </summary>
-    /// <seealso cref="IdentityServer4.ResponseHandling.ITokenResponseGenerator" />
+    /// <seealso cref="ForgePoint.Identity.ResponseHandling.ITokenResponseGenerator" />
     public class TokenResponseGenerator : ITokenResponseGenerator
     {
         /// <summary>
@@ -55,7 +56,7 @@ namespace IdentityServer4.ResponseHandling
         /// <summary>
         ///  The clock
         /// </summary>
-        protected readonly ISystemClock Clock;
+        protected readonly IClock Clock;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TokenResponseGenerator" /> class.
@@ -67,7 +68,7 @@ namespace IdentityServer4.ResponseHandling
         /// <param name="resources">The resources.</param>
         /// <param name="clients">The clients.</param>
         /// <param name="logger">The logger.</param>
-        public TokenResponseGenerator(ISystemClock clock, ITokenService tokenService, IRefreshTokenService refreshTokenService, IScopeParser scopeParser, IResourceStore resources, IClientStore clients, ILogger<TokenResponseGenerator> logger)
+        public TokenResponseGenerator(IClock clock, ITokenService tokenService, IRefreshTokenService refreshTokenService, IScopeParser scopeParser, IResourceStore resources, IClientStore clients, ILogger<TokenResponseGenerator> logger)
         {
             Clock = clock;
             TokenService = tokenService;

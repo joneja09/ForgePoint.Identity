@@ -3,7 +3,7 @@ using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace IdentityServer4.Hosting.LocalApiAuthentication
+namespace ForgePoint.Identity.Hosting.LocalApiAuthentication
 {
     /// <summary>
     /// Events for local API authentication

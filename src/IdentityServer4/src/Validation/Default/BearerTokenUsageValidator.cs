@@ -3,13 +3,13 @@
 
 
 using IdentityModel;
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     /// <summary>
     /// Validates a request that uses a bearer token for authentication

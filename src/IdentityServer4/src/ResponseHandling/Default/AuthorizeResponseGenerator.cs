@@ -3,24 +3,25 @@
 
 
 using IdentityModel;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
-using IdentityServer4.Stores;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
+using ForgePoint.Identity.Stores;
+using ForgePoint.Identity.Validation;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
-using IdentityServer4.Configuration;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.ResponseHandling
+namespace ForgePoint.Identity.ResponseHandling
 {
     /// <summary>
     /// The authorize response generator
     /// </summary>
-    /// <seealso cref="IdentityServer4.ResponseHandling.IAuthorizeResponseGenerator" />
+    /// <seealso cref="ForgePoint.Identity.ResponseHandling.IAuthorizeResponseGenerator" />
     public class AuthorizeResponseGenerator : IAuthorizeResponseGenerator
     {
         /// <summary>
@@ -46,7 +47,7 @@ namespace IdentityServer4.ResponseHandling
         /// <summary>
         /// The clock
         /// </summary>
-        protected readonly ISystemClock Clock;
+        protected readonly IClock Clock;
 
         /// <summary>
         /// The key material service
@@ -63,7 +64,7 @@ namespace IdentityServer4.ResponseHandling
         /// <param name="authorizationCodeStore">The authorization code store.</param>
         /// <param name="events">The events.</param>
         public AuthorizeResponseGenerator(
-            ISystemClock clock,
+            IClock clock,
             ITokenService tokenService,
             IKeyMaterialService keyMaterialService,
             IAuthorizationCodeStore authorizationCodeStore,

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace IdentityServer4.Models.AccountViewModels
+namespace ForgePoint.Identity.Models.AccountViewModels
 {
     public class RegisterViewModel
     {

@@ -8,11 +8,12 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using IdentityModel;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Services
+namespace ForgePoint.Identity.Services
 {
     /// <summary>
     /// Default back-channel logout notification implementation.
@@ -27,7 +28,7 @@ namespace IdentityServer4.Services
         /// <summary>
         /// The system clock;
         /// </summary>
-        protected ISystemClock Clock { get; }
+        protected IClock Clock { get; }
         
         /// <summary>
         /// The IdentityServerTools used to create and the JWT.
@@ -58,7 +59,7 @@ namespace IdentityServer4.Services
         /// <param name="backChannelLogoutHttpClient"></param>
         /// <param name="logger"></param>
         public DefaultBackChannelLogoutService(
-            ISystemClock clock,
+            IClock clock,
             IdentityServerTools tools,
             ILogoutNotificationService logoutNotificationService,
             IBackChannelLogoutHttpClient backChannelLogoutHttpClient,

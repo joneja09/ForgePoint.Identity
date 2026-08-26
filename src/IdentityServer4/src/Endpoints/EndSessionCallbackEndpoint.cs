@@ -3,14 +3,14 @@
 
 using System.Net;
 using System.Threading.Tasks;
-using IdentityServer4.Endpoints.Results;
-using IdentityServer4.Extensions;
-using IdentityServer4.Hosting;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Endpoints.Results;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Hosting;
+using ForgePoint.Identity.Validation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace IdentityServer4.Endpoints
+namespace ForgePoint.Identity.Endpoints
 {
     internal class EndSessionCallbackEndpoint : IEndpointHandler
     {

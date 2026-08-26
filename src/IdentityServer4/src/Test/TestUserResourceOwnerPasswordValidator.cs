@@ -3,28 +3,29 @@
 
 
 using IdentityModel;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Validation;
 using System.Threading.Tasks;
 using System;
 using Microsoft.AspNetCore.Authentication;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Test
+namespace ForgePoint.Identity.Test
 {
     /// <summary>
     /// Resource owner password validator for test users
     /// </summary>
-    /// <seealso cref="IdentityServer4.Validation.IResourceOwnerPasswordValidator" />
+    /// <seealso cref="ForgePoint.Identity.Validation.IResourceOwnerPasswordValidator" />
     public class TestUserResourceOwnerPasswordValidator : IResourceOwnerPasswordValidator
     {
         private readonly TestUserStore _users;
-        private readonly ISystemClock _clock;
+        private readonly IClock _clock;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TestUserResourceOwnerPasswordValidator"/> class.
         /// </summary>
         /// <param name="users">The users.</param>
         /// <param name="clock">The clock.</param>
-        public TestUserResourceOwnerPasswordValidator(TestUserStore users, ISystemClock clock)
+        public TestUserResourceOwnerPasswordValidator(TestUserStore users, IClock clock)
         {
             _users = users;
             _clock = clock;

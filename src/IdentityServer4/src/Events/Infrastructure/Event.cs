@@ -2,12 +2,12 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.Extensions;
-using IdentityServer4.Logging;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace IdentityServer4.Events
+namespace ForgePoint.Identity.Events
 {
     /// <summary>
     /// Models base class for events raised from IdentityServer.

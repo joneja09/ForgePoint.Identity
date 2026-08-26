@@ -6,20 +6,20 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using IdentityModel;
-using IdentityServer4.EntityFramework.Entities;
-using IdentityServer4.EntityFramework.Interfaces;
-using IdentityServer4.Models;
-using IdentityServer4.Stores;
-using IdentityServer4.Stores.Serialization;
+using ForgePoint.Identity.EntityFramework.Entities;
+using ForgePoint.Identity.EntityFramework.Interfaces;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Stores;
+using ForgePoint.Identity.Stores.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace IdentityServer4.EntityFramework.Stores
+namespace ForgePoint.Identity.EntityFramework.Stores
 {
     /// <summary>
     /// Implementation of IDeviceFlowStore thats uses EF.
     /// </summary>
-    /// <seealso cref="IdentityServer4.Stores.IDeviceFlowStore" />
+    /// <seealso cref="ForgePoint.Identity.Stores.IDeviceFlowStore" />
     public class DeviceFlowStore : IDeviceFlowStore
     {
         /// <summary>

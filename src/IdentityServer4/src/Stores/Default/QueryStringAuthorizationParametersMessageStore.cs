@@ -3,11 +3,11 @@
 
 
 using System.Collections.Generic;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Models;
 using System.Threading.Tasks;
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Extensions;
 
-namespace IdentityServer4.Stores
+namespace ForgePoint.Identity.Stores
 {
     // internal just for testing
     internal class QueryStringAuthorizationParametersMessageStore : IAuthorizationParametersMessageStore

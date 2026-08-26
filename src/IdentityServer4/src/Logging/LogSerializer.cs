@@ -5,7 +5,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace IdentityServer4.Logging
+namespace ForgePoint.Identity.Logging
 {
     /// <summary>
     /// Helper to JSON serialize object data for logging.
@@ -14,7 +14,7 @@ namespace IdentityServer4.Logging
     {
         static readonly JsonSerializerOptions Options = new JsonSerializerOptions
         {
-            IgnoreNullValues = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
             WriteIndented = true
         };
 

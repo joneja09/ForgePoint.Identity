@@ -4,7 +4,7 @@
 
 using System.Diagnostics;
 
-namespace IdentityServer4.Extensions
+namespace ForgePoint.Identity.Extensions
 {
     internal static class StringExtensions
     {

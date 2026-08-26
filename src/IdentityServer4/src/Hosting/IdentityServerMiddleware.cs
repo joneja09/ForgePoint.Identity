@@ -2,15 +2,15 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.Events;
-using IdentityServer4.Extensions;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Events;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace IdentityServer4.Hosting
+namespace ForgePoint.Identity.Hosting
 {
     /// <summary>
     /// IdentityServer middleware

@@ -7,15 +7,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using IdentityServer.UnitTests.Common;
-using IdentityServer4.Configuration;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
-using IdentityServer4.Services.Default;
-using IdentityServer4.Stores;
-using IdentityServer4.Stores.Serialization;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
+using ForgePoint.Identity.Services.Default;
+using ForgePoint.Identity.Stores;
+using ForgePoint.Identity.Stores.Serialization;
+using ForgePoint.Identity.Validation;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
+using ForgePoint.Identity;
 
 namespace IdentityServer.UnitTests.Validation.Setup
 {
@@ -229,8 +230,8 @@ namespace IdentityServer.UnitTests.Validation.Setup
                 jwtRequestUriHttpClient = new DefaultJwtRequestUriHttpClient(new HttpClient(new NetworkHandler(new Exception("no jwt request uri response configured"))), options, new LoggerFactory());
             }
 
-
             var userSession = new MockUserSession();
+            var pushedAuthorizationStore = new InMemoryPushedAuthorizationStore();
 
             return new AuthorizeRequestValidator(
                 options,
@@ -241,6 +242,7 @@ namespace IdentityServer.UnitTests.Validation.Setup
                 userSession,
                 jwtRequestValidator,
                 jwtRequestUriHttpClient,
+                pushedAuthorizationStore,
                 TestLogger.Create<AuthorizeRequestValidator>());
         }
 
@@ -248,7 +250,7 @@ namespace IdentityServer.UnitTests.Validation.Setup
             IReferenceTokenStore store = null, 
             IRefreshTokenStore refreshTokenStore = null,
             IProfileService profile = null, 
-            IdentityServerOptions options = null, ISystemClock clock = null)
+            IdentityServerOptions options = null, IClock clock = null)
         {
             if (options == null)
             {
@@ -301,7 +303,7 @@ namespace IdentityServer.UnitTests.Validation.Setup
             IDeviceFlowCodeService service,
             IProfileService profile = null,
             IDeviceFlowThrottlingService throttlingService = null,
-            ISystemClock clock = null)
+            IClock clock = null)
         {
             profile = profile ?? new TestProfileService();
             throttlingService = throttlingService ?? new TestDeviceFlowThrottlingService();

@@ -1,10 +1,10 @@
 using FluentAssertions;
 using IdentityServer.UnitTests.Common;
-using IdentityServer4;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
-using IdentityServer4.Stores;
-using IdentityServer4.Stores.Serialization;
+using ForgePoint.Identity;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
+using ForgePoint.Identity.Stores;
+using ForgePoint.Identity.Stores.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;

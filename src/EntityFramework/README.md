@@ -1,7 +1,7 @@
-# IdentityServer4.EntityFramework
+# ForgePoint.Identity.EntityFramework
 
-IdentityServer4.EntityFramework is a package that provides the configuration APIs to add persistence for IdentityServer 4 configuration data that uses EntityFramework as its database abstraction.
+ForgePoint.Identity.EntityFramework provides the configuration APIs to persist ForgePoint.Identity (IdentityServer4-compatible) configuration data with Entity Framework Core.
 
 ## Issues
 
-For issues, use the [consolidated IdentityServer4 issue tracker](https://github.com/IdentityServer/IdentityServer4/issues).
+Open issues on this repository.

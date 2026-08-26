@@ -1,4 +1,6 @@
-# IdentityServer4 documentation
+# ForgePoint.Identity documentation
+
+Historical IdentityServer4 documentation lives in this folder and on [Read the Docs](https://identityserver4.readthedocs.io). ForgePoint.Identity keeps those APIs; new protocol features such as PAR are described in the repository README.
 
 The folder contains the documentation for identityserver4.
 

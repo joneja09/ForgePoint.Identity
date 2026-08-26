@@ -4,7 +4,7 @@
 
 using System;
 
-namespace IdentityServer4.Configuration.DependencyInjection
+namespace ForgePoint.Identity.Configuration.DependencyInjection
 {
     internal class Decorator<TService>
     {

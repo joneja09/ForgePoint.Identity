@@ -2,8 +2,8 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4;
-using IdentityServer4.Configuration;
+using ForgePoint.Identity;
+using ForgePoint.Identity.Configuration;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -39,9 +39,9 @@ namespace Microsoft.AspNetCore.Http
             await context.SignInAsync(await context.GetCookieAuthenticationSchemeAsync(), user.CreatePrincipal(), properties);
         }
 
-        internal static ISystemClock GetClock(this HttpContext context)
+        internal static IClock GetClock(this HttpContext context)
         {
-            return context.RequestServices.GetRequiredService<ISystemClock>();
+            return context.RequestServices.GetRequiredService<IClock>();
         }
 
         internal static async Task<string> GetCookieAuthenticationSchemeAsync(this HttpContext context)

@@ -5,17 +5,18 @@
 using System;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
-using IdentityServer4.Configuration;
+using ForgePoint.Identity.Configuration;
 using System.Threading.Tasks;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Services;
 using Microsoft.AspNetCore.Authentication;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Events
+namespace ForgePoint.Identity.Events
 {
     /// <summary>
     /// The default event service
     /// </summary>
-    /// <seealso cref="IdentityServer4.Services.IEventService" />
+    /// <seealso cref="ForgePoint.Identity.Services.IEventService" />
     public class DefaultEventService : IEventService
     {
         /// <summary>
@@ -36,7 +37,7 @@ namespace IdentityServer4.Events
         /// <summary>
         /// The clock
         /// </summary>
-        protected readonly ISystemClock Clock;
+        protected readonly IClock Clock;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultEventService"/> class.
@@ -45,7 +46,7 @@ namespace IdentityServer4.Events
         /// <param name="context">The context.</param>
         /// <param name="sink">The sink.</param>
         /// <param name="clock">The clock.</param>
-        public DefaultEventService(IdentityServerOptions options, IHttpContextAccessor context, IEventSink sink, ISystemClock clock)
+        public DefaultEventService(IdentityServerOptions options, IHttpContextAccessor context, IEventSink sink, IClock clock)
         {
             Options = options;
             Context = context;

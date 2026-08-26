@@ -1,57 +1,69 @@
 <Project>
 
   <PropertyGroup>
-    <FrameworkVersion>3.1.0</FrameworkVersion>
-    <ExtensionsVersion>3.1.0</ExtensionsVersion>
-    <EntityFrameworkVersion>3.1.0</EntityFrameworkVersion>
-    
-    <IdentityServerVersion>4.1.2-*</IdentityServerVersion>
+    <MinVerMinimumMajorMinor>10.0</MinVerMinimumMajorMinor>
+    <MinVerTagPrefix></MinVerTagPrefix>
+
+    <Company>ForgePoint Labs</Company>
+    <Product>ForgePoint.Identity</Product>
+    <Authors>ForgePoint Labs</Authors>
+    <PackageProjectUrl>https://github.com/joneja09/IdentityServer4</PackageProjectUrl>
+    <PackageReleaseNotes>https://github.com/joneja09/IdentityServer4/releases</PackageReleaseNotes>
+
+    <ForgePointIdentityVersion>10.0.0-*</ForgePointIdentityVersion>
+
+    <AspNetCoreVersion Condition="'$(TargetFramework)' == 'net8.0'">8.0.21</AspNetCoreVersion>
+    <AspNetCoreVersion Condition="'$(TargetFramework)' == 'net10.0'">10.0.11</AspNetCoreVersion>
+    <AspNetCoreVersion Condition="'$(AspNetCoreVersion)' == ''">10.0.11</AspNetCoreVersion>
+
+    <EntityFrameworkVersion Condition="'$(TargetFramework)' == 'net8.0'">8.0.21</EntityFrameworkVersion>
+    <EntityFrameworkVersion Condition="'$(TargetFramework)' == 'net10.0'">10.0.11</EntityFrameworkVersion>
+    <EntityFrameworkVersion Condition="'$(EntityFrameworkVersion)' == ''">10.0.11</EntityFrameworkVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <!--build related-->
-    <PackageReference Include="MinVer" Version="2.3.0" PrivateAssets="All" />
+    <PackageReference Include="MinVer" Version="6.0.0" PrivateAssets="All" />
     <PackageReference Update="SimpleExec" Version="6.2.0" />
     <PackageReference Update="Bullseye" Version="3.3.0" />
-    <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Update="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
 
     <!--tests -->
-    <PackageReference Update="FluentAssertions" Version="5.10.2" />
-    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="16.2.0" />
-    <PackageReference Update="xunit" Version="2.4.1" />
-    <PackageReference Update="xunit.runner.visualstudio" Version="2.4.1" PrivateAssets="All" />
+    <PackageReference Update="FluentAssertions" Version="5.10.3" />
+    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Update="xunit" Version="2.9.3" />
+    <PackageReference Update="xunit.runner.visualstudio" Version="2.8.2" PrivateAssets="All" />
 
     <!--our stuff -->
-    <PackageReference Update="IdentityModel" Version="4.4.0" />
+    <PackageReference Update="IdentityModel" Version="6.2.0" />
 
-    <PackageReference Update="IdentityServer4" Version="$(IdentityServerVersion)" />
-    <PackageReference Update="IdentityServer4.AspNetIdentity" Version="$(IdentityServerVersion)" />
-    <PackageReference Update="IdentityServer4.Storage" Version="$(IdentityServerVersion)" />
-    <PackageReference Update="IdentityServer4.EntityFramework.Storage" Version="$(IdentityServerVersion)" />
-    <PackageReference Update="IdentityServer4.EntityFramework" Version="$(IdentityServerVersion)" />
+    <PackageReference Update="ForgePoint.Identity" Version="$(ForgePointIdentityVersion)" />
+    <PackageReference Update="ForgePoint.Identity.AspNetIdentity" Version="$(ForgePointIdentityVersion)" />
+    <PackageReference Update="ForgePoint.Identity.Storage" Version="$(ForgePointIdentityVersion)" />
+    <PackageReference Update="ForgePoint.Identity.EntityFramework.Storage" Version="$(ForgePointIdentityVersion)" />
+    <PackageReference Update="ForgePoint.Identity.EntityFramework" Version="$(ForgePointIdentityVersion)" />
 
     <!--microsoft extensions -->
-    <PackageReference Update="Microsoft.Extensions.Caching.Memory" Version="$(ExtensionsVersion)" />
-    <PackageReference Update="Microsoft.Extensions.Http" Version="$(ExtensionsVersion)" />
-    <PackageReference Update="Microsoft.Extensions.Http.Polly" Version="$(ExtensionsVersion)" />
-    <PackageReference Update="Microsoft.Extensions.Logging" Version="$(ExtensionsVersion)" />
-    <PackageReference Update="Microsoft.Extensions.Logging.Console" Version="$(ExtensionsVersion)" />
-    <PackageReference Update="Microsoft.Extensions.Options.ConfigurationExtensions" Version="$(ExtensionsVersion)" />
+    <PackageReference Update="Microsoft.Extensions.Caching.Memory" Version="$(AspNetCoreVersion)" />
+    <PackageReference Update="Microsoft.Extensions.Http" Version="$(AspNetCoreVersion)" />
+    <PackageReference Update="Microsoft.Extensions.Http.Polly" Version="$(AspNetCoreVersion)" />
+    <PackageReference Update="Microsoft.Extensions.Logging" Version="$(AspNetCoreVersion)" />
+    <PackageReference Update="Microsoft.Extensions.Logging.Console" Version="$(AspNetCoreVersion)" />
+    <PackageReference Update="Microsoft.Extensions.Options.ConfigurationExtensions" Version="$(AspNetCoreVersion)" />
     
     <!--misc -->
-    <PackageReference Update="Newtonsoft.Json" Version="12.0.2" />
-    <PackageReference Update="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="5.6.0" />
-    <PackageReference Update="System.IdentityModel.Tokens.Jwt" Version="[5.6.0,6.0)" />
-    <PackageReference Update="System.Security.Principal.Windows" Version="4.7.0" />
-    <PackageReference Update="AutoMapper" Version="[10.0.0,11.0)" />
+    <PackageReference Update="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Update="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="8.19.2" />
+    <PackageReference Update="System.IdentityModel.Tokens.Jwt" Version="8.19.2" />
+    <PackageReference Update="System.Security.Principal.Windows" Version="5.0.0" />
     
     <!--microsoft asp.net core -->
-    <PackageReference Update="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="$(FrameworkVersion)" />
-    <PackageReference Update="Microsoft.AspNetCore.TestHost" Version="$(FrameworkVersion)" />
-    <PackageReference Update="Microsoft.AspNetCore.Identity" Version="$(FrameworkVersion)" />
-    <PackageReference Update="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="$(FrameworkVersion)" />
-    <PackageReference Update="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="$(FrameworkVersion)" />
-    <PackageReference Update="Microsoft.AspNetCore.Authentication.Certificate" Version="$(FrameworkVersion)"/>
+    <PackageReference Update="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="$(AspNetCoreVersion)" />
+    <PackageReference Update="Microsoft.AspNetCore.TestHost" Version="$(AspNetCoreVersion)" />
+    <PackageReference Update="Microsoft.AspNetCore.Identity" Version="$(AspNetCoreVersion)" />
+    <PackageReference Update="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="$(AspNetCoreVersion)" />
+    <PackageReference Update="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="$(AspNetCoreVersion)" />
+    <PackageReference Update="Microsoft.AspNetCore.Authentication.Certificate" Version="$(AspNetCoreVersion)"/>
     
     <!--microsoft entity framework -->
     <PackageReference Update="Microsoft.EntityFrameworkCore.Relational" Version="$(EntityFrameworkVersion)" />

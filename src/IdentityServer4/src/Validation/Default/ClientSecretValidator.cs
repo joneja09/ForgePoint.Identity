@@ -2,15 +2,15 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.Services;
+using ForgePoint.Identity.Services;
 using System.Threading.Tasks;
-using IdentityServer4.Events;
+using ForgePoint.Identity.Events;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
-using IdentityServer4.Stores;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Stores;
+using ForgePoint.Identity.Models;
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     /// <summary>
     /// Validates a client secret using the registered secret validators and parsers

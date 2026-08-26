@@ -2,24 +2,15 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using AutoMapper;
-using IdentityServer4.EntityFramework.Entities;
+using ForgePoint.Identity.EntityFramework.Entities;
 
-namespace IdentityServer4.EntityFramework.Mappers
+namespace ForgePoint.Identity.EntityFramework.Mappers
 {
     /// <summary>
     /// Extension methods to map to/from entity/model for identity resources.
     /// </summary>
     public static class IdentityResourceMappers
     {
-        static IdentityResourceMappers()
-        {
-            Mapper = new MapperConfiguration(cfg => cfg.AddProfile<IdentityResourceMapperProfile>())
-                .CreateMapper();
-        }
-
-        internal static IMapper Mapper { get; }
-
         /// <summary>
         /// Maps an entity to a model.
         /// </summary>
@@ -27,7 +18,23 @@ namespace IdentityServer4.EntityFramework.Mappers
         /// <returns></returns>
         public static Models.IdentityResource ToModel(this IdentityResource entity)
         {
-            return entity == null ? null : Mapper.Map<Models.IdentityResource>(entity);
+            if (entity == null)
+            {
+                return null;
+            }
+
+            return new Models.IdentityResource
+            {
+                Enabled = entity.Enabled,
+                Name = entity.Name,
+                DisplayName = entity.DisplayName,
+                Description = entity.Description,
+                Required = entity.Required,
+                Emphasize = entity.Emphasize,
+                ShowInDiscoveryDocument = entity.ShowInDiscoveryDocument,
+                UserClaims = MappingHelpers.MapStrings(entity.UserClaims, x => x.Type),
+                Properties = MappingHelpers.MapProperties(entity.Properties)
+            };
         }
 
         /// <summary>
@@ -37,7 +44,23 @@ namespace IdentityServer4.EntityFramework.Mappers
         /// <returns></returns>
         public static IdentityResource ToEntity(this Models.IdentityResource model)
         {
-            return model == null ? null : Mapper.Map<IdentityResource>(model);
+            if (model == null)
+            {
+                return null;
+            }
+
+            return new IdentityResource
+            {
+                Enabled = model.Enabled,
+                Name = model.Name,
+                DisplayName = model.DisplayName,
+                Description = model.Description,
+                Required = model.Required,
+                Emphasize = model.Emphasize,
+                ShowInDiscoveryDocument = model.ShowInDiscoveryDocument,
+                UserClaims = MappingHelpers.MapList(model.UserClaims, x => new IdentityResourceClaim { Type = x }),
+                Properties = MappingHelpers.MapProperties<IdentityResourceProperty>(model.Properties)
+            };
         }
     }
 }

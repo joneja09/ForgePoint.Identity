@@ -2,6 +2,6 @@
 {
     partial class Program
     {
-        private const string Prefix = "AspNetIdentity";
+        private const string Prefix = "ForgePoint.Identity.AspNetIdentity";
     }
 }

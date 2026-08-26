@@ -3,11 +3,11 @@
 
 
 using System.Threading.Tasks;
-using IdentityServer4.Configuration.DependencyInjection;
+using ForgePoint.Identity.Configuration.DependencyInjection;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 
-namespace IdentityServer4.Hosting.FederatedSignOut
+namespace ForgePoint.Identity.Hosting.FederatedSignOut
 {
     // this intercepts IAuthenticationRequestHandler authentication handlers
     // to detect when they are handling federated signout. when they are invoked,

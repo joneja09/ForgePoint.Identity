@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Xunit;
 
-namespace IdentityServer4.EntityFramework.IntegrationTests
+namespace ForgePoint.Identity.EntityFramework.IntegrationTests
 {
     /// <summary>
     /// Base class for integration tests, responsible for initializing test database providers & an xUnit class fixture
@@ -50,8 +51,16 @@ namespace IdentityServer4.EntityFramework.IntegrationTests
 
         protected IntegrationTest(DatabaseProviderFixture<TDbContext> fixture)
         {
-            fixture.Options = TestDatabaseProviders.SelectMany(x => x.Select(y => (DbContextOptions<TDbContext>)y)).ToList();
+            fixture.Options = GetTestDatabaseOptions();
             fixture.StoreOptions = StoreOptions;
+        }
+
+        protected List<DbContextOptions<TDbContext>> GetTestDatabaseOptions()
+        {
+            return TestDatabaseProviders
+                .Cast<object[]>()
+                .Select(row => (DbContextOptions<TDbContext>)row[0])
+                .ToList();
         }
     }
 }

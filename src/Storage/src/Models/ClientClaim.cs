@@ -5,7 +5,7 @@
 using System;
 using System.Security.Claims;
 
-namespace IdentityServer4.Models
+namespace ForgePoint.Identity.Models
 {
     /// <summary>
     /// A client claim

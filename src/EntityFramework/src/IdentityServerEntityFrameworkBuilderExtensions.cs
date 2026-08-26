@@ -2,15 +2,15 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.EntityFramework.DbContexts;
-using IdentityServer4.EntityFramework.Interfaces;
-using IdentityServer4.EntityFramework.Services;
-using IdentityServer4.EntityFramework.Stores;
-using IdentityServer4.Stores;
+using ForgePoint.Identity.EntityFramework.DbContexts;
+using ForgePoint.Identity.EntityFramework.Interfaces;
+using ForgePoint.Identity.EntityFramework.Services;
+using ForgePoint.Identity.EntityFramework.Stores;
+using ForgePoint.Identity.Stores;
 using System;
-using IdentityServer4.EntityFramework.Options;
-using IdentityServer4.EntityFramework;
-using IdentityServer4.EntityFramework.Storage;
+using ForgePoint.Identity.EntityFramework.Options;
+using ForgePoint.Identity.EntityFramework;
+using ForgePoint.Identity.EntityFramework.Storage;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 

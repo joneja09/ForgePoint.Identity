@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 
-namespace IdentityServer4.Extensions
+namespace ForgePoint.Identity.Extensions
 {
     internal static class StringExtensions
     {
@@ -151,40 +151,51 @@ namespace IdentityServer4.Extensions
                 return false;
             }
 
-            // Allows "/" or "/foo" but not "//" or "/\".
+            // Allows "/" or "/foo" but not "//" or "/\" and not URLs with control characters
+            // (CVE-2024-39694). Some browsers treat control chars as protocol-relative URLs.
             if (url[0] == '/')
             {
-                // url is exactly "/"
                 if (url.Length == 1)
                 {
                     return true;
                 }
 
-                // url doesn't start with "//" or "/\"
-                if (url[1] != '/' && url[1] != '\\')
+                if (url[1] == '/' || url[1] == '\\')
                 {
-                    return true;
+                    return false;
                 }
 
-                return false;
+                return !HasUnsafeLocalUrlCharacters(url.AsSpan(1));
             }
 
-            // Allows "~/" or "~/foo" but not "~//" or "~/\".
+            // Allows "~/" or "~/foo" but not "~//" or "~/\"
             if (url[0] == '~' && url.Length > 1 && url[1] == '/')
             {
-                // url is exactly "~/"
                 if (url.Length == 2)
                 {
                     return true;
                 }
 
-                // url doesn't start with "~//" or "~/\"
-                if (url[2] != '/' && url[2] != '\\')
+                if (url[2] == '/' || url[2] == '\\')
+                {
+                    return false;
+                }
+
+                return !HasUnsafeLocalUrlCharacters(url.AsSpan(2));
+            }
+
+            return false;
+        }
+
+        private static bool HasUnsafeLocalUrlCharacters(ReadOnlySpan<char> value)
+        {
+            for (var i = 0; i < value.Length; i++)
+            {
+                var ch = value[i];
+                if (char.IsControl(ch) || ch == '\\')
                 {
                     return true;
                 }
-
-                return false;
             }
 
             return false;

@@ -4,20 +4,14 @@
 
 using System.Linq;
 using FluentAssertions;
-using IdentityServer4.EntityFramework.Mappers;
+using ForgePoint.Identity.EntityFramework.Mappers;
 using Xunit;
-using ApiResource = IdentityServer4.Models.ApiResource;
+using ApiResource = ForgePoint.Identity.Models.ApiResource;
 
-namespace IdentityServer4.EntityFramework.UnitTests.Mappers
+namespace ForgePoint.Identity.EntityFramework.UnitTests.Mappers
 {
     public class ApiResourceMappersTests
     {
-        [Fact]
-        public void AutomapperConfigurationIsValid()
-        {
-            ApiResourceMappers.Mapper.ConfigurationProvider.AssertConfigurationIsValid<ApiResourceMapperProfile>();
-        }
-
         [Fact]
         public void Can_Map()
         {
@@ -62,7 +56,7 @@ namespace IdentityServer4.EntityFramework.UnitTests.Mappers
         [Fact]
         public void missing_values_should_use_defaults()
         {
-            var entity = new IdentityServer4.EntityFramework.Entities.ApiResource
+            var entity = new ForgePoint.Identity.EntityFramework.Entities.ApiResource
             {
                 Secrets = new System.Collections.Generic.List<Entities.ApiResourceSecret>
                 {

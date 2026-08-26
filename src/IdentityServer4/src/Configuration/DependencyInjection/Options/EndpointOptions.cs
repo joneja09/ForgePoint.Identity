@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-namespace IdentityServer4.Configuration
+namespace ForgePoint.Identity.Configuration
 {
     /// <summary>
     /// Configures which endpoints are enabled or disabled.
@@ -85,5 +85,13 @@ namespace IdentityServer4.Configuration
         /// <c>true</c> if the device authorization endpoint is enabled; otherwise, <c>false</c>.
         /// </value>
         public bool EnableDeviceAuthorizationEndpoint { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the pushed authorization endpoint is enabled.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the pushed authorization endpoint is enabled; otherwise, <c>false</c>.
+        /// </value>
+        public bool EnablePushedAuthorizationEndpoint { get; set; } = true;
     }
 }

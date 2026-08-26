@@ -1,3 +1,3 @@
-# IdentityServer4.Storage
+# ForgePoint.Identity.Storage
 
-IdentityServer4.Storage contains all the models and storage interfaces for IdentityServer 4 configuration data.
+ForgePoint.Identity.Storage contains the models and storage interfaces for ForgePoint.Identity configuration data. Namespaces are `ForgePoint.Identity.*`.

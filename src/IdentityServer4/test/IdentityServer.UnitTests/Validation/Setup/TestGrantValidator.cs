@@ -3,8 +3,8 @@
 
 
 using System.Threading.Tasks;
-using IdentityServer4.Models;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Validation;
 
 namespace IdentityServer.UnitTests.Validation.Setup
 {

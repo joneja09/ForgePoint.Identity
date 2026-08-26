@@ -3,20 +3,21 @@
 
 
 using IdentityModel;
-using IdentityServer4.Configuration;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
-using IdentityServer4.Stores;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
+using ForgePoint.Identity.Stores;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using IdentityServer4.Logging.Models;
+using ForgePoint.Identity.Logging.Models;
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     internal class AuthorizeRequestValidator : IAuthorizeRequestValidator
     {
@@ -28,6 +29,7 @@ namespace IdentityServer4.Validation
         private readonly IUserSession _userSession;
         private readonly JwtRequestValidator _jwtRequestValidator;
         private readonly IJwtRequestUriHttpClient _jwtRequestUriHttpClient;
+        private readonly IPushedAuthorizationStore _pushedAuthorizationStore;
         private readonly ILogger _logger;
 
         private readonly ResponseTypeEqualityComparer
@@ -42,6 +44,7 @@ namespace IdentityServer4.Validation
             IUserSession userSession,
             JwtRequestValidator jwtRequestValidator,
             IJwtRequestUriHttpClient jwtRequestUriHttpClient,
+            IPushedAuthorizationStore pushedAuthorizationStore,
             ILogger<AuthorizeRequestValidator> logger)
         {
             _options = options;
@@ -52,6 +55,7 @@ namespace IdentityServer4.Validation
             _jwtRequestValidator = jwtRequestValidator;
             _userSession = userSession;
             _jwtRequestUriHttpClient = jwtRequestUriHttpClient;
+            _pushedAuthorizationStore = pushedAuthorizationStore;
             _logger = logger;
         }
 
@@ -72,6 +76,12 @@ namespace IdentityServer4.Validation
             if (loadClientResult.IsError)
             {
                 return loadClientResult;
+            }
+
+            var parResult = await LoadPushedAuthorizationRequestAsync(request);
+            if (parResult.IsError)
+            {
+                return parResult;
             }
 
             // load request object
@@ -133,6 +143,72 @@ namespace IdentityServer4.Validation
 
             _logger.LogTrace("Authorize request protocol validation successful");
 
+            return Valid(request);
+        }
+
+        private async Task<AuthorizeRequestValidationResult> LoadPushedAuthorizationRequestAsync(ValidatedAuthorizeRequest request)
+        {
+            var requestUri = request.Raw.Get(OidcConstants.AuthorizeRequest.RequestUri);
+            var isPar = requestUri.IsPresent() &&
+                        requestUri.StartsWith(Constants.PushedAuthorizationRequestUriPrefix, StringComparison.Ordinal);
+
+            if (!isPar)
+            {
+                if (_options.PushedAuthorization.Required || request.Client.RequirePushedAuthorization)
+                {
+                    LogError("Client requires pushed authorization requests", request);
+                    return Invalid(request, description: "Pushed authorization request is required");
+                }
+
+                return Valid(request);
+            }
+
+            if (!_options.Endpoints.EnablePushedAuthorizationEndpoint)
+            {
+                LogError("PAR request_uri present but PAR endpoint is disabled", request);
+                return Invalid(request, error: OidcConstants.AuthorizeErrors.InvalidRequestUri, description: "Pushed authorization is not enabled");
+            }
+
+            var extra = new List<string>();
+            foreach (var key in request.Raw.AllKeys)
+            {
+                if (key != null &&
+                    key != OidcConstants.AuthorizeRequest.ClientId &&
+                    key != OidcConstants.AuthorizeRequest.RequestUri)
+                {
+                    extra.Add(key);
+                }
+            }
+
+            if (extra.Count > 0)
+            {
+                LogError("Authorize request with PAR request_uri contained extra parameters", request);
+                return Invalid(request, description: "Only client_id and request_uri are allowed when using PAR");
+            }
+
+            var par = await _pushedAuthorizationStore.GetAsync(requestUri);
+            if (par == null)
+            {
+                LogError("PAR request_uri is invalid or expired", request);
+                return Invalid(request, error: OidcConstants.AuthorizeErrors.InvalidRequestUri, description: "Invalid request_uri");
+            }
+
+            if (par.ClientId != request.Client.ClientId)
+            {
+                LogError("PAR request_uri was issued to a different client", request);
+                return Invalid(request, error: OidcConstants.AuthorizeErrors.InvalidRequestUri, description: "Invalid request_uri");
+            }
+
+            await _pushedAuthorizationStore.RemoveAsync(requestUri);
+
+            var stored = new NameValueCollection();
+            foreach (var kv in par.Parameters)
+            {
+                stored[kv.Key] = kv.Value;
+            }
+
+            request.Raw = stored;
+            _logger.LogDebug("Loaded pushed authorization request for client {clientId}", request.ClientId);
             return Valid(request);
         }
 

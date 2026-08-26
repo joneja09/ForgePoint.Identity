@@ -3,16 +3,16 @@
 
 
 using System.Threading.Tasks;
-using IdentityServer4.Validation;
-using IdentityServer4.Stores;
+using ForgePoint.Identity.Validation;
+using ForgePoint.Identity.Stores;
 using Microsoft.Extensions.Logging;
 
-namespace IdentityServer4.ResponseHandling
+namespace ForgePoint.Identity.ResponseHandling
 {
     /// <summary>
     /// Default revocation response generator
     /// </summary>
-    /// <seealso cref="IdentityServer4.ResponseHandling.ITokenRevocationResponseGenerator" />
+    /// <seealso cref="ForgePoint.Identity.ResponseHandling.ITokenRevocationResponseGenerator" />
     public class TokenRevocationResponseGenerator : ITokenRevocationResponseGenerator
     {
         /// <summary>

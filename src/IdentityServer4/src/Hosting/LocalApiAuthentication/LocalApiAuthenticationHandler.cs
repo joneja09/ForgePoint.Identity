@@ -3,7 +3,7 @@
 
 
 using IdentityModel;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Validation;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -11,8 +11,9 @@ using System;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Hosting.LocalApiAuthentication
+namespace ForgePoint.Identity.Hosting.LocalApiAuthentication
 {
     /// <summary>
     /// Authentication handler for validating access token from the local IdentityServer
@@ -23,8 +24,8 @@ namespace IdentityServer4.Hosting.LocalApiAuthentication
         private readonly ILogger _logger;
 
         /// <inheritdoc />
-        public LocalApiAuthenticationHandler(IOptionsMonitor<LocalApiAuthenticationOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock, ITokenValidator tokenValidator)
-            : base(options, logger, encoder, clock)
+        public LocalApiAuthenticationHandler(IOptionsMonitor<LocalApiAuthenticationOptions> options, ILoggerFactory logger, UrlEncoder encoder, ITokenValidator tokenValidator)
+            : base(options, logger, encoder)
         {
             _tokenValidator = tokenValidator;
             _logger = logger.CreateLogger<LocalApiAuthenticationHandler>();

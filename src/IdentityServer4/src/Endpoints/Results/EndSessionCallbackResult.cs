@@ -3,18 +3,18 @@
 
 
 using System.Linq;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Validation;
 using System.Threading.Tasks;
-using IdentityServer4.Hosting;
+using ForgePoint.Identity.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net;
 using System;
-using IdentityServer4.Extensions;
-using IdentityServer4.Configuration;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Configuration;
 using System.Text.Encodings.Web;
 
-namespace IdentityServer4.Endpoints.Results
+namespace ForgePoint.Identity.Endpoints.Results
 {
     internal class EndSessionCallbackResult : IEndpointResult
     {

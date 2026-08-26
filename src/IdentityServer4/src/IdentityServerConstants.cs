@@ -6,7 +6,7 @@
 using Microsoft.IdentityModel.Tokens;
 using System.Collections.Generic;
 
-namespace IdentityServer4
+namespace ForgePoint.Identity
 {
     public static class IdentityServerConstants
     {
@@ -152,6 +152,7 @@ namespace IdentityServer4
             public const string UserConsent = "user_consent";
             public const string DeviceCode = "device_code";
             public const string UserCode = "user_code";
+            public const string PushedAuthorization = "par";
         }
 
         public static class UserCodeTypes

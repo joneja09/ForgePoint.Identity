@@ -3,23 +3,24 @@
 
 
 using System.Threading.Tasks;
-using IdentityServer4.Validation;
-using IdentityServer4.Hosting;
+using ForgePoint.Identity.Validation;
+using ForgePoint.Identity.Hosting;
 using Microsoft.AspNetCore.Http;
-using IdentityServer4.Configuration;
+using ForgePoint.Identity.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using IdentityServer4.Models;
-using IdentityServer4.Stores;
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Stores;
+using ForgePoint.Identity.Extensions;
 using System;
 using Microsoft.AspNetCore.Authentication;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Endpoints.Results
+namespace ForgePoint.Identity.Endpoints.Results
 {
     /// <summary>
     /// Result for endsession
     /// </summary>
-    /// <seealso cref="IdentityServer4.Hosting.IEndpointResult" />
+    /// <seealso cref="ForgePoint.Identity.Hosting.IEndpointResult" />
     public class EndSessionResult : IEndpointResult
     {
         private readonly EndSessionValidationResult _result;
@@ -37,7 +38,7 @@ namespace IdentityServer4.Endpoints.Results
         internal EndSessionResult(
             EndSessionValidationResult result,
             IdentityServerOptions options,
-            ISystemClock clock,
+            IClock clock,
             IMessageStore<LogoutMessage> logoutMessageStore)
             : this(result)
         {
@@ -47,13 +48,13 @@ namespace IdentityServer4.Endpoints.Results
         }
 
         private IdentityServerOptions _options;
-        private ISystemClock _clock;
+        private IClock _clock;
         private IMessageStore<LogoutMessage> _logoutMessageStore;
 
         private void Init(HttpContext context)
         {
             _options = _options ?? context.RequestServices.GetRequiredService<IdentityServerOptions>();
-            _clock = _clock ?? context.RequestServices.GetRequiredService<ISystemClock>();
+            _clock = _clock ?? context.RequestServices.GetRequiredService<IClock>();
             _logoutMessageStore = _logoutMessageStore ?? context.RequestServices.GetRequiredService<IMessageStore<LogoutMessage>>();
         }
 

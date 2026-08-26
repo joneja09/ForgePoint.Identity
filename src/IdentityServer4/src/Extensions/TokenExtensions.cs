@@ -3,18 +3,18 @@
 
 
 using IdentityModel;
-using IdentityServer4.Models;
-using Microsoft.AspNetCore.Authentication;
+using ForgePoint.Identity.Models;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
-using IdentityServer4.Configuration;
+using System.Text.Json;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Extensions
+namespace ForgePoint.Identity.Extensions
 {
     /// <summary>
     /// Extensions for Token
@@ -31,7 +31,7 @@ namespace IdentityServer4.Extensions
         /// <returns></returns>
         /// <exception cref="Exception">
         /// </exception>
-        public static JwtPayload CreateJwtPayload(this Token token, ISystemClock clock, IdentityServerOptions options, ILogger logger)
+        public static JwtPayload CreateJwtPayload(this Token token, IClock clock, IdentityServerOptions options, ILogger logger)
         {
             var payload = new JwtPayload(
                 token.Issuer,
@@ -89,9 +89,13 @@ namespace IdentityServer4.Extensions
             // collection identity comparisons work for the anonymous type
             try
             {
-                var jsonTokens = jsonClaims.Select(x => new { x.Type, JsonValue = JRaw.Parse(x.Value) }).ToArray();
+                var jsonTokens = jsonClaims.Select(x =>
+                {
+                    using var doc = JsonDocument.Parse(x.Value);
+                    return new { x.Type, JsonValue = doc.RootElement.Clone() };
+                }).ToArray();
 
-                var jsonObjects = jsonTokens.Where(x => x.JsonValue.Type == JTokenType.Object).ToArray();
+                var jsonObjects = jsonTokens.Where(x => x.JsonValue.ValueKind == JsonValueKind.Object).ToArray();
                 var jsonObjectGroups = jsonObjects.GroupBy(x => x.Type).ToArray();
                 foreach (var group in jsonObjectGroups)
                 {
@@ -103,7 +107,7 @@ namespace IdentityServer4.Extensions
                     if (group.Skip(1).Any())
                     {
                         // add as array
-                        payload.Add(group.Key, group.Select(x => x.JsonValue).ToArray());
+                        payload.Add(group.Key, group.Select(x => (object)x.JsonValue).ToArray());
                     }
                     else
                     {
@@ -112,7 +116,7 @@ namespace IdentityServer4.Extensions
                     }
                 }
 
-                var jsonArrays = jsonTokens.Where(x => x.JsonValue.Type == JTokenType.Array).ToArray();
+                var jsonArrays = jsonTokens.Where(x => x.JsonValue.ValueKind == JsonValueKind.Array).ToArray();
                 var jsonArrayGroups = jsonArrays.GroupBy(x => x.Type).ToArray();
                 foreach (var group in jsonArrayGroups)
                 {
@@ -122,11 +126,13 @@ namespace IdentityServer4.Extensions
                             $"Can't add two claims where one is a JSON array and the other is not a JSON array ({group.Key})");
                     }
 
-                    var newArr = new List<JToken>();
+                    var newArr = new List<object>();
                     foreach (var arrays in group)
                     {
-                        var arr = (JArray)arrays.JsonValue;
-                        newArr.AddRange(arr);
+                        foreach (var item in arrays.JsonValue.EnumerateArray())
+                        {
+                            newArr.Add(item.Clone());
+                        }
                     }
 
                     // add just one array for the group/key/claim type

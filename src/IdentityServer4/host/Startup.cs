@@ -5,7 +5,7 @@
 using System;
 using IdentityServerHost.Configuration;
 using IdentityModel;
-using IdentityServer4;
+using ForgePoint.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -97,6 +97,9 @@ namespace IdentityServerHost
 
                 return Task.FromResult(principal);
             });
+
+            services.AddHealthChecks()
+                .AddIdentityServer();
         }
 
         public void Configure(IApplicationBuilder app)
@@ -125,6 +128,7 @@ namespace IdentityServerHost
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
+                endpoints.MapHealthChecks("/health");
             });
         }
     }

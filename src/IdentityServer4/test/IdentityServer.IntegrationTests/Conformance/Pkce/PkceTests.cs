@@ -11,9 +11,9 @@ using FluentAssertions;
 using IdentityModel;
 using IdentityModel.Client;
 using IdentityServer.IntegrationTests.Common;
-using IdentityServer4;
-using IdentityServer4.Models;
-using IdentityServer4.Test;
+using ForgePoint.Identity;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Test;
 using Xunit;
 
 namespace IdentityServer.IntegrationTests.Conformance.Pkce

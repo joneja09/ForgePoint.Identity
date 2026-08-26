@@ -7,14 +7,14 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     /// <summary>
     /// Validates a secret based on RS256 signed JWT token
@@ -107,7 +107,10 @@ namespace IdentityServer4.Validation
             };
             try
             {
-                var handler = new JwtSecurityTokenHandler();
+                var handler = new JwtSecurityTokenHandler
+                {
+                    MapInboundClaims = false
+                };
                 handler.ValidateToken(jwtTokenString, tokenValidationParameters, out var token);
 
                 var jwtToken = (JwtSecurityToken)token;
@@ -116,9 +119,8 @@ namespace IdentityServer4.Validation
                     _logger.LogError("Both 'sub' and 'iss' in the client assertion token must have a value of client_id.");
                     return fail;
                 }
-                
-                var exp = jwtToken.Payload.Exp;
-                if (!exp.HasValue)
+
+                if (jwtToken.ValidTo == DateTime.MinValue)
                 {
                     _logger.LogError("exp is missing.");
                     return fail;
@@ -138,7 +140,13 @@ namespace IdentityServer4.Validation
                 }
                 else
                 {
-                    await _replayCache.AddAsync(Purpose, jti, DateTimeOffset.FromUnixTimeSeconds(exp.Value).AddMinutes(5));
+                    var expires = jwtToken.ValidTo;
+                    if (expires.Kind == DateTimeKind.Unspecified)
+                    {
+                        expires = DateTime.SpecifyKind(expires, DateTimeKind.Utc);
+                    }
+
+                    await _replayCache.AddAsync(Purpose, jti, new DateTimeOffset(expires).AddMinutes(5));
                 }
 
                 return success;

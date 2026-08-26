@@ -3,12 +3,12 @@
 
 
 using System.Threading.Tasks;
-using IdentityServer4.Models;
-using IdentityServer4.Stores.Serialization;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Stores.Serialization;
 using Microsoft.Extensions.Logging;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Services;
 
-namespace IdentityServer4.Stores
+namespace ForgePoint.Identity.Stores
 {
     /// <summary>
     /// Default reference token store.

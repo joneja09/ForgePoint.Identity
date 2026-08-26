@@ -3,14 +3,14 @@
 
 
 using IdentityModel;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System;
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     /// <summary>
     /// Models the result of custom grant validation.

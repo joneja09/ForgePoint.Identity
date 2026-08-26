@@ -3,11 +3,11 @@
 
 
 using IdentityModel;
-using IdentityServer4.Configuration;
-using IdentityServer4.Extensions;
-using IdentityServer4.Services;
-using IdentityServer4.Stores;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Services;
+using ForgePoint.Identity.Stores;
+using ForgePoint.Identity.Validation;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -16,12 +16,12 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 
-namespace IdentityServer4.ResponseHandling
+namespace ForgePoint.Identity.ResponseHandling
 {
     /// <summary>
     /// Default implementation of the discovery endpoint response generator
     /// </summary>
-    /// <seealso cref="IdentityServer4.ResponseHandling.IDiscoveryResponseGenerator" />
+    /// <seealso cref="ForgePoint.Identity.ResponseHandling.IDiscoveryResponseGenerator" />
     public class DiscoveryResponseGenerator : IDiscoveryResponseGenerator
     {
         /// <summary>
@@ -149,6 +149,15 @@ namespace IdentityServer4.ResponseHandling
                 if (Options.Endpoints.EnableDeviceAuthorizationEndpoint)
                 {
                     entries.Add(OidcConstants.Discovery.DeviceAuthorizationEndpoint, baseUrl + Constants.ProtocolRoutePaths.DeviceAuthorization);
+                }
+
+                if (Options.Endpoints.EnablePushedAuthorizationEndpoint)
+                {
+                    entries.Add("pushed_authorization_request_endpoint", baseUrl + Constants.ProtocolRoutePaths.PushedAuthorization);
+                    if (Options.PushedAuthorization.Required)
+                    {
+                        entries.Add("require_pushed_authorization_requests", true);
+                    }
                 }
 
                 if (Options.MutualTls.Enabled)

@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
-namespace IdentityServer4.Configuration
+namespace ForgePoint.Identity.Configuration
 {
     /// <summary>
     /// Crypto helper

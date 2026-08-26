@@ -2,18 +2,19 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.Models;
+using ForgePoint.Identity.Models;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Extensions;
 using System.Security.Claims;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Services;
 using IdentityModel;
 using System;
 using Microsoft.AspNetCore.Authentication;
+using ForgePoint.Identity;
 
-namespace IdentityServer4
+namespace ForgePoint.Identity
 {
     /// <summary>
     /// Class for useful helpers for interacting with IdentityServer
@@ -22,7 +23,7 @@ namespace IdentityServer4
     {
         internal readonly IHttpContextAccessor ContextAccessor;
         private readonly ITokenCreationService _tokenCreation;
-        private readonly ISystemClock _clock;
+        private readonly IClock _clock;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IdentityServerTools" /> class.
@@ -30,7 +31,7 @@ namespace IdentityServer4
         /// <param name="contextAccessor">The context accessor.</param>
         /// <param name="tokenCreation">The token creation service.</param>
         /// <param name="clock">The clock.</param>
-        public IdentityServerTools(IHttpContextAccessor contextAccessor, ITokenCreationService tokenCreation, ISystemClock clock)
+        public IdentityServerTools(IHttpContextAccessor contextAccessor, ITokenCreationService tokenCreation, IClock clock)
         {
             ContextAccessor = contextAccessor;
             _tokenCreation = tokenCreation;

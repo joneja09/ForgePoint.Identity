@@ -3,10 +3,10 @@
 
 
 using IdentityModel;
-using IdentityServer4.Configuration;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
-using IdentityServer4.Stores;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Stores;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -15,8 +15,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Services
+namespace ForgePoint.Identity.Services
 {
     /// <summary>
     /// Default token service
@@ -51,7 +52,7 @@ namespace IdentityServer4.Services
         /// <summary>
         /// The clock
         /// </summary>
-        protected readonly ISystemClock Clock;
+        protected readonly IClock Clock;
 
         /// <summary>
         /// The key material service
@@ -79,7 +80,7 @@ namespace IdentityServer4.Services
             IReferenceTokenStore referenceTokenStore,
             ITokenCreationService creationService,
             IHttpContextAccessor contextAccessor,
-            ISystemClock clock,
+            IClock clock,
             IKeyMaterialService keyMaterialService,
             IdentityServerOptions options,
             ILogger<DefaultTokenService> logger)

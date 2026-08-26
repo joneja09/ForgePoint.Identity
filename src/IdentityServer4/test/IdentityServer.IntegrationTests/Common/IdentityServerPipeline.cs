@@ -12,12 +12,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using IdentityModel.Client;
-using IdentityServer4;
-using IdentityServer4.Configuration;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
-using IdentityServer4.Test;
+using ForgePoint.Identity;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
+using ForgePoint.Identity.Test;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -332,8 +332,33 @@ namespace IdentityServer.IntegrationTests.Common
                 responseMode: responseMode,
                 codeChallenge: codeChallenge,
                 codeChallengeMethod: codeChallengeMethod,
-                extra: extra);
+                extra: ToParameters(extra));
             return url;
+        }
+
+        private static Parameters ToParameters(object extra)
+        {
+            if (extra == null)
+            {
+                return null;
+            }
+
+            if (extra is Parameters parameters)
+            {
+                return parameters;
+            }
+
+            var result = new Parameters();
+            foreach (var prop in extra.GetType().GetProperties())
+            {
+                var value = prop.GetValue(extra);
+                if (value != null)
+                {
+                    result.Add(prop.Name, value.ToString());
+                }
+            }
+
+            return result;
         }
 
         public AuthorizeResponse ParseAuthorizationResponseUrl(string url)

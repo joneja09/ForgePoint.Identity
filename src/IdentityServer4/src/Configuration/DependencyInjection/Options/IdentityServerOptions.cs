@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-namespace IdentityServer4.Configuration
+namespace ForgePoint.Identity.Configuration
 {
     /// <summary>
     /// The IdentityServerOptions class is the top level container for all configuration settings of IdentityServer.
@@ -125,6 +125,11 @@ namespace IdentityServer4.Configuration
         /// Gets or sets the device flow options.
         /// </summary>
         public DeviceFlowOptions DeviceFlow { get; set; } = new DeviceFlowOptions();
+
+        /// <summary>
+        /// Gets or sets the pushed authorization request options (RFC 9126).
+        /// </summary>
+        public PushedAuthorizationOptions PushedAuthorization { get; set; } = new PushedAuthorizationOptions();
         
         /// <summary>
         /// Gets or sets the logging options

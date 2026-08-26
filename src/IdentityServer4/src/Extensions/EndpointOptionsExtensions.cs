@@ -2,11 +2,11 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.Configuration;
-using IdentityServer4.Hosting;
-using static IdentityServer4.Constants;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Hosting;
+using static ForgePoint.Identity.Constants;
 
-namespace IdentityServer4.Extensions
+namespace ForgePoint.Identity.Extensions
 {
     internal static class EndpointOptionsExtensions
     {
@@ -23,6 +23,7 @@ namespace IdentityServer4.Extensions
                 EndpointNames.Revocation => options.EnableTokenRevocationEndpoint,
                 EndpointNames.Token => options.EnableTokenEndpoint,
                 EndpointNames.UserInfo => options.EnableUserInfoEndpoint,
+                EndpointNames.PushedAuthorization => options.EnablePushedAuthorizationEndpoint,
                 _ => true
             };
         }

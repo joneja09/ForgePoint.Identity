@@ -3,15 +3,15 @@
 
 
 using System.Collections.Generic;
-using IdentityServer4.Configuration;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Models;
 using System.Collections.Specialized;
 using System.Security.Claims;
 using IdentityModel;
 using System.Linq;
 using System;
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     /// <summary>
     /// Base class for a validate authorize or token request

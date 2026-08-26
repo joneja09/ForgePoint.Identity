@@ -5,13 +5,14 @@
 using System.Linq;
 using System.Threading.Tasks;
 using IdentityModel;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     /// <summary>
     /// Validates an incoming token request using the device flow
@@ -21,7 +22,7 @@ namespace IdentityServer4.Validation
         private readonly IDeviceFlowCodeService _devices;
         private readonly IProfileService _profile;
         private readonly IDeviceFlowThrottlingService _throttlingService;
-        private readonly ISystemClock _systemClock;
+        private readonly IClock _systemClock;
         private readonly ILogger<DeviceCodeValidator> _logger;
 
         /// <summary>
@@ -36,7 +37,7 @@ namespace IdentityServer4.Validation
             IDeviceFlowCodeService devices,
             IProfileService profile,
             IDeviceFlowThrottlingService throttlingService,
-            ISystemClock systemClock,
+            IClock systemClock,
             ILogger<DeviceCodeValidator> logger)
         {
             _devices = devices;

@@ -2,16 +2,16 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.Extensions;
-using IdentityServer4.Validation;
-using static IdentityServer4.Constants;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Validation;
+using static ForgePoint.Identity.Constants;
 
-namespace IdentityServer4.Events
+namespace ForgePoint.Identity.Events
 {
     /// <summary>
     /// Event for failed token issuance
     /// </summary>
-    /// <seealso cref="IdentityServer4.Events.Event" />
+    /// <seealso cref="ForgePoint.Identity.Events.Event" />
     public class TokenIssuedFailureEvent : Event
     {
         /// <summary>

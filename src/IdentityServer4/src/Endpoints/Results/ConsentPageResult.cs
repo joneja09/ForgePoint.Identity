@@ -5,21 +5,21 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using IdentityServer4.Configuration;
-using IdentityServer4.Hosting;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Hosting;
 using Microsoft.AspNetCore.Http;
-using IdentityServer4.Validation;
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Validation;
+using ForgePoint.Identity.Extensions;
 using Microsoft.Extensions.DependencyInjection;
-using IdentityServer4.Stores;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Stores;
+using ForgePoint.Identity.Models;
 
-namespace IdentityServer4.Endpoints.Results
+namespace ForgePoint.Identity.Endpoints.Results
 {
     /// <summary>
     /// Result for consent page
     /// </summary>
-    /// <seealso cref="IdentityServer4.Hosting.IEndpointResult" />
+    /// <seealso cref="ForgePoint.Identity.Hosting.IEndpointResult" />
     public class ConsentPageResult : IEndpointResult
     {
         private readonly ValidatedAuthorizeRequest _request;

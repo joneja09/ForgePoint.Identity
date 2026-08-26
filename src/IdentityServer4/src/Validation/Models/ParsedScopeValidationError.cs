@@ -4,7 +4,7 @@
 
 using System;
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     /// <summary>
     /// Models an error parsing a scope.

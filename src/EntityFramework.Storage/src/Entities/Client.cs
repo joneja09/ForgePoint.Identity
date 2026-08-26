@@ -4,11 +4,11 @@
 
 #pragma warning disable 1591
 
-using IdentityServer4.Models;
+using ForgePoint.Identity.Models;
 using System;
 using System.Collections.Generic;
 
-namespace IdentityServer4.EntityFramework.Entities
+namespace ForgePoint.Identity.EntityFramework.Entities
 {
     public class Client
     {
@@ -29,6 +29,7 @@ namespace IdentityServer4.EntityFramework.Entities
         public bool RequirePkce { get; set; } = true;
         public bool AllowPlainTextPkce { get; set; }
         public bool RequireRequestObject { get; set; }
+        public bool RequirePushedAuthorization { get; set; }
         public bool AllowAccessTokensViaBrowser { get; set; }
         public List<ClientRedirectUri> RedirectUris { get; set; }
         public List<ClientPostLogoutRedirectUri> PostLogoutRedirectUris { get; set; }

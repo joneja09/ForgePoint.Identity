@@ -3,14 +3,14 @@
 
 
 using System.Threading.Tasks;
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Extensions;
 using Microsoft.Extensions.Primitives;
-using IdentityServer4.Hosting;
+using ForgePoint.Identity.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
 using IdentityModel;
 
-namespace IdentityServer4.Endpoints.Results
+namespace ForgePoint.Identity.Endpoints.Results
 {
     internal class ProtectedResourceErrorResult : IEndpointResult
     {

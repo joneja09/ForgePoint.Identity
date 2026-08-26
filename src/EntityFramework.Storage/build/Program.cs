@@ -2,6 +2,6 @@
 {
     partial class Program
     {
-        private const string Prefix = "EntityFramework.Storage";
+        private const string Prefix = "ForgePoint.Identity.EntityFramework.Storage";
     }
 }

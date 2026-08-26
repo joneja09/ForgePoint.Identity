@@ -3,9 +3,9 @@
 
 
 using IdentityModel;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -14,13 +14,14 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
-using IdentityServer4.Stores;
-using IdentityServer4.Configuration;
-using IdentityServer4.Logging.Models;
+using ForgePoint.Identity.Stores;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Logging.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     internal class TokenValidator : ITokenValidator
     {
@@ -32,7 +33,7 @@ namespace IdentityServer4.Validation
         private readonly IClientStore _clients;
         private readonly IProfileService _profile;
         private readonly IKeyMaterialService _keys;
-        private readonly ISystemClock _clock;
+        private readonly IClock _clock;
         private readonly TokenValidationLog _log;
 
         public TokenValidator(
@@ -44,7 +45,7 @@ namespace IdentityServer4.Validation
             IRefreshTokenStore refreshTokenStore,
             ICustomTokenValidator customValidator,
             IKeyMaterialService keys,
-            ISystemClock clock,
+            IClock clock,
             ILogger<TokenValidator> logger)
         {
             _options = options;

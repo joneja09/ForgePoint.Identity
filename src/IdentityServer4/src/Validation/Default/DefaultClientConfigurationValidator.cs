@@ -1,15 +1,15 @@
-using IdentityServer4.Configuration;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     /// <summary>
     /// Default client configuration validator
     /// </summary>
-    /// <seealso cref="IdentityServer4.Validation.IClientConfigurationValidator" />
+    /// <seealso cref="ForgePoint.Identity.Validation.IClientConfigurationValidator" />
     public class DefaultClientConfigurationValidator : IClientConfigurationValidator
     {
         private readonly IdentityServerOptions _options;

@@ -3,21 +3,21 @@
 
 
 using IdentityModel;
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Extensions;
 using Microsoft.Extensions.Logging;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using IdentityServer4.Configuration;
-using IdentityServer4.Services;
-using IdentityServer4.Stores;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Services;
+using ForgePoint.Identity.Stores;
 using Microsoft.AspNetCore.Http;
 using System;
-using IdentityServer4.Logging.Models;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Logging.Models;
+using ForgePoint.Identity.Models;
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     /// <summary>
     /// Validates requests to the end session endpoint.

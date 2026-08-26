@@ -5,6 +5,7 @@ on:
     branches:
     - main
     - features/**
+    - cursor/**
     tags:
     - '*.*.*'
   pull_request:
@@ -21,8 +22,18 @@ jobs:
     name: ${{ matrix.runs-on }}
     runs-on: ${{ matrix.runs-on }}
     steps:
-    - uses: actions/checkout@af513c7a016048ae468971c52ed77d9562c7c819
+    - uses: actions/checkout@v4
+    - uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          8.0.x
+          10.0.x
     - run: dotnet --info
+
+    - name: Upgrade script tests
+      if: contains(matrix.runs-on, 'macOS') || contains(matrix.runs-on, 'ubuntu')
+      working-directory: scripts/upgrade-namespaces
+      run: python3 test_rewrite.py
     
     - if: contains(matrix.runs-on, 'macOS') || contains(matrix.runs-on, 'ubuntu')
       run: ./build.sh

@@ -1,9 +1,9 @@
-# IdentityServer4.AspNetIdentity
+# ForgePoint.Identity.AspNetIdentity
 
-ASP.NET Core Identity integration support for IdentityServer4.
+ASP.NET Core Identity integration for ForgePoint.Identity.
 
-You can find a detailed walk-through for ASP.NET Core Identity integration [here](https://identityserver4.readthedocs.io/en/latest/quickstarts/6_aspnet_identity.html).
+You can find a detailed walk-through for ASP.NET Core Identity integration in the historical IdentityServer4 docs: [https://identityserver4.readthedocs.io/en/latest/quickstarts/6_aspnet_identity.html](https://identityserver4.readthedocs.io/en/latest/quickstarts/6_aspnet_identity.html).
 
 ## Issues
 
-For issues, use the [consolidated IdentityServer4 issue tracker](https://github.com/IdentityServer/IdentityServer4/issues).
+Open issues on this repository.

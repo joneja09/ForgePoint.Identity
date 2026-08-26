@@ -3,14 +3,14 @@
 
 
 using System;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Models;
 using Microsoft.Extensions.Logging;
 using System.Net.Http;
 using System.Threading.Tasks;
 using IdentityModel;
-using IdentityServer4.Configuration;
+using ForgePoint.Identity.Configuration;
 
-namespace IdentityServer4.Services
+namespace ForgePoint.Identity.Services
 {
     /// <summary>
     /// Default JwtRequest client

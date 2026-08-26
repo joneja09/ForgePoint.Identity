@@ -5,7 +5,7 @@
 
 using System;
 
-namespace IdentityServer4.Models
+namespace ForgePoint.Identity.Models
 {
     /// <summary>
     /// Base class for data that needs to be written out as cookies.

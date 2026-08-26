@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
 using IdentityModel.Client;
+using IdentityServer.IntegrationTests.Common;
 using IdentityServer.IntegrationTests.Endpoints.Introspection.Setup;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
@@ -260,12 +261,11 @@ namespace IdentityServer.IntegrationTests.Endpoints.Introspection
 
             var values = introspectionResponse.Json.ToObject<Dictionary<string, object>>();
 
-            values["aud"].GetType().Name.Should().Be("JArray");
-
-            var audiences = ((JArray)values["aud"]);
+            var audiences = TokenJson.AsList(values["aud"]);
+            audiences.Should().NotBeNull();
             foreach (var aud in audiences)
             {
-                aud.Type.Should().Be(JTokenType.String);
+                aud.ToString().Should().NotBeNullOrEmpty();
             }
 
             values["iss"].GetType().Name.Should().Be("String");

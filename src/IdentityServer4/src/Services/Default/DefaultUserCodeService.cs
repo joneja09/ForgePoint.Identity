@@ -7,12 +7,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IdentityServer4.Services
+namespace ForgePoint.Identity.Services
 {
     /// <summary>
     /// Default user code service implementation.
     /// </summary>
-    /// <seealso cref="IdentityServer4.Services.IUserCodeService" />
+    /// <seealso cref="ForgePoint.Identity.Services.IUserCodeService" />
     public class DefaultUserCodeService : IUserCodeService
     {
         private readonly IEnumerable<IUserCodeGenerator> _generators;

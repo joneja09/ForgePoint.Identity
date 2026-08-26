@@ -4,7 +4,7 @@
 
 using System;
 
-namespace IdentityServer4.Configuration
+namespace ForgePoint.Identity.Configuration
 {
     /// <summary>
     /// Caching options.

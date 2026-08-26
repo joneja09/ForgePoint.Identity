@@ -2,18 +2,18 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using static IdentityServer4.Constants;
+using static ForgePoint.Identity.Constants;
 
-namespace IdentityServer4.Events
+namespace ForgePoint.Identity.Events
 {
     /// <summary>
     /// Event for failed user authentication
     /// </summary>
-    /// <seealso cref="IdentityServer4.Events.Event" />
+    /// <seealso cref="ForgePoint.Identity.Events.Event" />
     public class UserLoginFailureEvent : Event
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:IdentityServer4.Events.UserLoginFailureEvent" /> class.
+        /// Initializes a new instance of the <see cref="T:ForgePoint.Identity.Events.UserLoginFailureEvent" /> class.
         /// </summary>
         /// <param name="username">The username.</param>
         /// <param name="error">The error.</param>

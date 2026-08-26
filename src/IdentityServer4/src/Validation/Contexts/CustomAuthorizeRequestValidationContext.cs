@@ -1,4 +1,4 @@
-﻿namespace IdentityServer4.Validation
+﻿namespace ForgePoint.Identity.Validation
 {
     /// <summary>
     /// Context for custom authorize request validation.

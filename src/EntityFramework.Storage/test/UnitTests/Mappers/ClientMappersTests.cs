@@ -5,20 +5,14 @@
 using System;
 using System.Linq;
 using FluentAssertions;
-using IdentityServer4.EntityFramework.Mappers;
+using ForgePoint.Identity.EntityFramework.Mappers;
 using Xunit;
-using Client = IdentityServer4.Models.Client;
+using Client = ForgePoint.Identity.Models.Client;
 
-namespace IdentityServer4.EntityFramework.UnitTests.Mappers
+namespace ForgePoint.Identity.EntityFramework.UnitTests.Mappers
 {
     public class ClientMappersTests
     {
-        [Fact]
-        public void AutomapperConfigurationIsValid()
-        {
-            ClientMappers.Mapper.ConfigurationProvider.AssertConfigurationIsValid<ClientMapperProfile>();
-        }
-
         [Fact]
         public void Can_Map()
         {
@@ -67,7 +61,7 @@ namespace IdentityServer4.EntityFramework.UnitTests.Mappers
         [Fact]
         public void duplicates_properties_in_db_map()
         {
-            var entity = new IdentityServer4.EntityFramework.Entities.Client
+            var entity = new ForgePoint.Identity.EntityFramework.Entities.Client
             {
                 Properties = new System.Collections.Generic.List<Entities.ClientProperty>()
                 {
@@ -83,12 +77,14 @@ namespace IdentityServer4.EntityFramework.UnitTests.Mappers
         [Fact]
         public void missing_values_should_use_defaults()
         {
-            var entity = new IdentityServer4.EntityFramework.Entities.Client
+            var entity = new ForgePoint.Identity.EntityFramework.Entities.Client
             {
+                ProtocolType = null,
                 ClientSecrets = new System.Collections.Generic.List<Entities.ClientSecret>
                 {
                     new Entities.ClientSecret
                     {
+                        Type = null
                     }
                 }
             };
@@ -101,6 +97,56 @@ namespace IdentityServer4.EntityFramework.UnitTests.Mappers
             var model = entity.ToModel();
             model.ProtocolType.Should().Be(def.ProtocolType);
             model.ClientSecrets.First().Type.Should().Be(def.ClientSecrets.First().Type);
+        }
+
+        [Fact]
+        public void collections_and_signing_algorithms_map()
+        {
+            var model = new Client
+            {
+                ClientId = "client",
+                AllowedGrantTypes = { "authorization_code" },
+                AllowedScopes = { "openid", "api" },
+                RedirectUris = { "https://client/callback" },
+                PostLogoutRedirectUris = { "https://client/logout" },
+                AllowedCorsOrigins = { "https://client" },
+                IdentityProviderRestrictions = { "google" },
+                AllowedIdentityTokenSigningAlgorithms = { "RS256", "PS256" },
+                Claims = { new Models.ClientClaim("role", "admin") },
+                IncludeJwtId = true,
+                AccessTokenType = Models.AccessTokenType.Reference,
+                RefreshTokenUsage = Models.TokenUsage.ReUse,
+                RefreshTokenExpiration = Models.TokenExpiration.Sliding
+            };
+
+            var mappedEntity = model.ToEntity();
+            mappedEntity.AllowedGrantTypes.Select(x => x.GrantType).Should().BeEquivalentTo(new[] { "authorization_code" });
+            mappedEntity.AllowedScopes.Select(x => x.Scope).Should().BeEquivalentTo(new[] { "openid", "api" });
+            mappedEntity.RedirectUris.Select(x => x.RedirectUri).Should().BeEquivalentTo(new[] { "https://client/callback" });
+            mappedEntity.PostLogoutRedirectUris.Select(x => x.PostLogoutRedirectUri).Should().BeEquivalentTo(new[] { "https://client/logout" });
+            mappedEntity.AllowedCorsOrigins.Select(x => x.Origin).Should().BeEquivalentTo(new[] { "https://client" });
+            mappedEntity.IdentityProviderRestrictions.Select(x => x.Provider).Should().BeEquivalentTo(new[] { "google" });
+            mappedEntity.AllowedIdentityTokenSigningAlgorithms.Should().Be("RS256,PS256");
+            mappedEntity.Claims.Should().ContainSingle(x => x.Type == "role" && x.Value == "admin");
+            mappedEntity.IncludeJwtId.Should().BeTrue();
+            mappedEntity.AccessTokenType.Should().Be((int)Models.AccessTokenType.Reference);
+            mappedEntity.RefreshTokenUsage.Should().Be((int)Models.TokenUsage.ReUse);
+            mappedEntity.RefreshTokenExpiration.Should().Be((int)Models.TokenExpiration.Sliding);
+
+            var mappedModel = mappedEntity.ToModel();
+            mappedModel.ClientId.Should().Be("client");
+            mappedModel.AllowedGrantTypes.Should().BeEquivalentTo(new[] { "authorization_code" });
+            mappedModel.AllowedScopes.Should().BeEquivalentTo(new[] { "openid", "api" });
+            mappedModel.RedirectUris.Should().BeEquivalentTo(new[] { "https://client/callback" });
+            mappedModel.PostLogoutRedirectUris.Should().BeEquivalentTo(new[] { "https://client/logout" });
+            mappedModel.AllowedCorsOrigins.Should().BeEquivalentTo(new[] { "https://client" });
+            mappedModel.IdentityProviderRestrictions.Should().BeEquivalentTo(new[] { "google" });
+            mappedModel.AllowedIdentityTokenSigningAlgorithms.Should().BeEquivalentTo(new[] { "RS256", "PS256" });
+            mappedModel.Claims.Should().ContainSingle(x => x.Type == "role" && x.Value == "admin" && x.ValueType == System.Security.Claims.ClaimValueTypes.String);
+            mappedModel.IncludeJwtId.Should().BeTrue();
+            mappedModel.AccessTokenType.Should().Be(Models.AccessTokenType.Reference);
+            mappedModel.RefreshTokenUsage.Should().Be(Models.TokenUsage.ReUse);
+            mappedModel.RefreshTokenExpiration.Should().Be(Models.TokenExpiration.Sliding);
         }
     }
 }

@@ -2,15 +2,16 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     /// <summary>
     /// Validates secrets using the registered validators
@@ -19,7 +20,7 @@ namespace IdentityServer4.Validation
     {
         private readonly ILogger _logger;
         private readonly IEnumerable<ISecretValidator> _validators;
-        private readonly ISystemClock _clock;
+        private readonly IClock _clock;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SecretValidator"/> class.
@@ -27,7 +28,7 @@ namespace IdentityServer4.Validation
         /// <param name="clock">The clock.</param>
         /// <param name="validators">The validators.</param>
         /// <param name="logger">The logger.</param>
-        public SecretValidator(ISystemClock clock, IEnumerable<ISecretValidator> validators, ILogger<ISecretsListValidator> logger)
+        public SecretValidator(IClock clock, IEnumerable<ISecretValidator> validators, ILogger<ISecretsListValidator> logger)
         {
             _clock = clock;
             _validators = validators;
