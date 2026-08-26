@@ -18,6 +18,8 @@ This project is not affiliated with or endorsed by Duende Software or the origin
 <PackageReference Include="ForgePoint.Identity" Version="10.0.0-*" />
 ```
 
+If you previously restored a local 10.x build of these packages, delete the matching folders under `~/.nuget/packages` (they are lowercase, for example `forgepoint.identity`) so restore does not reuse an older nupkg with the same MinVer version.
+
 ## 2. Rewrite namespaces
 
 | IdentityServer4 | ForgePoint.Identity |
@@ -28,6 +30,17 @@ This project is not affiliated with or endorsed by Duende Software or the origin
 | `IdentityServer4.EntityFramework` | `ForgePoint.Identity.EntityFramework` |
 | `IdentityServer4.AspNetIdentity` | `ForgePoint.Identity.AspNetIdentity` |
 
+```csharp
+using ForgePoint.Identity;
+using ForgePoint.Identity.Models;
+
+builder.Services.AddIdentityServer()
+    .AddInMemoryClients(clients)
+    .AddDeveloperSigningCredential();
+
+app.UseIdentityServer();
+```
+
 `AddIdentityServer()`, `UseIdentityServer()`, and `AddHealthChecks().AddIdentityServer()` stay the same and still live in `Microsoft.Extensions.DependencyInjection`.
 
 ## 3. Run the upgrade script
@@ -35,6 +48,7 @@ This project is not affiliated with or endorsed by Duende Software or the origin
 From a clone of this repository (or copy `scripts/upgrade-namespaces` into your app):
 
 ```bash
+python3 scripts/upgrade-namespaces/rewrite.py /path/to/your/app --all --dry-run
 python3 scripts/upgrade-namespaces/rewrite.py /path/to/your/app --all
 ```
 
@@ -51,12 +65,18 @@ or
 `--all` updates:
 
 - `.cs`, `.cshtml`, `.razor` namespace and `using` directives
-- `.csproj` / `.props` / `.targets` package ids
+- `.csproj` / `.props` / `.targets` `PackageReference`, `PackageVersion`, and `PackageId` values
 - EF Core snapshots and migrations that store CLR type names as `IdentityServer4.EntityFramework.Entities.*`
 
-The script does **not** rename `AddIdentityServer`, `IdentityServerOptions`, `IdentityServerConstants`, or test assembly names used in `InternalsVisibleTo`.
+The script does **not** rename:
+
+- `AddIdentityServer`, `UseIdentityServer`, `IdentityServerOptions`, `IdentityServerConstants`
+- `AssemblyName`, `RootNamespace`, `ProjectReference` paths, or `PackageTags`
+- `InternalsVisibleTo("IdentityServer4...")` friend-test assemblies
 
 Review the diff, then build.
+
+This script is for consuming apps. Do not run `--packages` against this repository: on-disk project file names stay `IdentityServer4*.csproj` even though the NuGet package ids are `ForgePoint.Identity*`.
 
 ## 4. Entity Framework
 

@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 from pathlib import Path
 
 SKIP_DIR_NAMES = {
@@ -35,41 +36,56 @@ PACKAGE_REPLACEMENTS = (
     ("IdentityServer4", "ForgePoint.Identity"),
 )
 
-INTERNALS_PLACEHOLDERS = (
-    (
-        'InternalsVisibleTo("IdentityServer4.EntityFramework.UnitTests',
-        'InternalsVisibleTo("___FP_EF_UNIT___',
-    ),
-    (
-        'InternalsVisibleTo("IdentityServer4.EntityFramework.IntegrationTests',
-        'InternalsVisibleTo("___FP_EF_INT___',
-    ),
-)
+FRIEND_ASSEMBLY_RE = re.compile(r'InternalsVisibleTo\(\s*"IdentityServer4[^"]*"')
+
+USING_LINE_RE = re.compile(r'(?m)^(\s*(?:@)?(?:global\s+)?using )IdentityServer4;')
+USING_VB_RE = re.compile(r'(?m)^(\s*Imports )IdentityServer4(\r?\n)')
+NAMESPACE_FILE_SCOPED_RE = re.compile(r'(?m)^(namespace )IdentityServer4;')
+NAMESPACE_BLOCK_RE = re.compile(r'(?m)^(namespace )IdentityServer4(\r?\n| )')
 
 
-def rewrite_namespaces(text: str) -> str:
-    for original, placeholder in INTERNALS_PLACEHOLDERS:
-        text = text.replace(original, placeholder)
+def protect_friend_assemblies(text: str) -> tuple[str, list[tuple[str, str]]]:
+    saved: list[tuple[str, str]] = []
 
-    text = text.replace("IdentityServer4.", "ForgePoint.Identity.")
-    text = text.replace("global::IdentityServer4", "global::ForgePoint.Identity")
-    text = text.replace("using IdentityServer4;", "using ForgePoint.Identity;")
-    text = text.replace("using IdentityServer4\n", "using ForgePoint.Identity\n")
-    text = text.replace("@using IdentityServer4\n", "@using ForgePoint.Identity\n")
-    text = text.replace("@using IdentityServer4;", "@using ForgePoint.Identity;")
-    text = text.replace("namespace IdentityServer4\n", "namespace ForgePoint.Identity\n")
-    text = text.replace("namespace IdentityServer4;", "namespace ForgePoint.Identity;")
-    text = text.replace("namespace IdentityServer4 ", "namespace ForgePoint.Identity ")
+    def repl(match: re.Match[str]) -> str:
+        token = f"___FP_IVT_{len(saved)}___"
+        saved.append((token, match.group(0)))
+        return token
 
-    for original, placeholder in INTERNALS_PLACEHOLDERS:
-        text = text.replace(placeholder, original)
+    return FRIEND_ASSEMBLY_RE.sub(repl, text), saved
 
+
+def restore_friend_assemblies(text: str, saved: list[tuple[str, str]]) -> str:
+    for token, original in saved:
+        text = text.replace(token, original)
     return text
 
 
+def rewrite_namespaces(text: str) -> str:
+    text, saved = protect_friend_assemblies(text)
+
+    text = text.replace("IdentityServer4.", "ForgePoint.Identity.")
+    text = text.replace("global::IdentityServer4", "global::ForgePoint.Identity")
+    text = USING_LINE_RE.sub(r"\1ForgePoint.Identity;", text)
+    text = USING_VB_RE.sub(r"\1ForgePoint.Identity\2", text)
+    text = NAMESPACE_FILE_SCOPED_RE.sub(r"\1ForgePoint.Identity;", text)
+    text = NAMESPACE_BLOCK_RE.sub(r"\1ForgePoint.Identity\2", text)
+
+    return restore_friend_assemblies(text, saved)
+
+
 def rewrite_packages(text: str) -> str:
+    """Rewrite PackageReference / PackageVersion / PackageId only.
+
+    AssemblyName, RootNamespace, ProjectReference paths, PackageTags, and
+    InternalsVisibleTo stay as they are so friend-test assemblies keep working.
+    """
     for old, new in PACKAGE_REPLACEMENTS:
-        text = text.replace(old, new)
+        text = text.replace(f'Include="{old}"', f'Include="{new}"')
+        text = text.replace(f"Include='{old}'", f"Include='{new}'")
+        text = text.replace(f'Update="{old}"', f'Update="{new}"')
+        text = text.replace(f"Update='{old}'", f"Update='{new}'")
+        text = text.replace(f"<PackageId>{old}</PackageId>", f"<PackageId>{new}</PackageId>")
     return text
 
 
@@ -86,17 +102,18 @@ def iter_files(root: Path, suffixes: set[str]):
                 yield path
 
 
-def rewrite_file(path: Path, namespaces: bool, packages: bool) -> bool:
+def rewrite_file(path: Path, namespaces: bool, packages: bool, dry_run: bool) -> bool:
     original = path.read_text(encoding="utf-8")
     updated = original
     if namespaces:
         updated = rewrite_namespaces(updated)
     if packages:
         updated = rewrite_packages(updated)
-    if updated != original:
+    if updated == original:
+        return False
+    if not dry_run:
         path.write_text(updated, encoding="utf-8")
-        return True
-    return False
+    return True
 
 
 def main() -> int:
@@ -105,6 +122,11 @@ def main() -> int:
     parser.add_argument("--namespaces", action="store_true", default=False)
     parser.add_argument("--packages", action="store_true", default=False)
     parser.add_argument("--all", action="store_true", help="Rewrite namespaces and package ids")
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Print files that would change without writing them",
+    )
     args = parser.parse_args()
 
     namespaces = args.namespaces or args.all
@@ -114,20 +136,21 @@ def main() -> int:
 
     root = Path(args.root).resolve()
     changed = 0
+    prefix = "would update" if args.dry_run else "updated"
 
     if namespaces:
         for path in iter_files(root, SOURCE_SUFFIXES):
-            if rewrite_file(path, namespaces=True, packages=False):
-                print(f"namespace {path.relative_to(root)}")
+            if rewrite_file(path, namespaces=True, packages=False, dry_run=args.dry_run):
+                print(f"namespace {prefix} {path.relative_to(root)}")
                 changed += 1
 
     if packages:
         for path in iter_files(root, PROJECT_SUFFIXES):
-            if rewrite_file(path, namespaces=False, packages=True):
-                print(f"package  {path.relative_to(root)}")
+            if rewrite_file(path, namespaces=False, packages=True, dry_run=args.dry_run):
+                print(f"package  {prefix} {path.relative_to(root)}")
                 changed += 1
 
-    print(f"Updated {changed} file(s) under {root}")
+    print(f"{prefix.capitalize()} {changed} file(s) under {root}")
     return 0
 
 

@@ -29,6 +29,11 @@ jobs:
           8.0.x
           10.0.x
     - run: dotnet --info
+
+    - name: Upgrade script tests
+      if: contains(matrix.runs-on, 'macOS') || contains(matrix.runs-on, 'ubuntu')
+      working-directory: scripts/upgrade-namespaces
+      run: python3 test_rewrite.py
     
     - if: contains(matrix.runs-on, 'macOS') || contains(matrix.runs-on, 'ubuntu')
       run: ./build.sh

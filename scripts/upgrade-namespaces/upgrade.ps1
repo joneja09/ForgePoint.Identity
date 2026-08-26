@@ -5,7 +5,8 @@ param(
     [string]$Path = ".",
     [switch]$Namespaces,
     [switch]$Packages,
-    [switch]$All
+    [switch]$All,
+    [switch]$DryRun
 )
 
 $ErrorActionPreference = "Stop"
@@ -24,11 +25,12 @@ if (-not $python) {
     throw "Python is required to run this upgrade script."
 }
 
-$args = @((Resolve-Path $Path).Path)
-if ($All) { $args += "--all" }
+$pythonArgs = @((Resolve-Path $Path).Path)
+if ($All) { $pythonArgs += "--all" }
 else {
-    if ($Namespaces) { $args += "--namespaces" }
-    if ($Packages) { $args += "--packages" }
+    if ($Namespaces) { $pythonArgs += "--namespaces" }
+    if ($Packages) { $pythonArgs += "--packages" }
 }
+if ($DryRun) { $pythonArgs += "--dry-run" }
 
-& $python.Source (Join-Path $scriptDir "rewrite.py") @args
+& $python.Source (Join-Path $scriptDir "rewrite.py") @pythonArgs
