@@ -3,15 +3,13 @@
   <PropertyGroup>
     <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
 
-    <PackageId>IdentityServer4.Storage</PackageId>
-    <Description>Storage interfaces and models for IdentityServer4</Description>
-    <Authors>Brock Allen;Dominick Baier</Authors>
+    <PackageId>ForgePoint.Identity.Storage</PackageId>
+    <Description>Storage interfaces and models for ForgePoint.Identity</Description>
+    <AssemblyName>ForgePoint.Identity.Storage</AssemblyName>
 
-    <PackageTags>OAuth2;OAuth 2.0;OpenID Connect;Security;Identity;IdentityServer</PackageTags>
+    <PackageTags>OAuth2;OAuth 2.0;OpenID Connect;Security;Identity;ForgePoint;IdentityServer4</PackageTags>
     <PackageIcon>icon.jpg</PackageIcon>
-    <PackageProjectUrl>https://github.com/IdentityServer/IdentityServer4</PackageProjectUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageReleaseNotes>https://github.com/IdentityServer/IdentityServer4/releases</PackageReleaseNotes>
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>

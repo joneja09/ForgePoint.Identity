@@ -1,11 +1,14 @@
-# IdentityServer4 for .NET 8 and .NET 10
+# ForgePoint.Identity
 
-IdentityServer4 is a free, open source [OpenID Connect](https://openid.net/connect/) and [OAuth 2.0](https://datatracker.ietf.org/doc/html/rfc6749) framework for ASP.NET Core. This branch is a continuation of the last Apache-2.0 IdentityServer4 release, upgraded for current .NET and expanded with protocol and hosting features that modern apps expect.
+ForgePoint.Identity is a free, open source [OpenID Connect](https://openid.net/connect/) and [OAuth 2.0](https://datatracker.ietf.org/doc/html/rfc6749) framework for ASP.NET Core. It is maintained by **ForgePoint Labs** as an Apache-2.0 continuation of the last IdentityServer4 release, upgraded for current .NET and expanded with protocol and hosting features that modern apps expect.
 
-It remains licensed under [Apache 2.0](https://opensource.org/licenses/Apache-2.0).
+It remains licensed under [Apache 2.0](https://opensource.org/licenses/Apache-2.0). This project is not affiliated with or endorsed by Duende Software or the original IdentityServer4 authors.
+
+`IdentityServer4.*` namespaces and `AddIdentityServer()` stay the same, so existing apps can move by swapping NuGet package IDs.
 
 ## What's new in 10.x
 
+- **ForgePoint.Identity** package IDs (was IdentityServer4)
 - **.NET 8 and .NET 10** target frameworks for all libraries
 - **CVE-2024-39694** open-redirect fix in local URL validation
 - **Pushed Authorization Requests** (RFC 9126) at `/connect/par`
@@ -14,17 +17,17 @@ It remains licensed under [Apache 2.0](https://opensource.org/licenses/Apache-2.
 - **Handwritten EF entity/model mappings** instead of AutoMapper (no AutoMapper license required)
 - Package and test dependencies updated for current .NET
 
-Duende IdentityServer is the commercial successor of the original project. This repository keeps the IdentityServer4 APIs and Apache-2.0 license so existing apps can move to current .NET without a product change.
+Duende IdentityServer is the commercial successor of the original IdentityServer project.
 
 ## Packages
 
 | Package | Role |
 | --- | --- |
-| `IdentityServer4` | Protocol implementation and ASP.NET Core host integration |
-| `IdentityServer4.Storage` | Store contracts and models |
-| `IdentityServer4.EntityFramework` | EF Core configuration and operational stores |
-| `IdentityServer4.EntityFramework.Storage` | EF Core entities and stores |
-| `IdentityServer4.AspNetIdentity` | ASP.NET Core Identity integration |
+| `ForgePoint.Identity` | Protocol implementation and ASP.NET Core host integration |
+| `ForgePoint.Identity.Storage` | Store contracts and models |
+| `ForgePoint.Identity.EntityFramework` | EF Core configuration and operational stores |
+| `ForgePoint.Identity.EntityFramework.Storage` | EF Core entities and stores |
+| `ForgePoint.Identity.AspNetIdentity` | ASP.NET Core Identity integration |
 
 ## How to build
 
@@ -33,7 +36,7 @@ Duende IdentityServer is the commercial successor of the original project. This 
 * Clone this repo
 * Run `build.sh` or `build.ps1` from the repository root
 
-The build packs each project into `./nuget` in dependency order: Storage → IdentityServer4 → EntityFramework.Storage → EntityFramework → AspNetIdentity.
+The build packs each project into `./nuget` in dependency order: Storage → Identity → EntityFramework.Storage → EntityFramework → AspNetIdentity.
 
 ## Quick start
 
@@ -79,4 +82,4 @@ See [SECURITY.MD](SECURITY.MD). IdentityServer4 4.1.2 and earlier are affected b
 
 ## Acknowledgements
 
-IdentityServer4 is built using ASP.NET Core, IdentityModel, Newtonsoft.Json, xUnit, Fluent Assertions, MinVer, Bullseye, and SimpleExec — and the work of [every contributor](https://github.com/IdentityServer/IdentityServer4/graphs/contributors) to the original project.
+ForgePoint.Identity is built using ASP.NET Core, IdentityModel, Newtonsoft.Json, xUnit, Fluent Assertions, MinVer, Bullseye, and SimpleExec — and the work of [every contributor](https://github.com/IdentityServer/IdentityServer4/graphs/contributors) to the original IdentityServer4 project.

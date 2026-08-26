@@ -1,7 +1,7 @@
-# IdentityServer4.EntityFramework.Storage
+# ForgePoint.Identity.EntityFramework.Storage
 
-IdentityServer4.EntityFramework.Storage is a persistence layer for IdentityServer 4 configuration data that uses EntityFramework as its database abstraction.
+ForgePoint.Identity.EntityFramework.Storage is the Entity Framework Core persistence layer for ForgePoint.Identity configuration and operational data. Namespaces remain `IdentityServer4.EntityFramework.*` for drop-in compatibility with IdentityServer4.
 
 ## Issues
 
-For issues, use the [consolidated IdentityServer4 issue tracker](https://github.com/IdentityServer/IdentityServer4/issues).
+Open issues on this repository.

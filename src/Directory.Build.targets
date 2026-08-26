@@ -4,7 +4,13 @@
     <MinVerMinimumMajorMinor>10.0</MinVerMinimumMajorMinor>
     <MinVerTagPrefix></MinVerTagPrefix>
 
-    <IdentityServerVersion>10.0.0-*</IdentityServerVersion>
+    <Company>ForgePoint Labs</Company>
+    <Product>ForgePoint.Identity</Product>
+    <Authors>ForgePoint Labs</Authors>
+    <PackageProjectUrl>https://github.com/joneja09/IdentityServer4</PackageProjectUrl>
+    <PackageReleaseNotes>https://github.com/joneja09/IdentityServer4/releases</PackageReleaseNotes>
+
+    <ForgePointIdentityVersion>10.0.0-*</ForgePointIdentityVersion>
 
     <AspNetCoreVersion Condition="'$(TargetFramework)' == 'net8.0'">8.0.21</AspNetCoreVersion>
     <AspNetCoreVersion Condition="'$(TargetFramework)' == 'net10.0'">10.0.11</AspNetCoreVersion>
@@ -31,11 +37,11 @@
     <!--our stuff -->
     <PackageReference Update="IdentityModel" Version="6.2.0" />
 
-    <PackageReference Update="IdentityServer4" Version="$(IdentityServerVersion)" />
-    <PackageReference Update="IdentityServer4.AspNetIdentity" Version="$(IdentityServerVersion)" />
-    <PackageReference Update="IdentityServer4.Storage" Version="$(IdentityServerVersion)" />
-    <PackageReference Update="IdentityServer4.EntityFramework.Storage" Version="$(IdentityServerVersion)" />
-    <PackageReference Update="IdentityServer4.EntityFramework" Version="$(IdentityServerVersion)" />
+    <PackageReference Update="ForgePoint.Identity" Version="$(ForgePointIdentityVersion)" />
+    <PackageReference Update="ForgePoint.Identity.AspNetIdentity" Version="$(ForgePointIdentityVersion)" />
+    <PackageReference Update="ForgePoint.Identity.Storage" Version="$(ForgePointIdentityVersion)" />
+    <PackageReference Update="ForgePoint.Identity.EntityFramework.Storage" Version="$(ForgePointIdentityVersion)" />
+    <PackageReference Update="ForgePoint.Identity.EntityFramework" Version="$(ForgePointIdentityVersion)" />
 
     <!--microsoft extensions -->
     <PackageReference Update="Microsoft.Extensions.Caching.Memory" Version="$(AspNetCoreVersion)" />
