@@ -4,12 +4,12 @@ ForgePoint.Identity is a free, open source [OpenID Connect](https://openid.net/c
 
 It remains licensed under [Apache 2.0](https://opensource.org/licenses/Apache-2.0). This project is not affiliated with or endorsed by Duende Software or the original IdentityServer4 authors.
 
-`AddIdentityServer()` stays the same. C# namespaces move from `IdentityServer4.*` to `ForgePoint.Identity.*` — see the [upgrade guide](docs/upgrade.md) and `tools/upgrade-namespaces`.
+`AddIdentityServer()` stays the same. C# namespaces move from `IdentityServer4.*` to `ForgePoint.Identity.*` — see the [upgrade guide](docs/upgrade.md) and `scripts/upgrade-namespaces`.
 
 ## What's new in 10.x
 
 - **ForgePoint.Identity** package IDs and `ForgePoint.Identity.*` namespaces (was IdentityServer4)
-- Upgrade script for existing apps: `tools/upgrade-namespaces`
+- Upgrade script for existing apps: `scripts/upgrade-namespaces`
 - **.NET 8 and .NET 10** target frameworks for all libraries
 - **CVE-2024-39694** open-redirect fix in local URL validation
 - **Pushed Authorization Requests** (RFC 9126) at `/connect/par`

@@ -32,20 +32,20 @@ This project is not affiliated with or endorsed by Duende Software or the origin
 
 ## 3. Run the upgrade script
 
-From a clone of this repository (or copy `tools/upgrade-namespaces` into your app):
+From a clone of this repository (or copy `scripts/upgrade-namespaces` into your app):
 
 ```bash
-python3 tools/upgrade-namespaces/rewrite.py /path/to/your/app --all
+python3 scripts/upgrade-namespaces/rewrite.py /path/to/your/app --all
 ```
 
 or
 
 ```bash
-./tools/upgrade-namespaces/upgrade.sh /path/to/your/app
+./scripts/upgrade-namespaces/upgrade.sh /path/to/your/app
 ```
 
 ```powershell
-./tools/upgrade-namespaces/upgrade.ps1 -Path C:\path\to\your\app
+./scripts/upgrade-namespaces/upgrade.ps1 -Path C:\path\to\your\app
 ```
 
 `--all` updates:
