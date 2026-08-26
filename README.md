@@ -30,6 +30,10 @@ Duende IdentityServer is the commercial successor of the original IdentityServer
 | `ForgePoint.Identity.EntityFramework.Storage` | EF Core entities and stores |
 | `ForgePoint.Identity.AspNetIdentity` | ASP.NET Core Identity integration |
 
+```bash
+dotnet add package ForgePoint.Identity
+```
+
 ## How to build
 
 * Install the [.NET 10 SDK](https://dotnet.microsoft.com/download) (the SDK also builds the `net8.0` TFM)
@@ -38,6 +42,36 @@ Duende IdentityServer is the commercial successor of the original IdentityServer
 * Run `build.sh` or `build.ps1` from the repository root
 
 The build packs each project into `./nuget` in dependency order: Storage → Identity → EntityFramework.Storage → EntityFramework → AspNetIdentity.
+
+## Releasing
+
+Version numbers come from [MinVer](https://github.com/adamralph/minver) git tags (`10.0.0`, not `v10.0.0`).
+
+The Release workflow packs the libraries, creates a GitHub Release with the `.nupkg` files, and publishes to nuget.org via [Trusted Publishing](https://learn.microsoft.com/nuget/nuget-org/trusted-publishing) (GitHub OIDC → a one-hour nuget.org API key). There is no long-lived `NUGET_API_KEY`.
+
+### One-time nuget.org setup
+
+1. Sign in at [nuget.org](https://www.nuget.org/) (your **profile name**, not your email).
+2. Open **Trusted Publishing** and add a policy owned by your user (or your org):
+   - **Repository Owner:** `joneja09`
+   - **Repository:** `ForgePoint.Identity`
+   - **Workflow File:** `release.yml` (file name only)
+   - **Environment:** leave empty
+3. In this GitHub repo, **Settings → Secrets and variables → Actions → Variables**, add `NUGET_USER` set to that same nuget.org profile name.
+
+Until `NUGET_USER` is set, the workflow still creates the GitHub Release and skips nuget.org.
+
+### Cut a release
+
+```bash
+git checkout main
+git pull
+git tag 10.0.1
+git push origin 10.0.1
+```
+
+To publish an existing tag (for example `10.0.0`) after Trusted Publishing is configured: **Actions → Release → Run workflow** and enter the tag name.
+
 
 ## Quick start
 

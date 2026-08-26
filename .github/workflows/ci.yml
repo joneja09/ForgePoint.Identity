@@ -6,8 +6,6 @@ on:
     - main
     - features/**
     - cursor/**
-    tags:
-    - '*.*.*'
   pull_request:
 
 env:
@@ -23,25 +21,26 @@ jobs:
     runs-on: ${{ matrix.runs-on }}
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
     - uses: actions/setup-dotnet@v4
       with:
         dotnet-version: |
           8.0.x
           10.0.x
+
     - run: dotnet --info
 
     - name: Upgrade script tests
-      if: contains(matrix.runs-on, 'macOS') || contains(matrix.runs-on, 'ubuntu')
+      if: runner.os != 'Windows'
       working-directory: scripts/upgrade-namespaces
       run: python3 test_rewrite.py
-    
-    - if: contains(matrix.runs-on, 'macOS') || contains(matrix.runs-on, 'ubuntu')
+
+    - name: Build and test
+      if: runner.os != 'Windows'
       run: ./build.sh
-    - if: matrix.runs-on == 'windows-latest' && github.ref != 'refs/heads/main' && !contains(github.ref, 'refs/tags/')
+
+    - name: Build and test
+      if: runner.os == 'Windows'
       run: ./build.ps1
-    - if: (matrix.runs-on == 'windows-latest') && (github.ref == 'refs/heads/main' || contains(github.ref, 'refs/tags/'))
-      env:
-        SignClientSecret: ${{ secrets.SIGNCLIENT }}
-      run: |
-        ./build.ps1 sign
-        dotnet nuget push .\nuget\*.nupkg -s https://www.myget.org/F/identity/api/v2/package -k ${{ secrets.MYGET }}

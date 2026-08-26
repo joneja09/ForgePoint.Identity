@@ -1,0 +1,58 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Git tag to build and publish (for example 10.0.0)'
+        required: true
+
+permissions:
+  contents: write
+  id-token: write
+
+env:
+  DOTNET_NOLOGO: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        ref: ${{ github.event.inputs.tag || github.ref }}
+
+    - uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          8.0.x
+          10.0.x
+
+    - name: Build, test, and pack
+      run: ./build.sh
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{ github.event.inputs.tag || github.ref_name }}
+        generate_release_notes: true
+        files: nuget/*.nupkg
+
+    - name: NuGet login (OIDC)
+      if: ${{ vars.NUGET_USER != '' }}
+      id: nuget-login
+      uses: NuGet/login@v1
+      with:
+        user: ${{ vars.NUGET_USER }}
+
+    - name: Publish to NuGet.org
+      if: ${{ vars.NUGET_USER != '' }}
+      run: |
+        dotnet nuget push ./nuget/*.nupkg \
+          --source https://api.nuget.org/v3/index.json \
+          --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}" \
+          --skip-duplicate
