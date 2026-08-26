@@ -3,18 +3,18 @@
 
 
 using IdentityModel;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Validation;
 using System.Threading.Tasks;
 using System;
 using Microsoft.AspNetCore.Authentication;
-using IdentityServer4;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Test
+namespace ForgePoint.Identity.Test
 {
     /// <summary>
     /// Resource owner password validator for test users
     /// </summary>
-    /// <seealso cref="IdentityServer4.Validation.IResourceOwnerPasswordValidator" />
+    /// <seealso cref="ForgePoint.Identity.Validation.IResourceOwnerPasswordValidator" />
     public class TestUserResourceOwnerPasswordValidator : IResourceOwnerPasswordValidator
     {
         private readonly TestUserStore _users;

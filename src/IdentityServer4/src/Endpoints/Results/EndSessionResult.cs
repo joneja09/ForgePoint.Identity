@@ -3,24 +3,24 @@
 
 
 using System.Threading.Tasks;
-using IdentityServer4.Validation;
-using IdentityServer4.Hosting;
+using ForgePoint.Identity.Validation;
+using ForgePoint.Identity.Hosting;
 using Microsoft.AspNetCore.Http;
-using IdentityServer4.Configuration;
+using ForgePoint.Identity.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using IdentityServer4.Models;
-using IdentityServer4.Stores;
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Stores;
+using ForgePoint.Identity.Extensions;
 using System;
 using Microsoft.AspNetCore.Authentication;
-using IdentityServer4;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Endpoints.Results
+namespace ForgePoint.Identity.Endpoints.Results
 {
     /// <summary>
     /// Result for endsession
     /// </summary>
-    /// <seealso cref="IdentityServer4.Hosting.IEndpointResult" />
+    /// <seealso cref="ForgePoint.Identity.Hosting.IEndpointResult" />
     public class EndSessionResult : IEndpointResult
     {
         private readonly EndSessionValidationResult _result;

@@ -4,14 +4,14 @@
 
 using System;
 using System.Threading.Tasks;
-using IdentityServer4.Configuration;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
-using IdentityServer4.Stores.Serialization;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
+using ForgePoint.Identity.Stores.Serialization;
 using Microsoft.Extensions.Logging;
 
-namespace IdentityServer4.Stores
+namespace ForgePoint.Identity.Stores
 {
     /// <summary>
     /// Default PAR store backed by <see cref="IPersistedGrantStore"/>.

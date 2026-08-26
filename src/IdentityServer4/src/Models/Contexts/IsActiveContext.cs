@@ -2,11 +2,11 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Extensions;
 using System;
 using System.Security.Claims;
 
-namespace IdentityServer4.Models
+namespace ForgePoint.Identity.Models
 {
     /// <summary>
     /// Context describing the is-active check

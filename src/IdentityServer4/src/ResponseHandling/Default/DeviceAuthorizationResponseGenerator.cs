@@ -4,21 +4,21 @@
 
 using System;
 using System.Threading.Tasks;
-using IdentityServer4.Configuration;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
+using ForgePoint.Identity.Validation;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
-using IdentityServer4;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.ResponseHandling
+namespace ForgePoint.Identity.ResponseHandling
 {
     /// <summary>
     /// The device authorizaiton response generator
     /// </summary>
-    /// <seealso cref="IdentityServer4.ResponseHandling.IDeviceAuthorizationResponseGenerator" />
+    /// <seealso cref="ForgePoint.Identity.ResponseHandling.IDeviceAuthorizationResponseGenerator" />
     public class DeviceAuthorizationResponseGenerator : IDeviceAuthorizationResponseGenerator
     {
         /// <summary>

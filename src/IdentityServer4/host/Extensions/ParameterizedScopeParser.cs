@@ -1,4 +1,4 @@
-﻿using IdentityServer4.Validation;
+﻿using ForgePoint.Identity.Validation;
 using Microsoft.Extensions.Logging;
 using System;
 

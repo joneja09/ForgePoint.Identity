@@ -5,17 +5,17 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using IdentityModel;
-using IdentityServer4.Configuration;
-using IdentityServer4.Endpoints.Results;
-using IdentityServer4.Extensions;
-using IdentityServer4.Hosting;
-using IdentityServer4.Models;
-using IdentityServer4.Stores;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Endpoints.Results;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Hosting;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Stores;
+using ForgePoint.Identity.Validation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace IdentityServer4.Endpoints
+namespace ForgePoint.Identity.Endpoints
 {
     /// <summary>
     /// OAuth 2.0 Pushed Authorization Request endpoint (RFC 9126).

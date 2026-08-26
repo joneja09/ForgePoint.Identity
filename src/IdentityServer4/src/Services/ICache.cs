@@ -5,7 +5,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace IdentityServer4.Services
+namespace ForgePoint.Identity.Services
 {
     /// <summary>
     /// Abstract interface to model data caching

@@ -5,18 +5,18 @@
 using System;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
-using IdentityServer4.Configuration;
+using ForgePoint.Identity.Configuration;
 using System.Threading.Tasks;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Services;
 using Microsoft.AspNetCore.Authentication;
-using IdentityServer4;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Events
+namespace ForgePoint.Identity.Events
 {
     /// <summary>
     /// The default event service
     /// </summary>
-    /// <seealso cref="IdentityServer4.Services.IEventService" />
+    /// <seealso cref="ForgePoint.Identity.Services.IEventService" />
     public class DefaultEventService : IEventService
     {
         /// <summary>

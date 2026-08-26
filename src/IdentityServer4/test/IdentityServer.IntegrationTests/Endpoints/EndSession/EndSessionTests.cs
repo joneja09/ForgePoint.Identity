@@ -14,12 +14,12 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using IdentityModel;
 using IdentityServer.IntegrationTests.Common;
-using IdentityServer4.Models;
-using IdentityServer4.Test;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Test;
 using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json.Linq;
 using Xunit;
-using static IdentityServer4.IdentityServerConstants;
+using static ForgePoint.Identity.IdentityServerConstants;
 
 namespace IdentityServer.IntegrationTests.Endpoints.EndSession
 {

@@ -3,9 +3,9 @@
 
 
 using IdentityModel;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Models;
 using System.Collections.Generic;
-using static IdentityServer4.IdentityServerConstants;
+using static ForgePoint.Identity.IdentityServerConstants;
 
 namespace IdentityServerHost.Configuration
 {

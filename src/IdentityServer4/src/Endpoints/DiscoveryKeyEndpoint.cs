@@ -3,14 +3,14 @@
 
 using System.Net;
 using System.Threading.Tasks;
-using IdentityServer4.Configuration;
-using IdentityServer4.Endpoints.Results;
-using IdentityServer4.Hosting;
-using IdentityServer4.ResponseHandling;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Endpoints.Results;
+using ForgePoint.Identity.Hosting;
+using ForgePoint.Identity.ResponseHandling;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace IdentityServer4.Endpoints
+namespace ForgePoint.Identity.Endpoints
 {
     internal class DiscoveryKeyEndpoint : IEndpointHandler
     {

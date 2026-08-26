@@ -3,9 +3,9 @@
 
 
 using System.Threading.Tasks;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Models;
 
-namespace IdentityServer4.Stores
+namespace ForgePoint.Identity.Stores
 {
     /// <summary>
     /// Persistence for OAuth 2.0 Pushed Authorization Requests (RFC 9126).

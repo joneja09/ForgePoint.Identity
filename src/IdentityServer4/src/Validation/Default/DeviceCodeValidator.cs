@@ -5,14 +5,14 @@
 using System.Linq;
 using System.Threading.Tasks;
 using IdentityModel;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
-using IdentityServer4;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     /// <summary>
     /// Validates an incoming token request using the device flow

@@ -4,10 +4,10 @@
 
 using System.Threading;
 using System.Threading.Tasks;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Services;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace IdentityServer4.Hosting
+namespace ForgePoint.Identity.Hosting
 {
     /// <summary>
     /// Health check that verifies IdentityServer has signing credentials configured.

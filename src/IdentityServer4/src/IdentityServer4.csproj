@@ -5,6 +5,7 @@
     <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
     <Description>OpenID Connect and OAuth 2.0 framework for ASP.NET Core. Apache-2.0 continuation of IdentityServer4 by ForgePoint Labs.</Description>
     <AssemblyName>ForgePoint.Identity</AssemblyName>
+    <RootNamespace>ForgePoint.Identity</RootNamespace>
     <PackageTags>OAuth2;OAuth 2.0;OpenID Connect;Security;Identity;ForgePoint;IdentityServer4</PackageTags>
     <PackageIcon>icon.jpg</PackageIcon>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>

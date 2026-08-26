@@ -3,13 +3,13 @@
 
 
 using System.Threading.Tasks;
-using IdentityServer4.Hosting;
+using ForgePoint.Identity.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using IdentityServer4.Configuration;
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Extensions;
 
-namespace IdentityServer4.Endpoints.Results
+namespace ForgePoint.Identity.Endpoints.Results
 {
     internal class CheckSessionResult : IEndpointResult
     {

@@ -3,19 +3,19 @@
 
 
 using IdentityModel;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     /// <summary>
     /// The token revocation request validator
     /// </summary>
-    /// <seealso cref="IdentityServer4.Validation.ITokenRevocationRequestValidator" />
+    /// <seealso cref="ForgePoint.Identity.Validation.ITokenRevocationRequestValidator" />
     internal class TokenRevocationRequestValidator : ITokenRevocationRequestValidator
     {
         private readonly ILogger _logger;

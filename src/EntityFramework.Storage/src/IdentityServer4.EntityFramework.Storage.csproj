@@ -6,6 +6,7 @@
     
     <Description>EntityFramework persistence layer for ForgePoint.Identity</Description>
     <AssemblyName>ForgePoint.Identity.EntityFramework.Storage</AssemblyName>
+    <RootNamespace>ForgePoint.Identity.EntityFramework</RootNamespace>
     <PackageTags>OAuth2;OAuth 2.0;OpenID Connect;Security;Identity;ForgePoint;IdentityServer4;EntityFramework</PackageTags>
     <PackageIcon>icon.jpg</PackageIcon>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>

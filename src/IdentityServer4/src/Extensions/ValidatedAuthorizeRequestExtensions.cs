@@ -3,7 +3,7 @@
 
 
 using IdentityModel;
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ using System.Text;
 
 #pragma warning disable 1591
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     public static class ValidatedAuthorizeRequestExtensions
     {

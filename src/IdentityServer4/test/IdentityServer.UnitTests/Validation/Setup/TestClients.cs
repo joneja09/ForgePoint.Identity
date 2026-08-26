@@ -3,8 +3,8 @@
 
 
 using System.Collections.Generic;
-using IdentityServer4;
-using IdentityServer4.Models;
+using ForgePoint.Identity;
+using ForgePoint.Identity.Models;
 
 namespace IdentityServer.UnitTests.Validation.Setup
 {

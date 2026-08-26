@@ -2,21 +2,21 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.Configuration;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
-using IdentityServer4.Models;
-using IdentityServer4.Stores;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Stores;
 using System.Linq;
 using Microsoft.AspNetCore.Authentication;
-using IdentityServer4;
+using ForgePoint.Identity;
 
 #pragma warning disable 1591
 
-namespace IdentityServer4.Extensions
+namespace ForgePoint.Identity.Extensions
 {
     public static class HttpContextExtensions
     {

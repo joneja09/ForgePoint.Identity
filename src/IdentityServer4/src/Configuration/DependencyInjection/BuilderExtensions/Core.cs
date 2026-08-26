@@ -2,30 +2,30 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4;
-using IdentityServer4.Configuration;
-using IdentityServer4.Configuration.DependencyInjection;
-using IdentityServer4.Endpoints;
-using IdentityServer4.Events;
-using IdentityServer4.Hosting;
-using IdentityServer4.ResponseHandling;
-using IdentityServer4.Services;
-using IdentityServer4.Stores;
-using IdentityServer4.Stores.Serialization;
-using IdentityServer4.Validation;
+using ForgePoint.Identity;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Configuration.DependencyInjection;
+using ForgePoint.Identity.Endpoints;
+using ForgePoint.Identity.Events;
+using ForgePoint.Identity.Hosting;
+using ForgePoint.Identity.ResponseHandling;
+using ForgePoint.Identity.Services;
+using ForgePoint.Identity.Stores;
+using ForgePoint.Identity.Stores.Serialization;
+using ForgePoint.Identity.Validation;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using System;
 using System.Linq;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
-using static IdentityServer4.Constants;
-using IdentityServer4.Extensions;
-using IdentityServer4.Hosting.FederatedSignOut;
-using IdentityServer4.Services.Default;
+using static ForgePoint.Identity.Constants;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Hosting.FederatedSignOut;
+using ForgePoint.Identity.Services.Default;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -109,7 +109,7 @@ namespace Microsoft.Extensions.DependencyInjection
             where T : class, IEndpointHandler
         {
             builder.Services.AddTransient<T>();
-            builder.Services.AddSingleton(new IdentityServer4.Hosting.Endpoint(name, path, typeof(T)));
+            builder.Services.AddSingleton(new ForgePoint.Identity.Hosting.Endpoint(name, path, typeof(T)));
 
             return builder;
         }

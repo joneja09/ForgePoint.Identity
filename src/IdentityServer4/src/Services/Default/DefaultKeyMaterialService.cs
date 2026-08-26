@@ -5,18 +5,18 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
-using IdentityServer4.Stores;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Stores;
+using ForgePoint.Identity.Models;
 using System.Linq;
 using System;
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Extensions;
 
-namespace IdentityServer4.Services
+namespace ForgePoint.Identity.Services
 {
     /// <summary>
     /// The default key material service
     /// </summary>
-    /// <seealso cref="IdentityServer4.Services.IKeyMaterialService" />
+    /// <seealso cref="ForgePoint.Identity.Services.IKeyMaterialService" />
     public class DefaultKeyMaterialService : IKeyMaterialService
     {
         private readonly IEnumerable<ISigningCredentialStore> _signingCredentialStores;

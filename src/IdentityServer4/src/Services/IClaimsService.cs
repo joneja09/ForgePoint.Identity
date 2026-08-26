@@ -2,12 +2,12 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Validation;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace IdentityServer4.Services
+namespace ForgePoint.Identity.Services
 {
     /// <summary>
     /// The claims service is responsible for determining which claims to include in tokens

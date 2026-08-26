@@ -4,7 +4,7 @@
 
 using System.Collections.Generic;
 
-namespace IdentityServer4.Configuration
+namespace ForgePoint.Identity.Configuration
 {
     /// <summary>
     /// The ValidationOptions contains settings that affect some of the default validation behavior.

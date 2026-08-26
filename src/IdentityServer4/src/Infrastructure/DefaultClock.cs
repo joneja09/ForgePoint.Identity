@@ -4,7 +4,7 @@
 
 using System;
 
-namespace IdentityServer4
+namespace ForgePoint.Identity
 {
     /// <summary>
     /// Default <see cref="IClock"/> implementation backed by <see cref="TimeProvider"/>.

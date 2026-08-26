@@ -4,12 +4,12 @@
 
 using System;
 using System.Threading.Tasks;
-using IdentityServer4.Models;
-using IdentityServer4.Stores;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Stores;
+using ForgePoint.Identity.Validation;
 using Microsoft.Extensions.Logging;
 
-namespace IdentityServer4.Services
+namespace ForgePoint.Identity.Services
 {
     internal class DefaultDeviceFlowInteractionService : IDeviceFlowInteractionService
     {

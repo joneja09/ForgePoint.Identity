@@ -3,24 +3,24 @@
 
 
 using IdentityModel;
-using IdentityServer4.Endpoints.Results;
-using IdentityServer4.Events;
-using IdentityServer4.Extensions;
-using IdentityServer4.Hosting;
-using IdentityServer4.ResponseHandling;
-using IdentityServer4.Services;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Endpoints.Results;
+using ForgePoint.Identity.Events;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Hosting;
+using ForgePoint.Identity.ResponseHandling;
+using ForgePoint.Identity.Services;
+using ForgePoint.Identity.Validation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace IdentityServer4.Endpoints
+namespace ForgePoint.Identity.Endpoints
 {
     /// <summary>
     /// The token endpoint
     /// </summary>
-    /// <seealso cref="IdentityServer4.Hosting.IEndpointHandler" />
+    /// <seealso cref="ForgePoint.Identity.Hosting.IEndpointHandler" />
     internal class TokenEndpoint : IEndpointHandler
     {
         private readonly IClientSecretValidator _clientValidator;

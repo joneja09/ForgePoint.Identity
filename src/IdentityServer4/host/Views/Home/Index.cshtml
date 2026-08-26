@@ -2,13 +2,13 @@
 @using System.Reflection
 
 @{
-    var version = typeof(IdentityServer4.Hosting.IdentityServerMiddleware).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion.Split('+').First();
+    var version = typeof(ForgePoint.Identity.Hosting.IdentityServerMiddleware).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion.Split('+').First();
 }
 
 <div class="welcome-page">
     <h1>
         <img src="~/icon.jpg">
-        Welcome to IdentityServer4
+        Welcome to ForgePoint.Identity
         <small class="text-muted">(version @version)</small>
     </h1>
 

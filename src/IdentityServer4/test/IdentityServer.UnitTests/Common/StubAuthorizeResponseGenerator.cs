@@ -3,8 +3,8 @@
 
 
 using System.Threading.Tasks;
-using IdentityServer4.ResponseHandling;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.ResponseHandling;
+using ForgePoint.Identity.Validation;
 
 namespace IdentityServer.UnitTests.Common
 {

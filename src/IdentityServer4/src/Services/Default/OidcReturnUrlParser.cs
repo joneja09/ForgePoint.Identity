@@ -4,14 +4,14 @@
 
 using System;
 using System.Threading.Tasks;
-using IdentityServer4.Models;
-using IdentityServer4.Extensions;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Validation;
 using Microsoft.Extensions.Logging;
-using IdentityServer4.Stores;
+using ForgePoint.Identity.Stores;
 using System.Collections.Specialized;
 
-namespace IdentityServer4.Services
+namespace ForgePoint.Identity.Services
 {
     internal class OidcReturnUrlParser : IReturnUrlParser
     {

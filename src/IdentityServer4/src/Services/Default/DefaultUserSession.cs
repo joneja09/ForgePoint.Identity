@@ -4,19 +4,19 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using IdentityModel;
-using IdentityServer4.Configuration;
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authentication;
-using IdentityServer4;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Services
+namespace ForgePoint.Identity.Services
 {
     /// <summary>
     /// Cookie-based session implementation
     /// </summary>
-    /// <seealso cref="IdentityServer4.Services.IUserSession" />
+    /// <seealso cref="ForgePoint.Identity.Services.IUserSession" />
     public class DefaultUserSession : IUserSession
     {
         /// <summary>

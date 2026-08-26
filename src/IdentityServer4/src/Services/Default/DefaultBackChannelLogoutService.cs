@@ -8,12 +8,12 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using IdentityModel;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
-using IdentityServer4;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Services
+namespace ForgePoint.Identity.Services
 {
     /// <summary>
     /// Default back-channel logout notification implementation.

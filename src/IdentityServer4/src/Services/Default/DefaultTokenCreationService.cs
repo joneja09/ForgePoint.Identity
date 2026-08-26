@@ -3,9 +3,9 @@
 
 
 using IdentityModel;
-using IdentityServer4.Configuration;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -13,10 +13,10 @@ using System;
 using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
-using static IdentityServer4.IdentityServerConstants;
-using IdentityServer4;
+using static ForgePoint.Identity.IdentityServerConstants;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Services
+namespace ForgePoint.Identity.Services
 {
     /// <summary>
     /// Default token creation service

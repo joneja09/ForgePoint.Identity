@@ -4,7 +4,7 @@
 
 using Microsoft.AspNetCore.Http;
 
-namespace IdentityServer4.Hosting
+namespace ForgePoint.Identity.Hosting
 {
     /// <summary>
     /// The endpoint router

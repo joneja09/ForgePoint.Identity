@@ -3,24 +3,24 @@
 
 
 using IdentityModel;
-using IdentityServer4.Endpoints.Results;
-using IdentityServer4.Hosting;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Endpoints.Results;
+using ForgePoint.Identity.Hosting;
+using ForgePoint.Identity.Validation;
 using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Threading.Tasks;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Services;
 using Microsoft.AspNetCore.Http;
-using IdentityServer4.Events;
-using IdentityServer4.ResponseHandling;
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Events;
+using ForgePoint.Identity.ResponseHandling;
+using ForgePoint.Identity.Extensions;
 
-namespace IdentityServer4.Endpoints
+namespace ForgePoint.Identity.Endpoints
 {
     /// <summary>
     /// The revocation endpoint
     /// </summary>
-    /// <seealso cref="IdentityServer4.Hosting.IEndpointHandler" />
+    /// <seealso cref="ForgePoint.Identity.Hosting.IEndpointHandler" />
     internal class TokenRevocationEndpoint : IEndpointHandler
     {
         private readonly ILogger _logger;

@@ -4,7 +4,7 @@
 
 using System;
 using Microsoft.AspNetCore.Authentication;
-using IdentityServer4;
+using ForgePoint.Identity;
 
 namespace IdentityServer.UnitTests.Common
 {

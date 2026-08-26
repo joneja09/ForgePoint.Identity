@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using IdentityModel;
 using IdentityServer.IntegrationTests.Common;
-using IdentityServer4;
-using IdentityServer4.Models;
-using IdentityServer4.Stores;
-using IdentityServer4.Stores.Default;
-using IdentityServer4.Test;
+using ForgePoint.Identity;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Stores;
+using ForgePoint.Identity.Stores.Default;
+using ForgePoint.Identity.Test;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 

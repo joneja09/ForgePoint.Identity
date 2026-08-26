@@ -2,18 +2,18 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.Extensions;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Services;
 using System.Threading.Tasks;
-using IdentityServer4.Configuration;
+using ForgePoint.Identity.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace IdentityServer4.Stores
+namespace ForgePoint.Identity.Stores
 {
     /// <summary>
     /// Caching decorator for ICorsPolicyService
     /// </summary>
-    /// <seealso cref="IdentityServer4.Services.ICorsPolicyService" />
+    /// <seealso cref="ForgePoint.Identity.Services.ICorsPolicyService" />
     public class CachingCorsPolicyService<T> : ICorsPolicyService
         where T : ICorsPolicyService
     {

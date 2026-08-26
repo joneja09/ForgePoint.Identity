@@ -3,7 +3,7 @@
 
 
 using FluentAssertions;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Validation;
 using Xunit;
 
 namespace IdentityServer.UnitTests.Validation

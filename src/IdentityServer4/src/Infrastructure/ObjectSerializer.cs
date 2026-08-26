@@ -5,7 +5,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace IdentityServer4
+namespace ForgePoint.Identity
 {
     internal static class ObjectSerializer
     {

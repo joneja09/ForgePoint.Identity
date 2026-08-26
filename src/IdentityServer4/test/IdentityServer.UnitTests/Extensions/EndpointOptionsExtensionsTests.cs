@@ -1,8 +1,8 @@
-﻿using IdentityServer4.Configuration;
-using IdentityServer4.Extensions;
-using IdentityServer4.Hosting;
+﻿using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Hosting;
 using Xunit;
-using static IdentityServer4.Constants;
+using static ForgePoint.Identity.Constants;
 
 namespace IdentityServer.UnitTests.Extensions
 {

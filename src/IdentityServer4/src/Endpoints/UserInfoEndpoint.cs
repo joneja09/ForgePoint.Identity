@@ -3,21 +3,21 @@
 
 
 using System.Threading.Tasks;
-using IdentityServer4.Validation;
-using IdentityServer4.ResponseHandling;
+using ForgePoint.Identity.Validation;
+using ForgePoint.Identity.ResponseHandling;
 using Microsoft.Extensions.Logging;
-using IdentityServer4.Hosting;
-using IdentityServer4.Endpoints.Results;
+using ForgePoint.Identity.Hosting;
+using ForgePoint.Identity.Endpoints.Results;
 using IdentityModel;
 using Microsoft.AspNetCore.Http;
 using System.Net;
 
-namespace IdentityServer4.Endpoints
+namespace ForgePoint.Identity.Endpoints
 {
     /// <summary>
     /// The userinfo endpoint
     /// </summary>
-    /// <seealso cref="IdentityServer4.Hosting.IEndpointHandler" />
+    /// <seealso cref="ForgePoint.Identity.Hosting.IEndpointHandler" />
     internal class UserInfoEndpoint : IEndpointHandler
     {
         private readonly BearerTokenUsageValidator _tokenUsageValidator;

@@ -10,7 +10,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
-namespace IdentityServer4.Models
+namespace ForgePoint.Identity.Models
 {
     /// <summary>
     /// Extension methods for client.

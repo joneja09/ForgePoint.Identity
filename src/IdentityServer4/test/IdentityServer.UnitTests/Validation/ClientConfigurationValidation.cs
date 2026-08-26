@@ -3,9 +3,9 @@
 
 
 using FluentAssertions;
-using IdentityServer4.Configuration;
-using IdentityServer4.Models;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Validation;
 using System;
 using System.Threading.Tasks;
 using IdentityServer.UnitTests.Validation.Setup;

@@ -2,19 +2,19 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
-using IdentityServer4.Stores;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Stores;
 using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using IdentityModel;
-using IdentityServer4.Logging.Models;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Logging.Models;
+using ForgePoint.Identity.Validation;
 using Microsoft.AspNetCore.Authentication;
-using IdentityServer4;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Services
+namespace ForgePoint.Identity.Services
 {
     /// <summary>
     /// Default refresh token service

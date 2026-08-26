@@ -3,7 +3,7 @@
 
 
 using System.Threading.Tasks;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Services;
 
 namespace IdentityServer.UnitTests.Common
 {

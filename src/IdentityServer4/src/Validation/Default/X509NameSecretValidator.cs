@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
 using Microsoft.Extensions.Logging;
-using static IdentityServer4.IdentityServerConstants;
+using static ForgePoint.Identity.IdentityServerConstants;
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     /// <summary>
     /// Validator for an X.509 certificate based client secret using the common name

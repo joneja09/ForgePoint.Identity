@@ -3,12 +3,12 @@
 
 
 using IdentityModel;
-using IdentityServer4.Configuration;
-using IdentityServer4.Events;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
-using IdentityServer4.Stores;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Events;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
+using ForgePoint.Identity.Stores;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -16,11 +16,11 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IdentityServer4.Logging.Models;
+using ForgePoint.Identity.Logging.Models;
 using Microsoft.AspNetCore.Authentication;
-using IdentityServer4;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     internal class TokenRequestValidator : ITokenRequestValidator
     {

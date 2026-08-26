@@ -5,19 +5,19 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using IdentityServer4.EntityFramework.Interfaces;
-using IdentityServer4.EntityFramework.Mappers;
-using IdentityServer4.Models;
-using IdentityServer4.Stores;
+using ForgePoint.Identity.EntityFramework.Interfaces;
+using ForgePoint.Identity.EntityFramework.Mappers;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Stores;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace IdentityServer4.EntityFramework.Stores
+namespace ForgePoint.Identity.EntityFramework.Stores
 {
     /// <summary>
     /// Implementation of IClientStore thats uses EF.
     /// </summary>
-    /// <seealso cref="IdentityServer4.Stores.IClientStore" />
+    /// <seealso cref="ForgePoint.Identity.Stores.IClientStore" />
     public class ClientStore : IClientStore
     {
         /// <summary>

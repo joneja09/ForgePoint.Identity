@@ -4,14 +4,14 @@
 
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Models;
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     /// <summary>
     /// Default resource owner password validator (no implementation == not supported)
     /// </summary>
-    /// <seealso cref="IdentityServer4.Validation.IResourceOwnerPasswordValidator" />
+    /// <seealso cref="ForgePoint.Identity.Validation.IResourceOwnerPasswordValidator" />
     public class NotSupportedResourceOwnerPasswordValidator : IResourceOwnerPasswordValidator
     {
         private readonly ILogger _logger;

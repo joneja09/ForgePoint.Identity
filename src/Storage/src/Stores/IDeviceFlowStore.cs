@@ -3,9 +3,9 @@
 
 
 using System.Threading.Tasks;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Models;
 
-namespace IdentityServer4.Stores
+namespace ForgePoint.Identity.Stores
 {
     /// <summary>
     /// Interface for the device flow store

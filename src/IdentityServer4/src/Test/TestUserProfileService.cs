@@ -2,19 +2,19 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IdentityServer4.Test
+namespace ForgePoint.Identity.Test
 {
     /// <summary>
     /// Profile service for test users
     /// </summary>
-    /// <seealso cref="IdentityServer4.Services.IProfileService" />
+    /// <seealso cref="ForgePoint.Identity.Services.IProfileService" />
     public class TestUserProfileService : IProfileService
     {
         /// <summary>

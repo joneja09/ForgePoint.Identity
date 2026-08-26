@@ -2,12 +2,12 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace IdentityServer4.Configuration
+namespace ForgePoint.Identity.Configuration
 {
     internal class ConfigureInternalCookieOptions : IConfigureNamedOptions<CookieAuthenticationOptions>
     {
@@ -83,7 +83,7 @@ namespace IdentityServer4.Configuration
         {
             _idsrv = idsrv;
             _authOptions = authOptions;
-            _logger = loggerFactory.CreateLogger("IdentityServer4.Startup");
+            _logger = loggerFactory.CreateLogger("ForgePoint.Identity.Startup");
         }
 
         public void PostConfigure(string name, CookieAuthenticationOptions options)

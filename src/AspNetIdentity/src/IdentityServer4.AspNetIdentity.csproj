@@ -6,6 +6,7 @@
     
     <Description>ASP.NET Core Identity integration for ForgePoint.Identity</Description>
     <AssemblyName>ForgePoint.Identity.AspNetIdentity</AssemblyName>
+    <RootNamespace>ForgePoint.Identity.AspNetIdentity</RootNamespace>
     <PackageTags>OAuth2;OAuth 2.0;OpenID Connect;Security;Identity;ForgePoint;IdentityServer4;ASP.NET Identity</PackageTags>
     <PackageIcon>icon.jpg</PackageIcon>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>

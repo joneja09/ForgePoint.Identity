@@ -4,7 +4,7 @@
 
 using System.Threading.Tasks;
 
-namespace IdentityServer4.Validation
+namespace ForgePoint.Identity.Validation
 {
     /// <summary>
     /// Validator for userinfo requests

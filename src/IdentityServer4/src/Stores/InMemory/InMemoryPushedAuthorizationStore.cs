@@ -5,12 +5,12 @@
 using System;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
-using IdentityServer4.Configuration;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
 
-namespace IdentityServer4.Stores
+namespace ForgePoint.Identity.Stores
 {
     /// <summary>
     /// In-memory store for pushed authorization requests. Intended for tests and development.

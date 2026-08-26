@@ -6,6 +6,7 @@
     <PackageId>ForgePoint.Identity.Storage</PackageId>
     <Description>Storage interfaces and models for ForgePoint.Identity</Description>
     <AssemblyName>ForgePoint.Identity.Storage</AssemblyName>
+    <RootNamespace>ForgePoint.Identity</RootNamespace>
 
     <PackageTags>OAuth2;OAuth 2.0;OpenID Connect;Security;Identity;ForgePoint;IdentityServer4</PackageTags>
     <PackageIcon>icon.jpg</PackageIcon>

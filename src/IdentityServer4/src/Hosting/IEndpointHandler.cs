@@ -5,7 +5,7 @@
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
-namespace IdentityServer4.Hosting
+namespace ForgePoint.Identity.Hosting
 {
     /// <summary>
     /// Endpoint handler

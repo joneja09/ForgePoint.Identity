@@ -6,8 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
 
 namespace IdentityServer.UnitTests.Common
 {

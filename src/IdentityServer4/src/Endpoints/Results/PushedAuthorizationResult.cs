@@ -5,11 +5,11 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using IdentityServer4.Extensions;
-using IdentityServer4.Hosting;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Hosting;
 using Microsoft.AspNetCore.Http;
 
-namespace IdentityServer4.Endpoints.Results
+namespace ForgePoint.Identity.Endpoints.Results
 {
     internal class PushedAuthorizationResult : IEndpointResult
     {

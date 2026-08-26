@@ -5,10 +5,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using IdentityServer4.Extensions;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Validation;
 
-namespace IdentityServer4.Models
+namespace ForgePoint.Identity.Models
 {
     /// <summary>
     /// Extensions for Resource

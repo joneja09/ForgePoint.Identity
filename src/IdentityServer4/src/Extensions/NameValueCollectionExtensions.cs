@@ -9,7 +9,7 @@ using System.Collections.Specialized;
 using System.Text;
 using System.Text.Encodings.Web;
 
-namespace IdentityServer4.Extensions
+namespace ForgePoint.Identity.Extensions
 {
     internal static class NameValueCollectionExtensions
     {

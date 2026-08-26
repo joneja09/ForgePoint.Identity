@@ -7,7 +7,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace IdentityServer4.EntityFramework.Entities
+namespace ForgePoint.Identity.EntityFramework.Entities
 {
     public class IdentityResource
     {

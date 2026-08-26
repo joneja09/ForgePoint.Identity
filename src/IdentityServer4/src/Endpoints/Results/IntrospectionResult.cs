@@ -4,17 +4,17 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using IdentityServer4.Hosting;
+using ForgePoint.Identity.Hosting;
 using Microsoft.AspNetCore.Http;
 using System;
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Extensions;
 
-namespace IdentityServer4.Endpoints.Results
+namespace ForgePoint.Identity.Endpoints.Results
 {
     /// <summary>
     /// Result for introspection
     /// </summary>
-    /// <seealso cref="IdentityServer4.Hosting.IEndpointResult" />
+    /// <seealso cref="ForgePoint.Identity.Hosting.IEndpointResult" />
     public class IntrospectionResult : IEndpointResult
     {
         /// <summary>

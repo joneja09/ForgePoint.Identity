@@ -8,7 +8,7 @@ using System.Linq;
 using System.Security.Claims;
 using IdentityModel;
 using IdentityServer.UnitTests.Common;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Models;
 
 namespace IdentityServer.UnitTests.Validation.Setup
 {

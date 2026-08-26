@@ -3,15 +3,15 @@
 
 
 using IdentityModel;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Models;
 using System;
 using System.Collections.Generic;
 
-namespace IdentityServer4
+namespace ForgePoint.Identity
 {
     internal static class Constants
     {
-        public const string IdentityServerName               = "IdentityServer4";
+        public const string IdentityServerName               = "ForgePoint.Identity";
         public const string IdentityServerAuthenticationType = IdentityServerName;
         public const string ExternalAuthenticationMethod     = "external";
         public const string DefaultHashAlgorithm             = "SHA256";

@@ -5,9 +5,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using IdentityServer4.EntityFramework.Entities;
+using ForgePoint.Identity.EntityFramework.Entities;
 
-namespace IdentityServer4.EntityFramework.Mappers
+namespace ForgePoint.Identity.EntityFramework.Mappers
 {
     internal static class MappingHelpers
     {

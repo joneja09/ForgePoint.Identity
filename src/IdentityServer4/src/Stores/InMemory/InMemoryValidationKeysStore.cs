@@ -2,17 +2,17 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.Models;
+using ForgePoint.Identity.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace IdentityServer4.Stores
+namespace ForgePoint.Identity.Stores
 {
     /// <summary>
     /// The default validation key store
     /// </summary>
-    /// <seealso cref="IdentityServer4.Stores.IValidationKeysStore" />
+    /// <seealso cref="ForgePoint.Identity.Stores.IValidationKeysStore" />
     public class InMemoryValidationKeysStore : IValidationKeysStore
     {
         private readonly IEnumerable<SecurityKeyInfo> _keys;

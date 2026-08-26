@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityServer4.Configuration;
-using IdentityServer4.Models;
-using IdentityServer4.Stores;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Stores;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 

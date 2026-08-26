@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using IdentityModel;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
 using Microsoft.Extensions.Caching.Distributed;
 
-namespace IdentityServer4.Stores.Default
+namespace ForgePoint.Identity.Stores.Default
 {
     /// <summary>
     /// Implementation of IAuthorizationParametersMessageStore that uses the IDistributedCache.

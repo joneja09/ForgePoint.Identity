@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-namespace IdentityServer4.Configuration
+namespace ForgePoint.Identity.Configuration
 {
     /// <summary>
     /// Options for OAuth 2.0 Pushed Authorization Requests (RFC 9126).

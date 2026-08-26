@@ -7,16 +7,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using IdentityServer.UnitTests.Common;
-using IdentityServer4.Configuration;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
-using IdentityServer4.Services.Default;
-using IdentityServer4.Stores;
-using IdentityServer4.Stores.Serialization;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
+using ForgePoint.Identity.Services.Default;
+using ForgePoint.Identity.Stores;
+using ForgePoint.Identity.Stores.Serialization;
+using ForgePoint.Identity.Validation;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
-using IdentityServer4;
+using ForgePoint.Identity;
 
 namespace IdentityServer.UnitTests.Validation.Setup
 {

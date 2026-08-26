@@ -3,22 +3,22 @@
 
 
 using System.Threading.Tasks;
-using IdentityServer4.Models;
-using IdentityServer4.Extensions;
-using IdentityServer4.Hosting;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Hosting;
 using IdentityModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using IdentityServer4.Services;
-using IdentityServer4.Configuration;
-using IdentityServer4.Stores;
-using IdentityServer4.ResponseHandling;
+using ForgePoint.Identity.Services;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Stores;
+using ForgePoint.Identity.ResponseHandling;
 using Microsoft.AspNetCore.Authentication;
 using System.Text.Encodings.Web;
-using IdentityServer4;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Endpoints.Results
+namespace ForgePoint.Identity.Endpoints.Results
 {
     internal class AuthorizeResult : IEndpointResult
     {

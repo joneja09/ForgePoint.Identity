@@ -9,9 +9,9 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using FluentAssertions;
 using IdentityServer.IntegrationTests.Common;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
-using IdentityServer4.Test;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
+using ForgePoint.Identity.Test;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 

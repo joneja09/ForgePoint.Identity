@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using IdentityModel;
 using IdentityServer.UnitTests.Common;
-using IdentityServer4;
-using IdentityServer4.Configuration;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
-using IdentityServer4.Validation;
+using ForgePoint.Identity;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
+using ForgePoint.Identity.Validation;
 using Xunit;
 
 namespace IdentityServer.UnitTests.Services.Default

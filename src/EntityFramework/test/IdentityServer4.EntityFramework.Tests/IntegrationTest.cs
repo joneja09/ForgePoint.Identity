@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Xunit;
 
-namespace IdentityServer4.EntityFramework.IntegrationTests
+namespace ForgePoint.Identity.EntityFramework.IntegrationTests
 {
     /// <summary>
     /// Base class for integration tests, responsible for initializing test database providers & an xUnit class fixture

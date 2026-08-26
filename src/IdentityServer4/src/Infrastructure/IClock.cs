@@ -4,7 +4,7 @@
 
 using System;
 
-namespace IdentityServer4
+namespace ForgePoint.Identity
 {
     /// <summary>
     /// Abstraction over the system clock so IdentityServer can be tested

@@ -6,17 +6,17 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Services;
 using Microsoft.Extensions.Logging;
-using IdentityServer4.Configuration.DependencyInjection;
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Configuration.DependencyInjection;
+using ForgePoint.Identity.Extensions;
 using System;
 using IdentityModel;
 using System.Linq;
-using IdentityServer4.Configuration;
-using IdentityServer4;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Hosting
+namespace ForgePoint.Identity.Hosting
 {
     // this decorates the real authentication service to detect when the 
     // user is being signed in. this allows us to ensure the user has

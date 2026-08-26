@@ -2,19 +2,19 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.Models;
+using ForgePoint.Identity.Models;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Extensions;
 using System.Security.Claims;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Services;
 using IdentityModel;
 using System;
 using Microsoft.AspNetCore.Authentication;
-using IdentityServer4;
+using ForgePoint.Identity;
 
-namespace IdentityServer4
+namespace ForgePoint.Identity
 {
     /// <summary>
     /// Class for useful helpers for interacting with IdentityServer

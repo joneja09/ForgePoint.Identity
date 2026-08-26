@@ -5,9 +5,9 @@ using System.Security.Claims;
 using FluentAssertions;
 using IdentityModel;
 using IdentityServer.UnitTests.Common;
-using IdentityServer4.Configuration;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
 using Xunit;
 
 namespace IdentityServer.UnitTests.Extensions

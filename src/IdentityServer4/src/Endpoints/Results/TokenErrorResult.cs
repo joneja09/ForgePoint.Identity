@@ -3,15 +3,15 @@
 
 
 using System.Threading.Tasks;
-using IdentityServer4.Hosting;
+using ForgePoint.Identity.Hosting;
 using Microsoft.AspNetCore.Http;
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using IdentityServer4.ResponseHandling;
+using ForgePoint.Identity.ResponseHandling;
 
-namespace IdentityServer4.Endpoints.Results
+namespace ForgePoint.Identity.Endpoints.Results
 {
     internal class TokenErrorResult : IEndpointResult
     {

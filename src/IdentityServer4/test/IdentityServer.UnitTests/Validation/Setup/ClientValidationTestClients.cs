@@ -6,9 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using IdentityServer.UnitTests.Common;
-using IdentityServer4;
-using IdentityServer4.Models;
-using static IdentityServer4.IdentityServerConstants;
+using ForgePoint.Identity;
+using ForgePoint.Identity.Models;
+using static ForgePoint.Identity.IdentityServerConstants;
 
 namespace IdentityServer.UnitTests.Validation.Setup
 {

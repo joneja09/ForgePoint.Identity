@@ -4,10 +4,10 @@
 
 using System.Collections.Generic;
 using IdentityModel;
-using IdentityServer4.Extensions;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Validation;
 
-namespace IdentityServer4.Logging.Models
+namespace ForgePoint.Identity.Logging.Models
 {
     internal class EndSessionRequestValidationLog
     {

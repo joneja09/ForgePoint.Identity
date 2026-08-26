@@ -3,8 +3,8 @@
 
 
 using System.Threading.Tasks;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
 
 namespace IdentityServer.UnitTests.Endpoints.EndSession
 {

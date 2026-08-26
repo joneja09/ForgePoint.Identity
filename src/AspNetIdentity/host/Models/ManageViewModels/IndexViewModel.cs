@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace IdentityServer4.Models.ManageViewModels
+namespace ForgePoint.Identity.Models.ManageViewModels
 {
     public class IndexViewModel
     {

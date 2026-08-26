@@ -4,7 +4,7 @@
 
 using System.Collections.Generic;
 
-namespace IdentityServer4.Models
+namespace ForgePoint.Identity.Models
 {
     /// <summary>
     /// A stored OAuth 2.0 Pushed Authorization Request (RFC 9126).

@@ -5,9 +5,9 @@
 using System;
 using System.Linq;
 using System.Security.Claims;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Models;
 
-namespace IdentityServer4.EntityFramework.Mappers
+namespace ForgePoint.Identity.EntityFramework.Mappers
 {
     /// <summary>
     /// Extension methods to map to/from entity/model for clients.

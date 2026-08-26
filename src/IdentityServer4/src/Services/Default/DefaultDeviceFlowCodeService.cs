@@ -1,13 +1,13 @@
 using System.Threading.Tasks;
-using IdentityServer4.Models;
-using IdentityServer4.Stores;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Stores;
 
-namespace IdentityServer4.Services.Default
+namespace ForgePoint.Identity.Services.Default
 {
     /// <summary>
     /// Default wrapper service for IDeviceFlowStore, handling key hashing
     /// </summary>
-    /// <seealso cref="IdentityServer4.Services.IDeviceFlowCodeService" />
+    /// <seealso cref="ForgePoint.Identity.Services.IDeviceFlowCodeService" />
     public class DefaultDeviceFlowCodeService : IDeviceFlowCodeService
     {
         private readonly IDeviceFlowStore _store;

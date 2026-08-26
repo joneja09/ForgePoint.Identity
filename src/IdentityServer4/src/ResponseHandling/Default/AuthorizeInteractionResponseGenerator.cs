@@ -3,23 +3,23 @@
 
 
 using IdentityModel;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Models;
+using ForgePoint.Identity.Services;
+using ForgePoint.Identity.Validation;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
-using IdentityServer4;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.ResponseHandling
+namespace ForgePoint.Identity.ResponseHandling
 {
     /// <summary>
     /// Default logic for determining if user must login or consent when making requests to the authorization endpoint.
     /// </summary>
-    /// <seealso cref="IdentityServer4.ResponseHandling.IAuthorizeInteractionResponseGenerator" />
+    /// <seealso cref="ForgePoint.Identity.ResponseHandling.IAuthorizeInteractionResponseGenerator" />
     public class AuthorizeInteractionResponseGenerator : IAuthorizeInteractionResponseGenerator
     {
         /// <summary>

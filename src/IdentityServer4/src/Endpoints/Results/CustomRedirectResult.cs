@@ -4,19 +4,19 @@
 
 using System;
 using System.Threading.Tasks;
-using IdentityServer4.Hosting;
-using IdentityServer4.Validation;
+using ForgePoint.Identity.Hosting;
+using ForgePoint.Identity.Validation;
 using Microsoft.AspNetCore.Http;
-using IdentityServer4.Extensions;
-using IdentityServer4.Configuration;
+using ForgePoint.Identity.Extensions;
+using ForgePoint.Identity.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace IdentityServer4.Endpoints.Results
+namespace ForgePoint.Identity.Endpoints.Results
 {
     /// <summary>
     /// Result for a custom redirect
     /// </summary>
-    /// <seealso cref="IdentityServer4.Hosting.IEndpointResult" />
+    /// <seealso cref="ForgePoint.Identity.Hosting.IEndpointResult" />
     public class CustomRedirectResult : IEndpointResult
     {
         private readonly ValidatedAuthorizeRequest _request;

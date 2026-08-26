@@ -3,7 +3,7 @@
 
 
 using IdentityModel;
-using IdentityServer4.Models;
+using ForgePoint.Identity.Models;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -11,10 +11,10 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text.Json;
-using IdentityServer4.Configuration;
-using IdentityServer4;
+using ForgePoint.Identity.Configuration;
+using ForgePoint.Identity;
 
-namespace IdentityServer4.Extensions
+namespace ForgePoint.Identity.Extensions
 {
     /// <summary>
     /// Extensions for Token

@@ -6,11 +6,11 @@ using IdentityModel;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using IdentityServer4.Extensions;
+using ForgePoint.Identity.Extensions;
 using Microsoft.Extensions.DependencyInjection;
-using IdentityServer4.Configuration;
+using ForgePoint.Identity.Configuration;
 
-namespace IdentityServer4
+namespace ForgePoint.Identity
 {
     /// <summary>
     /// Extensions for IdentityServerTools

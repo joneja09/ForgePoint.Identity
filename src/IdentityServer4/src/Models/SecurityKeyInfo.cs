@@ -4,7 +4,7 @@
 
 using Microsoft.IdentityModel.Tokens;
 
-namespace IdentityServer4.Models
+namespace ForgePoint.Identity.Models
 {
     /// <summary>
     /// Information about a security key

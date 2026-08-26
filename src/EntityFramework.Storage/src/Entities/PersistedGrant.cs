@@ -6,7 +6,7 @@
 
 using System;
 
-namespace IdentityServer4.EntityFramework.Entities
+namespace ForgePoint.Identity.EntityFramework.Entities
 {
     public class PersistedGrant
     {

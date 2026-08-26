@@ -2,14 +2,14 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.EntityFramework.DbContexts;
+using ForgePoint.Identity.EntityFramework.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using IdentityServer4.EntityFramework.Entities;
-using IdentityServer4.EntityFramework.Options;
+using ForgePoint.Identity.EntityFramework.Entities;
+using ForgePoint.Identity.EntityFramework.Options;
 using Xunit;
 
-namespace IdentityServer4.EntityFramework.IntegrationTests.DbContexts
+namespace ForgePoint.Identity.EntityFramework.IntegrationTests.DbContexts
 {
     public class ClientDbContextTests : IntegrationTest<ClientDbContextTests, ConfigurationDbContext, ConfigurationStoreOptions>
     {
