@@ -4,26 +4,28 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Stj = System.Text.Json.JsonSerializer;
 
 namespace IdentityServer.IntegrationTests.Common
 {
     internal static class TokenJson
     {
-        public static IList AsList(object value)
+        public static List<object> AsList(object value)
         {
             switch (value)
             {
                 case null:
                     return null;
                 case JArray jarr:
-                    return jarr;
-                case IList list:
-                    return list;
+                    return jarr.Cast<object>().ToList();
                 case JsonElement je when je.ValueKind == JsonValueKind.Array:
-                    return JsonSerializer.Deserialize<List<object>>(je.GetRawText());
+                    return Stj.Deserialize<List<object>>(je.GetRawText());
+                case IEnumerable enumerable when value is not string:
+                    return enumerable.Cast<object>().ToList();
                 default:
                     return null;
             }
@@ -43,7 +45,7 @@ namespace IdentityServer.IntegrationTests.Common
 
             if (value is JsonElement element)
             {
-                return JsonSerializer.Deserialize<T>(element.GetRawText());
+                return Stj.Deserialize<T>(element.GetRawText());
             }
 
             return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(value));

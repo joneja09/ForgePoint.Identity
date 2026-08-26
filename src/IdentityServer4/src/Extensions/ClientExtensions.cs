@@ -62,15 +62,15 @@ namespace IdentityServer4.Models
         /// IdentityModel 8 parses JWKs with System.Text.Json, which rejects tabs, trailing commas,
         /// and Newtonsoft PascalCase property names. Fall back to Newtonsoft so existing stored secrets still load.
         /// </summary>
-        private static JsonWebKey ParseJsonWebKey(string json)
+        private static Microsoft.IdentityModel.Tokens.JsonWebKey ParseJsonWebKey(string json)
         {
             try
             {
-                return new JsonWebKey(json);
+                return new Microsoft.IdentityModel.Tokens.JsonWebKey(json);
             }
             catch
             {
-                var key = JsonConvert.DeserializeObject<JsonWebKey>(json);
+                var key = JsonConvert.DeserializeObject<Microsoft.IdentityModel.Tokens.JsonWebKey>(json);
                 if (key == null || string.IsNullOrEmpty(key.Kty))
                 {
                     throw;
