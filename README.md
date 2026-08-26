@@ -47,17 +47,31 @@ The build packs each project into `./nuget` in dependency order: Storage → Ide
 
 Version numbers come from [MinVer](https://github.com/adamralph/minver) git tags (`10.0.0`, not `v10.0.0`).
 
-1. Optionally add a `NUGET_API_KEY` Actions secret (a nuget.org API key for the ForgePoint.Identity package prefix). Without it, a GitHub Release is still created and the `.nupkg` files are attached.
-2. Tag main and push:
+The Release workflow packs the libraries, creates a GitHub Release with the `.nupkg` files, and publishes to nuget.org via [Trusted Publishing](https://learn.microsoft.com/nuget/nuget-org/trusted-publishing) (GitHub OIDC → a one-hour nuget.org API key). There is no long-lived `NUGET_API_KEY`.
+
+### One-time nuget.org setup
+
+1. Sign in at [nuget.org](https://www.nuget.org/) (your **profile name**, not your email).
+2. Open **Trusted Publishing** and add a policy owned by your user (or your org):
+   - **Repository Owner:** `joneja09`
+   - **Repository:** `ForgePoint.Identity`
+   - **Workflow File:** `release.yml` (file name only)
+   - **Environment:** leave empty
+3. In this GitHub repo, **Settings → Secrets and variables → Actions → Variables**, add `NUGET_USER` set to that same nuget.org profile name.
+
+Until `NUGET_USER` is set, the workflow still creates the GitHub Release and skips nuget.org.
+
+### Cut a release
 
 ```bash
 git checkout main
 git pull
-git tag 10.0.0
-git push origin 10.0.0
+git tag 10.0.1
+git push origin 10.0.1
 ```
 
-The Release workflow packs the libraries, creates the GitHub Release, and publishes to nuget.org when `NUGET_API_KEY` is set.
+To publish an existing tag (for example `10.0.0`) after Trusted Publishing is configured: **Actions → Release → Run workflow** and enter the tag name.
+
 
 ## Quick start
 
