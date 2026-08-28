@@ -30,6 +30,8 @@ Duende IdentityServer is the commercial successor of the original IdentityServer
 | `ForgePoint.Identity.EntityFramework.Storage` | EF Core entities and stores |
 | `ForgePoint.Identity.AspNetIdentity` | ASP.NET Core Identity integration |
 
+Each nupkg includes that project’s README (shown on nuget.org).
+
 ```bash
 dotnet add package ForgePoint.Identity
 ```
