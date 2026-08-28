@@ -2,7 +2,7 @@
 Using ASP.NET Core Identity
 ===========================
 
-.. note:: For any pre-requisites (like e.g. templates) have a look at the :ref:`overview <refQuickstartOverview>` first.
+.. note:: For any pre-requisites have a look at the :ref:`overview <refQuickstartOverview>` first.
 
 IdentityServer is designed for flexibility and part of that is allowing you to use any database you want for your users and their data (including passwords).
 If you are starting with a new user database, then ASP.NET Core Identity is one option you could choose.
@@ -19,19 +19,14 @@ New Project for ASP.NET Core Identity
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The first step is to add a new project for ASP.NET Core Identity to your solution.
-We provide a template that contains the minimal UI assets needed to ASP.NET Core Identity with IdentityServer.
+Copy ``samples/Quickstarts/6_AspNetIdentity`` as a starting point, or create an ASP.NET Core Identity web app and add ``ForgePoint.Identity`` plus ``ForgePoint.Identity.AspNetIdentity``.
 You will eventually delete the old project for IdentityServer, but there are some items that you will need to migrate over.
 
-Start by creating a new IdentityServer project that will use ASP.NET Core Identity::
+Start from the sample (from the repository root)::
     
-    cd quickstart/src
-    dotnet new is4aspid -n IdentityServerAspNetIdentity
+    samples/Quickstarts/6_AspNetIdentity
 
-When prompted to "seed" the user database, choose "Y" for "yes".
-This populates the user database with our "alice" and "bob" users. 
-Their passwords are "Pass123$".
-
-.. Note:: The template uses Sqlite as the database for the users, and EF migrations are pre-created in the template. If you wish to use a different database provider, you will need to change the provider used in the code and re-create the EF migrations.
+The sample seeds the user database with "alice" and "bob". Their passwords are "Pass123$".
 
 Inspect the new project
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -42,8 +37,8 @@ Be sure to look at:
 IdentityServerAspNetIdentity.csproj
 -----------------------------------
 
-Notice the reference to `IdentityServer4.AspNetIdentity`. 
-This NuGet package contains the ASP.NET Core Identity integration components for IdentityServer.
+Notice the reference to `ForgePoint.Identity.AspNetIdentity`. 
+This NuGet package contains the ASP.NET Core Identity integration components.
 
 Startup.cs
 ----------
@@ -51,7 +46,7 @@ Startup.cs
 In `ConfigureServices` notice the necessary ``AddDbContext<ApplicationDbContext>`` and ``AddIdentity<ApplicationUser, IdentityRole>`` calls are done to configure ASP.NET Core Identity.
 
 Also notice that much of the same IdentityServer configuration you did in the previous quickstarts is already done.
-The template uses the in-memory style for clients and resources, and those are sourced from `Config.cs`.
+The sample uses the in-memory style for clients and resources, and those are sourced from `Config.cs`.
 
 Finally, notice the addition of the new call to ``AddAspNetIdentity<ApplicationUser>``.
 ``AddAspNetIdentity`` adds the integration layer to allow IdentityServer to access the user data for the ASP.NET Core Identity user database.
@@ -133,11 +128,11 @@ Look at the ``SeedData`` class' code to see how the database is created and the 
 AccountController
 -----------------
 
-The last code to inspect in this template is the ``AccountController``. 
-This contains a slightly different login and logout code than the prior quickstart and templates.
+The last code to inspect in this sample is the ``AccountController``. 
+This contains a slightly different login and logout code than the prior quickstart.
 Notice the use of the ``SignInManager<ApplicationUser>`` and ``UserManager<ApplicationUser>`` from ASP.NET Core Identity to validate credentials and manage the authentication session.
 
-Much of the rest of the code is the same from the prior quickstarts and templates.
+Much of the rest of the code is the same from the prior quickstarts.
 
 Logging in with the MVC client
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -168,9 +163,9 @@ And now you're using users from ASP.NET Core Identity in IdentityServer.
 What's Missing?
 ^^^^^^^^^^^^^^^
 
-Much of the rest of the code in this template is similar to the other quickstart and templates we provide.
-The one thing you will notice that is missing from this template is UI code for user registration, password reset, and the other things you might expect from the Visual Studio ASP.NET Core Identity template.
+Much of the rest of the code in this sample is similar to the other quickstarts.
+The one thing you will notice that is missing from this sample is UI code for user registration, password reset, and the other things you might expect from the Visual Studio ASP.NET Core Identity template.
 
-Given the variety of requirements and different approaches to using ASP.NET Core Identity, our template deliberately does not provide those features.
+Given the variety of requirements and different approaches to using ASP.NET Core Identity, the sample deliberately does not provide those features.
 You are expected to know how ASP.NET Core Identity works sufficiently well to add those features to your project.
 Alternatively, you can create a new project based on the Visual Studio ASP.NET Core Identity template and add the IdentityServer features you have learned about in these quickstarts to that project.

@@ -51,8 +51,7 @@ namespace sample
                         options.KeyExpiration = options.KeyActivationDelay * 2;
                         options.KeyRetirement = options.KeyActivationDelay * 3;
 
-                        // You can get your own license from:
-                        // https://www.identityserver.com/products/KeyManagement
+                        // License fields required by the KeyManagement sample package.
                         options.Licensee = "your licensee";
                         options.License = "your license key";
                     })

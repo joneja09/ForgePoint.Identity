@@ -18,8 +18,6 @@ It remains licensed under [Apache 2.0](https://opensource.org/licenses/Apache-2.
 - **Handwritten EF entity/model mappings** instead of AutoMapper (no AutoMapper license required)
 - Package and test dependencies updated for current .NET
 
-Duende IdentityServer is the commercial successor of the original IdentityServer project.
-
 ## Packages
 
 | Package | Role |
@@ -111,14 +109,14 @@ A script is included at `docs/migrations/add-require-pushed-authorization.sql`.
 
 Upgrade from IdentityServer4: [docs/upgrade.md](docs/upgrade.md).
 
-Historical IdentityServer4 docs: [https://identityserver4.readthedocs.io](https://identityserver4.readthedocs.io).
+Protocol and configuration docs: [docs/](docs/).
 
 PAR is described in [RFC 9126](https://www.rfc-editor.org/rfc/rfc9126). The discovery document advertises `pushed_authorization_request_endpoint` when the endpoint is enabled.
 
 ## Security
 
-See [SECURITY.MD](SECURITY.MD). IdentityServer4 4.1.2 and earlier are affected by [CVE-2024-39694](https://github.com/IdentityServer/IdentityServer4/security/advisories/GHSA-55p7-v223-x366). This 10.x line includes the local-URL validation fix.
+See [SECURITY.MD](SECURITY.MD). IdentityServer4 4.1.2 and earlier are affected by [CVE-2024-39694](https://nvd.nist.gov/vuln/detail/CVE-2024-39694). This 10.x line includes the local-URL validation fix.
 
 ## Acknowledgements
 
-ForgePoint.Identity is built using ASP.NET Core, IdentityModel, Newtonsoft.Json, xUnit, Fluent Assertions, MinVer, Bullseye, and SimpleExec — and the work of [every contributor](https://github.com/IdentityServer/IdentityServer4/graphs/contributors) to the original IdentityServer4 project.
+ForgePoint.Identity is built using ASP.NET Core, IdentityModel, Newtonsoft.Json, xUnit, Fluent Assertions, MinVer, Bullseye, and SimpleExec — and the work of [every contributor](https://github.com/joneja09/ForgePoint.Identity/graphs/contributors) to the original IdentityServer4 project.

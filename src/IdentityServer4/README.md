@@ -64,8 +64,8 @@ Guide: [docs/upgrade.md](https://github.com/joneja09/ForgePoint.Identity/blob/ma
 
 ## License and security
 
-Licensed under [Apache-2.0](https://opensource.org/licenses/Apache-2.0). This 10.x line includes the [CVE-2024-39694](https://github.com/IdentityServer/IdentityServer4/security/advisories/GHSA-55p7-v223-x366) local-URL validation fix.
+Licensed under [Apache-2.0](https://opensource.org/licenses/Apache-2.0). This 10.x line includes the [CVE-2024-39694](https://nvd.nist.gov/vuln/detail/CVE-2024-39694) local-URL validation fix.
 
 - Source: [github.com/joneja09/ForgePoint.Identity](https://github.com/joneja09/ForgePoint.Identity)
 - Releases: [GitHub Releases](https://github.com/joneja09/ForgePoint.Identity/releases)
-- Historical IdentityServer4 docs: [identityserver4.readthedocs.io](https://identityserver4.readthedocs.io)
+- Protocol docs: [docs/](https://github.com/joneja09/ForgePoint.Identity/tree/main/docs)

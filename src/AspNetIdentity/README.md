@@ -44,7 +44,7 @@ app.UseIdentityServer();
 
 Call `AddIdentity` (or equivalent) **before** `AddAspNetIdentity`.
 
-Walk-through using the same APIs: [IdentityServer4 ASP.NET Identity quickstart](https://identityserver4.readthedocs.io/en/latest/quickstarts/6_aspnet_identity.html).
+Walk-through using the same APIs: [ASP.NET Identity quickstart](https://github.com/joneja09/ForgePoint.Identity/blob/main/docs/quickstarts/6_aspnet_identity.rst).
 
 ## Related packages
 

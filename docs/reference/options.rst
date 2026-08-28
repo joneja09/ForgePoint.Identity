@@ -149,7 +149,7 @@ Mutual TLS
     Specifies the name of the authentication handler for X.509 client certificates. Defaults to ``"Certificate"``.
 * ``DomainName``
     Specifies either the name of the sub-domain or full domain for running the MTLS endpoints (will use path-based endpoints if not set).
-    Use a simple string (e.g. "mtls") to set a sub-domain, use a full domain name (e.g. "identityserver-mtls.io") to set a full domain name.
+    Use a simple string (e.g. "mtls") to set a sub-domain, use a full domain name (e.g. "mtls.example.test") to set a full domain name.
     When a full domain name is used, you also need to set the ``IssuerName`` to a fixed value.
 * ``AlwaysEmitConfirmationClaim``
     Specifies whether a cnf claim gets emitted for access tokens if a client certificate was present.

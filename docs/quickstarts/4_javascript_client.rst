@@ -2,7 +2,7 @@
 Adding a JavaScript client
 ==========================
 
-.. note:: For any pre-requisites (like e.g. templates) have a look at the :ref:`overview <refQuickstartOverview>` first.
+.. note:: For any pre-requisites have a look at the :ref:`overview <refQuickstartOverview>` first.
 
 This quickstart will show how to build a browser-based JavaScript client application (sometimes referred to as a "Single Page Application" or "`SPA`").
 

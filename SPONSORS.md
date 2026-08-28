@@ -1,6 +1,6 @@
-# Sponsors
+# Historical sponsors
 
-We thank those who [support](https://www.patreon.com/identityserver) IdentityServer!
+These organizations and individuals supported the original IdentityServer4 project.
 
 ## Corporate
 

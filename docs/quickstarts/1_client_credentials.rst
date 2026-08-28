@@ -2,10 +2,10 @@
 
 Protecting an API using Client Credentials
 ==========================================
-The following Identity Server 4 quickstart provides step by step instructions for various common IdentityServer scenarios. 
-These start with the absolute basics and become more complex as they progress. We recommend that you follow them in sequence.  
+This ForgePoint.Identity quickstart provides step by step instructions for a common IdentityServer scenario.
+These start with the absolute basics and become more complex as they progress. We recommend that you follow them in sequence.
 
-To see the full list, please go to `IdentityServer4 Quickstarts Overview <https://identityserver4.readthedocs.io/en/latest/quickstarts/0_overview.html>`_
+To see the full list, please go to `Quickstarts Overview <https://github.com/joneja09/ForgePoint.Identity/blob/main/docs/quickstarts/0_overview.rst>`_
 
 This first quickstart is the most basic scenario for protecting APIs using IdentityServer. 
 In this quickstart you define an API and a Client with which to access it. 
@@ -13,20 +13,17 @@ The client will request an access token from the Identity Server using its clien
 
 Source Code
 ^^^^^^^^^^^
-As with all of these quickstarts you can find the source code for it in the `IdentityServer4 <https://github.com/IdentityServer/IdentityServer4/blob/main/samples>`_ repository. The project for this quickstart is `Quickstart #1: Securing an API using Client Credentials <https://github.com/IdentityServer/IdentityServer4/tree/main/samples/Quickstarts/1_ClientCredentials>`_
+The finished sample is `Quickstart #1: Securing an API using Client Credentials <https://github.com/joneja09/ForgePoint.Identity/tree/main/samples/Quickstarts/1_ClientCredentials>`_ in this repository.
 
 Preparation
 ^^^^^^^^^^^
-The IdentityServer templates for the dotnet CLI are a good starting point for the quickstarts.
-To install the templates open a console window and type the following command::
+Use the sample above, or create an ASP.NET Core web app and add the protocol package::
 
-    dotnet new -i IdentityServer4.Templates
-
-They will be used as a starting point for the various tutorials.
+    dotnet add package ForgePoint.Identity
 
 Setting up the ASP.NET Core application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-First create a directory for the application - then use our template to create an ASP.NET Core application that includes a basic IdentityServer setup, e.g.::
+First create a directory for the application - then create an ASP.NET Core web app and add ForgePoint.Identity, e.g.::
 
     md quickstart
     cd quickstart
@@ -34,13 +31,12 @@ First create a directory for the application - then use our template to create a
     md src
     cd src
 
-    dotnet new is4empty -n IdentityServer
+    dotnet new web -n IdentityServer
+    cd IdentityServer
+    dotnet add package ForgePoint.Identity
+    cd ..
 
-This will create the following files:
-
-* ``IdentityServer.csproj`` - the project file and a ``Properties\launchSettings.json`` file
-* ``Program.cs`` and ``Startup.cs`` - the main application entry point
-* ``Config.cs`` - IdentityServer resources and clients configuration file
+Add ``Program.cs`` / ``Startup.cs`` host wiring and a ``Config.cs`` file for resources and clients (copy from the sample if you prefer).
 
 You can now use your favorite text editor to edit or view the files. If you want to have Visual Studio support, you can add a solution file like this::
 
@@ -51,14 +47,14 @@ and let it add your IdentityServer project (keep this command in mind as we will
 
     dotnet sln add .\src\IdentityServer\IdentityServer.csproj
 
-.. note:: The protocol used in this Template is ``https`` and the port is set to 5001 when running on Kestrel or a random one on IISExpress. You can change that in the ``Properties\launchSettings.json`` file. For production scenarios you should always use ``https``.
+.. note:: Use ``https`` on port 5001 for the IdentityServer host when following these docs. You can change that in the ``Properties\launchSettings.json`` file. For production scenarios you should always use ``https``.
 
 Defining an API Scope
 ^^^^^^^^^^^^^^^^^^^^^
 An API is a resource in your system that you want to protect. 
-Resource definitions can be loaded in many ways, the template you used to create the project above shows how to use a "code as configuration" approach.
+Resource definitions can be loaded in many ways. This quickstart uses a "code as configuration" approach.
 
-The Config.cs is already created for you. Open it, update the code to look like this::
+Create or open ``Config.cs`` and update the code to look like this::
 
     public static class Config
     {
@@ -69,7 +65,7 @@ The Config.cs is already created for you. Open it, update the code to look like 
             };
     }
 
-(see the full file `here <https://github.com/IdentityServer/IdentityServer4/blob/main/samples/Quickstarts/1_ClientCredentials/src/IdentityServer/Config.cs>`_).
+(see the full file `here <https://github.com/joneja09/ForgePoint.Identity/blob/main/samples/Quickstarts/1_ClientCredentials/src/IdentityServer/Config.cs>`_).
 	
 .. note:: If you will be using this in production it is important to give your API a logical name. Developers will be using this to connect to your api though your Identity server.  It should describe your api in simple terms to both developers and users.
 
@@ -108,7 +104,7 @@ It identifies your application to the identity server so that it knows which app
 	
 Configuring IdentityServer
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-Loading the resource and client definitions happens in `Startup.cs <https://github.com/IdentityServer/IdentityServer4/blob/main/samples/Quickstarts/1_ClientCredentials/src/IdentityServer/Startup.cs>`_ - update the code to look like this::
+Loading the resource and client definitions happens in `Startup.cs <https://github.com/joneja09/ForgePoint.Identity/blob/main/samples/Quickstarts/1_ClientCredentials/src/IdentityServer/Startup.cs>`_ - update the code to look like this::
 
     public void ConfigureServices(IServiceCollection services)
     {
@@ -142,7 +138,7 @@ Then add it to the solution by running the following commands::
     cd ..
     dotnet sln add .\src\Api\Api.csproj
 
-Configure the API application to run on ``https://localhost:6001`` only. You can do this by editing the `launchSettings.json <https://github.com/IdentityServer/IdentityServer4/blob/main/samples/Quickstarts/1_ClientCredentials/src/Api/Properties/launchSettings.json>`_ file inside the Properties folder. Change the application URL setting to be::
+Configure the API application to run on ``https://localhost:6001`` only. You can do this by editing the `launchSettings.json <https://github.com/joneja09/ForgePoint.Identity/blob/main/samples/Quickstarts/1_ClientCredentials/src/Api/Properties/launchSettings.json>`_ file inside the Properties folder. Change the application URL setting to be::
 
     "applicationUrl": "https://localhost:6001"
 
@@ -273,7 +269,7 @@ Next you can use the information from the discovery document to request a token 
 
     Console.WriteLine(tokenResponse.Json);
 
-(full file can be found `here <https://github.com/IdentityServer/IdentityServer4/blob/main/samples/Quickstarts/1_ClientCredentials/src/Client/Program.cs>`_)
+(full file can be found `here <https://github.com/joneja09/ForgePoint.Identity/blob/main/samples/Quickstarts/1_ClientCredentials/src/Client/Program.cs>`_)
 
 .. note:: Copy and paste the access token from the console to `jwt.ms <https://jwt.ms>`_ to inspect the raw token.
 

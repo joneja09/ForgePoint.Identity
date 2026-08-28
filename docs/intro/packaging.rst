@@ -1,47 +1,28 @@
 Packaging and Builds
 ====================
 
-IdentityServer consists of a number of nuget packages.
+ForgePoint.Identity ships as five NuGet packages from this repository:
 
-IdentityServer4 main repo
-^^^^^^^^^^^^^^^
-`github <https://github.com/identityserver/IdentityServer4>`_
+`github <https://github.com/joneja09/ForgePoint.Identity>`_
 
-Contains the core IdentityServer object model, services and middleware as well as the EntityFramework and ASP.NET Identity integration.
+* `ForgePoint.Identity <https://www.nuget.org/packages/ForgePoint.Identity/>`_ — protocol implementation and ASP.NET Core host integration
+* `ForgePoint.Identity.Storage <https://www.nuget.org/packages/ForgePoint.Identity.Storage>`_ — store contracts and models (pulled in by the protocol package)
+* `ForgePoint.Identity.EntityFramework <https://www.nuget.org/packages/ForgePoint.Identity.EntityFramework>`_ — EF Core configuration and operational stores
+* `ForgePoint.Identity.EntityFramework.Storage <https://www.nuget.org/packages/ForgePoint.Identity.EntityFramework.Storage>`_ — EF Core entities, DbContexts, and mappings
+* `ForgePoint.Identity.AspNetIdentity <https://www.nuget.org/packages/ForgePoint.Identity.AspNetIdentity>`_ — ASP.NET Core Identity integration
 
-nugets:
-
-* `IdentityServer4 <https://www.nuget.org/packages/IdentityServer4/>`_
-* `IdentityServer4.EntityFramework <https://www.nuget.org/packages/IdentityServer4.EntityFramework>`_
-* `IdentityServer4.AspNetIdentity <https://www.nuget.org/packages/IdentityServer4.AspNetIdentity>`_
+``AddIdentityServer()`` and related type names are unchanged. C# namespaces are ``ForgePoint.Identity.*``.
 
 Quickstart UI
 ^^^^^^^^^^^^^
-`github <https://github.com/IdentityServer/IdentityServer4.Quickstart.UI>`_
+Login, logout, consent, and error UI samples live in this repository:
 
-Contains a simple starter UI including login, logout and consent pages.
+`samples/Quickstarts <https://github.com/joneja09/ForgePoint.Identity/tree/main/samples/Quickstarts>`_
 
-Access token validation handler
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-`nuget <https://www.nuget.org/packages/IdentityServer4.AccessTokenValidation>`_ | `github <https://github.com/IdentityServer/IdentityServer4.AccessTokenValidation>`_
+Access token validation
+^^^^^^^^^^^^^^^^^^^^^^^
+APIs should validate JWTs with ``Microsoft.AspNetCore.Authentication.JwtBearer`` and reference tokens with IdentityModel OAuth 2.0 introspection. See :ref:`Protecting APIs <refProtectingApis>`.
 
-ASP.NET Core authentication handler for validating tokens in APIs. The handler allows supporting both JWT and reference tokens in the same API.
-
-Templates
+CI builds
 ^^^^^^^^^
-`nuget <https://www.nuget.org/packages/IdentityServer4.Templates>`_ | `github <https://github.com/IdentityServer/IdentityServer4.Templates>`_
-
-Contains templates for the dotnet CLI.
-
-Dev builds
-^^^^^^^^^^
-In addition we publish CI builds to our package repository.
-Add the following ``nuget.config`` to your project::
-
-    <?xml version="1.0" encoding="utf-8"?>
-        <configuration>
-            <packageSources>
-                <clear />
-                <add key="IdentityServer CI" value="https://www.myget.org/F/identity/api/v3/index.json" />
-            </packageSources>
-        </configuration>
+Release builds are published to nuget.org. For local development, ``./build.sh`` packs nupkgs into ``./nuget`` at the repository root.
