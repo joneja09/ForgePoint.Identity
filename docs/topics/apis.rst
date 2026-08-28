@@ -19,7 +19,7 @@ Protecting an ASP.NET Core-based API is only a matter of adding the JWT bearer a
                 .AddJwtBearer(options =>
                 {
                     // base-address of your identityserver
-                    options.Authority = "https://demo.identityserver.io";
+                    options.Authority = "https://localhost:5001";
 
                     // if you are using API resources, you can specify the name here
                     options.Audience = "resource1";

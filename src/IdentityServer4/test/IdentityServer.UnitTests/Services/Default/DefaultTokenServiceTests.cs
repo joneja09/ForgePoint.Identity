@@ -31,7 +31,7 @@ namespace IdentityServer.UnitTests.Services.Default
 
         public DefaultTokenServiceTests()
         {
-            _options.IssuerUri = "https://test.identityserver.io";
+            _options.IssuerUri = "https://identity.example.test";
 
             var svcs = new ServiceCollection();
             svcs.AddSingleton(_options);

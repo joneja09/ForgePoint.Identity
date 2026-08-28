@@ -54,7 +54,8 @@ namespace Microsoft.Extensions.DependencyInjection
             builder.Services.ConfigureExternalCookie(options =>
             {
                 options.Cookie.IsEssential = true;
-                // https://github.com/IdentityServer/IdentityServer4/issues/2595
+                // iOS 12 Safari treats the POST back from the IdP as cross-site, so
+                // SameSite=None is required for the external cookie to round-trip.
                 options.Cookie.SameSite = AspNetCore.Http.SameSiteMode.None;
             });
 

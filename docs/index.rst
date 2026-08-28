@@ -1,21 +1,15 @@
-Welcome to IdentityServer4 (latest)
+Welcome to ForgePoint.Identity
 =============================================
 
 .. image:: images/logo.png
    :align: center
 
-IdentityServer4 is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core.
+ForgePoint.Identity is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core.
+It is an Apache-2.0 continuation of IdentityServer4, maintained by ForgePoint Labs.
 
-.. warning:: 
-   As of Oct, 1st 2020, we started a new `company <https://duendesoftware.com/>`_. 
-   All new development will happen in our new `organization <https://github.com/duendesoftware>`_. 
-   The new Duende IdentityServer is free for dev/testing/personal projects and companies or individuals with less than 1M USD gross annual revenue - for all others we have various commercial licenses that also include support and updates. 
-   `Contact <https://duendesoftware.com/contact>`_ us for more information. 
-   
-   IdentityServer4 will be maintained with security updates until November 2022. 
-
-
-.. note:: This docs cover the latest version on main branch. This might not be released yet. Use the version picker in the lower left corner to select docs for a specific version.
+.. note::
+   This project is not affiliated with or endorsed by Duende Software or the original IdentityServer4 authors.
+   These pages describe the current ``main`` branch.
 
 It enables the following features in your applications:
 
@@ -36,10 +30,10 @@ It enables the following features in your applications:
 | The most important part - many aspects of IdentityServer can be customized to fit **your** needs. Since IdentityServer is a framework and not a boxed product or a SaaS, you can write code to adapt the system the way it makes sense for your scenarios.
 
 | **Mature Open Source**
-| IdentityServer uses the permissive `Apache 2 <https://www.apache.org/licenses/LICENSE-2.0>`_ license that allows building commercial products on top of it. It is also part of the `.NET Foundation <https://dotnetfoundation.org/>`_ which provides governance and legal backing.
+| ForgePoint.Identity uses the permissive `Apache 2 <https://www.apache.org/licenses/LICENSE-2.0>`_ license that allows building commercial products on top of it.
 
-| **Free and Commercial Support**
-| If you need help building or running your identity platform, :ref:`let us know <refSupport>`. There are several ways we can help you out.
+| **Support**
+| Questions and bug reports go to the :ref:`GitHub issue tracker <refSupport>`.
 
 .. toctree::
    :maxdepth: 3

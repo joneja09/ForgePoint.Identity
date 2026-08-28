@@ -13,18 +13,19 @@ it is recommended you do them in order.
 * adding support for ASP.NET Identity
 
 Every quickstart has a reference solution - you can find the code in the 
-`samples <https://github.com/IdentityServer/IdentityServer4/tree/main/samples/Quickstarts>`_ folder.
+`samples <https://github.com/joneja09/ForgePoint.Identity/tree/main/samples/Quickstarts>`_ folder.
 
 Preparation
 ^^^^^^^^^^^
-The first thing you should do is install our templates::
+Clone this repository and start from the matching folder under ``samples/Quickstarts``.
+There is no separate ``dotnet new`` template pack.
 
-    dotnet new -i IdentityServer4.Templates
+To follow a tutorial from scratch, create an ASP.NET Core web app and add the ``ForgePoint.Identity`` package::
 
-They will be used as a starting point for the various tutorials.
+    dotnet new web -n IdentityServer
+    cd IdentityServer
+    dotnet add package ForgePoint.Identity
 
-.. note:: If you are using private NuGet sources do not forget to add the --nuget-source parameter: --nuget-source https://api.nuget.org/v3/index.json
+Copy login, logout, consent, and error UI from ``samples/Quickstarts`` when you need interactive flows.
 
 OK - let's get started!
-
-.. note:: The quickstarts target the IdentityServer 4.x and ASP.NET Core 3.1.x - there are also quickstarts for `ASP.NET Core 2 <http://docs.identityserver.io/en/aspnetcore2/quickstarts/0_overview.html>`_ and `ASP.NET Core 1 <http://docs.identityserver.io/en/aspnetcore1/quickstarts/0_overview.html>`_.

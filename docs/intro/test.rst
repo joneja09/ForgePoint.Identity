@@ -1,5 +1,10 @@
-Demo Server
-===========
+Trying the host
+===============
 
-You can try IdentityServer4 with your favourite client library. We have a test instance at `demo.identityserver.io <https://demo.identityserver.io>`_. 
-On the main page you can find instructions on how to configure your client and how to call an API.
+There is no public demo server. Run the host in this repository and point your client at it.
+
+From the repository root, restore and start the sample host (or any project under ``samples/Quickstarts``). The default HTTPS address is ``https://localhost:5001``. Discovery is then available at::
+
+    https://localhost:5001/.well-known/openid-configuration
+
+Use that issuer when configuring your client library or API.

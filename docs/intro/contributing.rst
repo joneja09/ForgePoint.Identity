@@ -1,44 +1,43 @@
 Contributing
 ============
-We are very open to community contributions, but there are a couple of guidelines you should follow so we can handle this without too much effort.
+We are open to community contributions. Follow these guidelines so changes can be reviewed without extra churn.
 
 How to contribute?
 ^^^^^^^^^^^^^^^^^^
-The easiest way to contribute is to open an issue and start a discussion. 
-Then we can decide if and how a feature or a change could be implemented. 
-If you should submit a pull request with code changes, start with a description, only make the minimal changes to start with and provide tests that cover those changes.
+The easiest way to contribute is to open an issue and start a discussion.
+Then we can decide if and how a feature or a change could be implemented.
+If you submit a pull request with code changes, start with a description, only make the minimal changes to start with, and provide tests that cover those changes.
 
 Also read this first: `Being a good open source citizen <https://hackernoon.com/being-a-good-open-source-citizen-9060d0ab9732#.x3hocgw85>`_
 
 General feedback and discussions?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Please start a discussion on the `core repo issue tracker <https://github.com/IdentityServer/IdentityServer4/issues>`_.
+Please start a discussion on the `issue tracker <https://github.com/joneja09/ForgePoint.Identity/issues>`_.
 
 Bugs and feature requests?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-Please log a new issue in the appropriate GitHub repo:
+Please log a new issue in this repository:
 
-* `Core <https://github.com/IdentityServer/IdentityServer4>`_
-* `AccessTokenValidation <https://github.com/IdentityServer/IdentityServer4.AccessTokenValidation>`_
+`ForgePoint.Identity <https://github.com/joneja09/ForgePoint.Identity/issues>`_
 
 Contributing code and content
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 You will need to sign a Contributor License Agreement before you can contribute any code or content.
-This is an automated process that will start after you opened a pull request. 
+This is an automated process that will start after you opened a pull request.
 
 Contribution projects
 ^^^^^^^^^^^^^^^^^^^^^
-We very much appreciate if you start a contribution project (e.g. support for Database X or Configuration Store Y). 
-Tell us about it so we can tweet and link it in our docs.
+We appreciate contribution projects (for example support for Database X or Configuration Store Y).
+Open an issue to tell us about them so we can mention them in the docs.
 
-We generally don't want to take ownership of those contribution libraries, we are already really busy supporting the core projects.
+We generally do not take ownership of those libraries.
 
 **Naming conventions**
 
-As of October 2017, the IdentityServer4.* nuget namespace is reserved for our packages. Please use the following naming conventions:
+Do not publish packages under the ``ForgePoint.Identity.*`` prefix. Use one of:
 
-``YourProjectName.IdentityServer4``
+``YourProjectName.ForgePoint.Identity``
 
 or
 
-``IdentityServer4.Contrib.YourProjectName``
+``ForgePoint.Identity.Contrib.YourProjectName``

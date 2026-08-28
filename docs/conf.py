@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# IdentityServer4 documentation build configuration file, created by
+# ForgePoint.Identity documentation build configuration file.
 # sphinx-quickstart on Wed Jul 20 08:57:27 2016.
 #
 # This file is execfile()d with the current directory set to its
@@ -58,9 +58,9 @@ source_suffix = ['.rst']
 master_doc = 'index'
 
 # General information about the project.
-project = 'IdentityServer4'
-copyright = '2020, Brock Allen & Dominick Baier'
-author = 'Brock Allen & Dominick Baier'
+project = 'ForgePoint.Identity'
+copyright = 'ForgePoint Labs'
+author = 'ForgePoint Labs'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -154,7 +154,7 @@ if not on_rtd:  # only import and set the theme if we're building docs locally
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
 #
-# html_title = 'IdentityServer4 v1.0.0'
+# html_title = 'ForgePoint.Identity v1.0.0'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #
@@ -254,7 +254,7 @@ html_static_path = ['_static']
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'IdentityServer4doc'
+htmlhelp_basename = 'ForgePointIdentitydoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -280,8 +280,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'IdentityServer4.tex', 'IdentityServer4 Documentation',
-     'Brock Allen, Dominick Baier', 'manual'),
+    (master_doc, 'ForgePoint.Identity.tex', 'ForgePoint.Identity Documentation',
+     'ForgePoint Labs', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -322,7 +322,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'identityserver4', 'IdentityServer4 Documentation',
+    (master_doc, 'forgepoint-identity', 'ForgePoint.Identity Documentation',
      [author], 1)
 ]
 
@@ -337,8 +337,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'IdentityServer4', 'IdentityServer4 Documentation',
-     author, 'IdentityServer4', 'One line description of project.',
+    (master_doc, 'ForgePoint.Identity', 'ForgePoint.Identity Documentation',
+     author, 'ForgePoint.Identity', 'OpenID Connect and OAuth 2.0 for ASP.NET Core.',
      'Miscellaneous'),
 ]
 

@@ -13,6 +13,8 @@
 
     <ForgePointIdentityVersion>10.0.0-*</ForgePointIdentityVersion>
 
+    <PackageReadmeFile Condition="'$(PackageId)' != '' and Exists('$(MSBuildProjectDirectory)\..\README.md')">README.md</PackageReadmeFile>
+
     <AspNetCoreVersion Condition="'$(TargetFramework)' == 'net8.0'">8.0.21</AspNetCoreVersion>
     <AspNetCoreVersion Condition="'$(TargetFramework)' == 'net10.0'">10.0.11</AspNetCoreVersion>
     <AspNetCoreVersion Condition="'$(AspNetCoreVersion)' == ''">10.0.11</AspNetCoreVersion>
@@ -73,6 +75,10 @@
     <PackageReference Update="Microsoft.EntityFrameworkCore.SqlServer" Version="$(EntityFrameworkVersion)" />
     <PackageReference Update="Microsoft.EntityFrameworkCore.Design" Version="$(EntityFrameworkVersion)" PrivateAssets="All" />
 
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(PackageId)' != '' and Exists('$(MSBuildProjectDirectory)\..\README.md')">
+    <None Include="$(MSBuildProjectDirectory)\..\README.md" Pack="true" PackagePath="\" Visible="false" />
   </ItemGroup>
 
   <Target Name="SetAssemblyVersion" AfterTargets="MinVer">

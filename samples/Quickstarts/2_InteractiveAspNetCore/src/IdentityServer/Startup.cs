@@ -34,13 +34,13 @@ namespace IdentityServer
                     options.ClientId = "<insert here>";
                     options.ClientSecret = "<insert here>";
                 })
-                .AddOpenIdConnect("oidc", "Demo IdentityServer", options =>
+                .AddOpenIdConnect("oidc", "Other ForgePoint.Identity", options =>
                 {
                     options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
                     options.SignOutScheme = IdentityServerConstants.SignoutScheme;
                     options.SaveTokens = true;
 
-                    options.Authority = "https://demo.identityserver.io/";
+                    options.Authority = "https://localhost:5001/";
                     options.ClientId = "interactive.confidential";
                     options.ClientSecret = "secret";
                     options.ResponseType = "code";

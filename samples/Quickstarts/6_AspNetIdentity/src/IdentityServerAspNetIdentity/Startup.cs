@@ -44,7 +44,7 @@ namespace IdentityServerAspNetIdentity
                 options.Events.RaiseFailureEvents = true;
                 options.Events.RaiseSuccessEvents = true;
 
-                // see https://identityserver4.readthedocs.io/en/latest/topics/resources.html
+                // see https://github.com/joneja09/ForgePoint.Identity/blob/main/docs/topics/resources.rst
                 options.EmitStaticAudienceClaim = true;
             })
                 .AddInMemoryIdentityResources(Config.IdentityResources)

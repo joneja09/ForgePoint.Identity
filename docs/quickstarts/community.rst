@@ -1,8 +1,7 @@
 Community quickstarts & samples
 ===============================
-These samples are not maintained by the IdentityServer organization.
-The IdentityServer organization happily links to community samples, but can't make any guarantees about the samples.
-Please contact the authors directly.
+These samples are not maintained by ForgePoint Labs.
+They are listed as community examples only. Please contact the authors directly.
 
 Various ASP.NET Core security samples
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
