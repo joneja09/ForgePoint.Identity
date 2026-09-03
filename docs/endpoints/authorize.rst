@@ -4,6 +4,8 @@ Authorize Endpoint
 The authorize endpoint can be used to request tokens or authorization codes via the browser.
 This process typically involves authentication of the end-user and optionally consent.
 
+Clients can also push those parameters first via :ref:`Pushed Authorization Requests <refPushedAuthorization>` (``/connect/par``) and then send only ``client_id`` and ``request_uri``.
+
 .. Note:: IdentityServer supports a subset of the OpenID Connect and OAuth 2.0 authorize request parameters. For a full list, see `here <https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest>`_.
 
 ``client_id``

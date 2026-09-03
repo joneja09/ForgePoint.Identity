@@ -39,7 +39,8 @@ In a nutshell, a rollover typically works like this:
 This requires that clients and APIs use the discovery document, and also have a feature to periodically refresh their configuration.
 
 A more detailed `blog post <https://brockallen.com/2019/08/09/identityserver-and-signing-key-rotation/>`_ covers key rotation.
-Sample hosts that persist signing keys live under ``samples/KeyManagement`` in this repository.
+
+This repository does not ship an automatic key-rotation package. For development use ``AddDeveloperSigningCredential()``, which writes a temporary key to the host directory. For production, load a certificate or raw key with ``AddSigningCredential`` (file, store, or your own ``ISigningCredentialStore``) and publish retired keys with ``AddValidationKey`` until tokens signed with them have expired.
 
 Data protection
 ^^^^^^^^^^^^^^^

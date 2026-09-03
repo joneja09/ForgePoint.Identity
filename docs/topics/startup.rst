@@ -65,6 +65,12 @@ The use of ``TestUser`` is not recommended in production.
     ``TestUserStore`` is used by the default quickstart UI.
     Also registers implementations of ``IProfileService`` and ``IResourceOwnerPasswordValidator``.
 
+Health checks
+^^^^^^^^^^^^^
+
+* ``AddHealthChecks().AddIdentityServer()``
+    Registers a check that is healthy when signing credentials are configured. See :ref:`health checks <refHealthChecks>`.
+
 Additional services
 ^^^^^^^^^^^^^^^^^^^
 
