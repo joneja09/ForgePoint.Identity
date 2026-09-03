@@ -1,3 +1,4 @@
+.. _refAddApis:
 Adding more API Endpoints
 =========================
 It's a common scenario to add additional API endpoints to the application hosting IdentityServer.
@@ -5,7 +6,7 @@ These endpoints are typically protected by IdentityServer itself.
 
 For simple scenarios, we give you some helpers. See the advanced section to understand more of the internal plumbing.
 
-.. note:: You could achieve the same by using either our ``IdentityServerAuthentication`` handler or Microsoft's ``JwtBearer`` handler. But this is not recommended since it requires more configuration and creates dependencies on external libraries that might lead to conflicts in future updates.
+.. note:: For APIs hosted in a *different* process, use Microsoft's ``JwtBearer`` handler or IdentityModel OAuth 2.0 introspection. ``IdentityServerAuthentication`` / ``IdentityServer4.AccessTokenValidation`` is not part of this repository. The helpers below are only for APIs that live in the IdentityServer host.
 
 Start by registering your API as an ``ApiResource``, e.g.::
 

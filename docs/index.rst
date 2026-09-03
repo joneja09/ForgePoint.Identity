@@ -94,6 +94,7 @@ It enables the following features in your applications:
    topics/logging
    topics/events
    topics/crypto
+   topics/health
    topics/grant_types
    topics/client_authentication
    topics/extension_grants
@@ -118,6 +119,7 @@ It enables the following features in your applications:
 
    endpoints/discovery
    endpoints/authorize
+   endpoints/par
    endpoints/token
    endpoints/userinfo
    endpoints/device_authorization
