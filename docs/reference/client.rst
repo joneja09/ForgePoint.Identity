@@ -18,6 +18,8 @@ Basics
     Specifies whether this client needs to wrap the authorize request parameters in a JWT (defaults to ``false``)
 ``AllowedGrantTypes``
     Specifies the grant types the client is allowed to use. Use the ``GrantTypes`` class for common combinations.
+``RequirePushedAuthorization``
+    When ``true``, this client must use Pushed Authorization Requests (RFC 9126) instead of sending authorize parameters on the front channel. Defaults to ``false``. See :ref:`PAR <refPushedAuthorization>`.
 ``RequirePkce``
     Specifies whether clients using an authorization code based grant type must send a proof key (defaults to ``true``).
 ``AllowPlainTextPkce``

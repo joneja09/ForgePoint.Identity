@@ -59,7 +59,7 @@ The Release workflow packs the libraries, creates a GitHub Release with the `.nu
    - **Environment:** leave empty
 3. In this GitHub repo, **Settings → Secrets and variables → Actions → Variables**, add `NUGET_USER` set to that same nuget.org profile name.
 
-Until `NUGET_USER` is set, the workflow still creates the GitHub Release and skips nuget.org.
+`10.0.0` is already on [nuget.org](https://www.nuget.org/packages/ForgePoint.Identity). Keep the policy and `NUGET_USER` in place so later tags publish automatically. Until `NUGET_USER` is set on a new fork or environment, the workflow still creates the GitHub Release and skips nuget.org.
 
 ### Cut a release
 

@@ -27,6 +27,18 @@ By default all endpoints are enabled, but you can lock down your server by disab
 * ``EnableJwtRequestUri``
     JWT request_uri processing is enabled on the authorize endpoint. Defaults to ``false``.
 
+* ``EnablePushedAuthorizationEndpoint``
+    Enables the Pushed Authorization Requests endpoint at ``/connect/par``. Defaults to ``true``.
+
+Pushed Authorization
+^^^^^^^^^^^^^^^^^^^^
+See :ref:`Pushed Authorization Requests <refPushedAuthorization>`.
+
+* ``PushedAuthorization.Required``
+    When ``true``, every client must send ``request_uri`` from a prior PAR call. Defaults to ``false``.
+* ``PushedAuthorization.Lifetime``
+    How long a pushed authorization request stays valid, in seconds. Defaults to ``60``.
+
 Discovery
 ^^^^^^^^^
 Allows enabling/disabling various sections of the discovery document, e.g. endpoints, scopes, claims, grant types etc.
@@ -110,7 +122,7 @@ IdentityServer supports CORS for some of its endpoints.
 The underlying CORS implementation is provided from ASP.NET Core, and as such it is automatically registered in the dependency injection system.
 
 * ``CorsPolicyName``
-    Name of the CORS policy that will be evaluated for CORS requests into IdentityServer (defaults to ``"IdentityServer4"``).
+    Name of the CORS policy that will be evaluated for CORS requests into IdentityServer (defaults to ``"ForgePoint.Identity"``).
     The policy provider that handles this is implemented in terms of the ``ICorsPolicyService`` registered in the dependency injection system.
     If you wish to customize the set of CORS origins allowed to connect, then it is recommended that you provide a custom implementation of ``ICorsPolicyService``.
 

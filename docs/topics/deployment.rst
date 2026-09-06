@@ -34,6 +34,16 @@ Key material
 
 Another important piece of startup configuration is your key material, see :ref:`here <refCrypto>` for more details on key material and cryptography.
 
+Health checks
+^^^^^^^^^^^^^
+
+``AddHealthChecks().AddIdentityServer()`` reports whether signing credentials are configured. See :ref:`health checks <refHealthChecks>`.
+
+Local URL validation
+^^^^^^^^^^^^^^^^^^^^
+
+IdentityServer4 4.1.2 and earlier accepted crafted relative URLs that could redirect users off-site (`CVE-2024-39694 <https://nvd.nist.gov/vuln/detail/CVE-2024-39694>`_). This 10.x line rejects those URLs in ``IsLocalUrl``. Keep host UI return-URL checks on that helper (or equivalent).
+
 Operational data
 ^^^^^^^^^^^^^^^^
 For certain operations, IdentityServer needs a persistence store to keep state, this includes:

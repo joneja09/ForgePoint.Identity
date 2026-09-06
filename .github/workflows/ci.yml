@@ -44,3 +44,12 @@ jobs:
     - name: Build and test
       if: runner.os == 'Windows'
       run: ./build.ps1
+
+    - name: Build quickstart samples
+      shell: bash
+      run: |
+        set -euo pipefail
+        for sln in samples/Quickstarts/*/Quickstart.sln; do
+          echo "Building $sln"
+          dotnet build "$sln" --nologo -v q
+        done
